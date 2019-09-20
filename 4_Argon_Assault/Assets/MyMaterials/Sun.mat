@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Planet Shader
-  m_Shader: {fileID: 4800000, guid: 543a72c43ae674441b36c43b80402166, type: 3}
+  m_Name: Sun
+  m_Shader: {fileID: 101, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,17 +20,9 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 170ba97657f19cf4496d1ac860281fbb, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: -0.36, y: 0.15}
-    - _CityLightMap:
-        m_Texture: {fileID: 2800000, guid: 207896b95f4759f4a8d58d9a87126409, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: -0.36, y: 0.15}
-    - _CloudMap:
-        m_Texture: {fileID: 2800000, guid: 6830c978b5a81a94cbb760a166fd5f7c, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 2.46, y: -1.35}
+        m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -47,14 +39,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _HeightMap:
-        m_Texture: {fileID: 2800000, guid: 5e0a897a24c87e240aa4c50719175048, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: -0.36, y: 0.15}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bc496c974ad6e7b42bdbaf62a868429a, type: 3}
-        m_Scale: {x: 1, y: 1.06}
-        m_Offset: {x: -0.36, y: 0.15}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -67,40 +55,23 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SpecularMap:
-        m_Texture: {fileID: 2800000, guid: 30043056a8c241b48913af4daf2e328e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: -0.36, y: 0.15}
     m_Floats:
-    - _AtmosphereDensity: 7.22
     - _BumpScale: 1
-    - _CityLightIntensity: 2
-    - _CloudMapSpecularity: 1
-    - _CloudPanSpeed: 0.08
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HeightmapIntensity: 0.91
-    - _LightStretch: 0.5
     - _Metallic: 0
     - _Mode: 0
-    - _NormalMapIntensity: -9.86
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Smoothness: 0.442
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularMapIntensity: 0.472
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _AtmosphereColor: {r: 0.5876445, g: 0.44980422, b: 0.7169812, a: 1}
-    - _CityLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CloudColor: {r: 1, g: 1, b: 1, a: 0.40784314}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TextureColor: {r: 1, g: 1, b: 1, a: 1}
