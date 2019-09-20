@@ -62,9 +62,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PlanetShader\DemoScene\Standard Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
     <Compile Include="Assets\PlanetShader\DemoScene\Standard Assets\Editor\ImageEffects\BloomAndFlaresEditor.cs" />
     <Compile Include="Assets\PlanetShader\DemoScene\Standard Assets\Editor\ImageEffects\BloomEditor.cs" />
     <Compile Include="Assets\PlanetShader\DemoScene\Standard Assets\Editor\ImageEffects\SunShaftsEditor.cs" />
+    <Compile Include="Assets\PlanetShader\DemoScene\Standard Assets\Editor\Water\Water4\GerstnerDisplaceEditor.cs" />
+    <Compile Include="Assets\PlanetShader\DemoScene\Standard Assets\Editor\Water\Water4\PlanarReflectionEditor.cs" />
+    <Compile Include="Assets\PlanetShader\DemoScene\Standard Assets\Editor\Water\Water4\SpecularLightingEditor.cs" />
+    <Compile Include="Assets\PlanetShader\DemoScene\Standard Assets\Editor\Water\Water4\WaterBaseEditor.cs" />
+    <Compile Include="Assets\PlanetShader\DemoScene\Standard Assets\Editor\Water\Water4\WaterEditorUtility.cs" />
     <Compile Include="Assets\PlanetShader\DemoScene\Standard Assets\Effects\AntiAliasing\Editor\AntiAliasingEditor.cs" />
     <Compile Include="Assets\PlanetShader\DemoScene\Standard Assets\Effects\AntiAliasing\Editor\IAntiAliasingEditor.cs" />
     <Compile Include="Assets\PlanetShader\DemoScene\Standard Assets\Effects\AntiAliasing\FXAA\Editor\FXAAEditor.cs" />
@@ -83,12 +89,6 @@
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>D:/src/ArgonAssault/4_Argon_Assault/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Polybrush">
-      <HintPath>D:/src/ArgonAssault/4_Argon_Assault/Library/ScriptAssemblies/Unity.Polybrush.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Polybrush.Editor">
-      <HintPath>D:/src/ArgonAssault/4_Argon_Assault/Library/ScriptAssemblies/Unity.Polybrush.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/src/ArgonAssault/4_Argon_Assault/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -689,6 +689,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{72D7CC91-B013-3402-30CA-F2B90BF24422}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{03825FD9-5599-E1EB-7774-D098487434F0}</Project>
       <Name>Assembly-CSharp</Name>
