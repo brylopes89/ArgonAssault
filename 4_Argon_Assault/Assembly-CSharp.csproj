@@ -64,8 +64,12 @@
   <ItemGroup>
     <Compile Include="Assets\MyScripts\MusicPlayer.cs" />
     <Compile Include="Assets\MyScripts\Player.cs" />
-    <Compile Include="Assets\MyScripts\RotateObject.cs" />
-    <Compile Include="Assets\MyScripts\RotateSky.cs" />
+    <Compile Include="Assets\Spaceflight Controls\Scripts\bullet.cs" />
+    <Compile Include="Assets\Spaceflight Controls\Scripts\CameraFlightFollow.cs" />
+    <Compile Include="Assets\Spaceflight Controls\Scripts\CustomPointer.cs" />
+    <Compile Include="Assets\Spaceflight Controls\Scripts\DemoUI.cs" />
+    <Compile Include="Assets\Spaceflight Controls\Scripts\PlayerFlightControl.cs" />
+    <Compile Include="Assets\Spaceflight Controls\Scripts\PSDestroy.cs" />
     <Compile Include="Assets\StarNestSkybox\Scripts\CameraScroll.cs" />
     <Compile Include="Assets\StarNestSkybox\Scripts\SkyboxSwitcher.cs" />
     <None Include="Assets\MyShaders\Outline_Diffuse.shader" />
