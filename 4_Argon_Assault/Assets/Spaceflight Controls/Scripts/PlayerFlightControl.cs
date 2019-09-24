@@ -47,7 +47,8 @@ public class PlayerFlightControl : MonoBehaviour
 	float currentMag = 0f; //Current speed/magnitude
 	
 	bool thrust_exists = true;
-	bool roll_exists = true;
+    bool break_exists = true;
+    bool roll_exists = true;
 	
 	//---------------------------------------------------------------------------------
 	
@@ -65,8 +66,18 @@ public class PlayerFlightControl : MonoBehaviour
 			thrust_exists = false;
 			Debug.LogError("(Flight Controls) Thrust input axis not set up! Go to Edit>Project Settings>Input to create a new axis called 'Thrust' so the ship can change speeds.");
 		}
-		
-		try {
+
+        try
+        {
+            Input.GetAxis("Break");
+        }
+        catch
+        {
+            break_exists = false;
+            Debug.LogError("(Flight Controls) Break input axis not set up! Go to Edit>Project Settings>Input to create a new axis called 'Break' so the ship can change speeds.");
+        }
+
+        try {
 			Input.GetAxis("Roll");
 		} catch {
 			roll_exists = false;
@@ -105,18 +116,25 @@ public class PlayerFlightControl : MonoBehaviour
 				slow_Active = false;
 				currentMag = Mathf.Lerp(currentMag, afterburner_speed, thrust_transition_speed * Time.deltaTime);
 				
-			} else if (Input.GetAxis("Thrust") < 0) { 	//If input on the thrust axis is negatve, activate brakes.
-				slow_Active = true;
-				afterburner_Active = false;
-				currentMag = Mathf.Lerp(currentMag, slow_speed, thrust_transition_speed * Time.deltaTime);
-				
-			} else { //Otherwise, hold normal speed.
+			}
+
+            else { //Otherwise, hold normal speed.
 				slow_Active = false;
 				afterburner_Active = false;
 				currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);
 				
 			}
 		}
+
+        if (break_exists)
+        {
+            if (Input.GetAxis("Break") > 0) { //If input on the thrust axis is negatve, activate brakes.
+                slow_Active = true;
+                afterburner_Active = false;
+                currentMag = Mathf.Lerp(currentMag, slow_speed, thrust_transition_speed * Time.deltaTime);
+            }
+        }
+
 				
 		//Apply all these values to the rigidbody on the container.
 		GetComponent<Rigidbody>().AddRelativeTorque(
@@ -190,11 +208,8 @@ public class PlayerFlightControl : MonoBehaviour
 		//Please remove this and replace it with a shooting system that works for your game, if you need one.
 		if (Input.GetButton("Fire1")) {
 			fireShot();
-		}
-
-	
-	}
-	
+		}	
+	}	
 	
 	public void fireShot() {
 	
