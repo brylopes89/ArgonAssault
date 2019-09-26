@@ -62,7 +62,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Spaceflight Controls\Editor\FlightSysEditor.cs" />
+    <Compile Include="Assets\Asset Packs\Spaceflight Controls\Editor\FlightSysEditor.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Editor\ImageEffects\BloomAndFlaresEditor.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Editor\ImageEffects\BloomEditor.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Editor\ImageEffects\SunShaftsEditor.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Editor\Water\Water4\GerstnerDisplaceEditor.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Editor\Water\Water4\PlanarReflectionEditor.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Editor\Water\Water4\SpecularLightingEditor.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Editor\Water\Water4\WaterBaseEditor.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Editor\Water\Water4\WaterEditorUtility.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Effects\AntiAliasing\Editor\AntiAliasingEditor.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Effects\AntiAliasing\Editor\IAntiAliasingEditor.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Effects\AntiAliasing\FXAA\Editor\FXAAEditor.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Effects\AntiAliasing\SMAA\Editor\SMAAEditor.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Effects\Common\Editor\EditorGUIHelper.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Effects\Common\Editor\FieldFinder.cs" />
+    <Compile Include="Assets\Asset Packs\Standard Assets\Effects\Common\Editor\MinDrawer.cs" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>D:/src/ArgonAssault/4_Argon_Assault/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
@@ -281,6 +297,12 @@
     </Reference>
     <Reference Include="UnityEngine.XRModule">
       <HintPath>D:/Unity/Hub/Editor/2019.2.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>D:/src/ArgonAssault/4_Argon_Assault/Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-Editor-firstpass">
+      <HintPath>D:/src/ArgonAssault/4_Argon_Assault/Library/ScriptAssemblies/Assembly-CSharp-Editor-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.VR">
       <HintPath>D:/Unity/Hub/Editor/2019.2.5f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
@@ -674,17 +696,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{72D7CC91-B013-3402-30CA-F2B90BF24422}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{03825FD9-5599-E1EB-7774-D098487434F0}</Project>
       <Name>Assembly-CSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
-      <Project>{E61E3826-EEEF-DA7E-5B16-DF4997AD8D79}</Project>
-      <Name>Assembly-CSharp-Editor-firstpass</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
