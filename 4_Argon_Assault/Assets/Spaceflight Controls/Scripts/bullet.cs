@@ -19,10 +19,12 @@ public class bullet : MonoBehaviour {
 	
 	
 	void OnCollisionEnter(Collision col) {
-	
-		GameObject.Instantiate(explo, col.contacts[0].point, Quaternion.identity);
-	
-		Destroy(gameObject);
+
+        if (col.collider.tag == "Enemy")
+        {
+            GameObject.Instantiate(explo, col.contacts[0].point, Quaternion.identity);
+            Destroy(gameObject);
+        } 		
 	}
 	
 	

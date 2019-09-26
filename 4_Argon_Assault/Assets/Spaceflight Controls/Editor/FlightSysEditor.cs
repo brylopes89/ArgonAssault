@@ -15,8 +15,9 @@ public class FlightControllerEditor : Editor
 		GUILayout.Label(new GUIContent("Objects", "For the main ship Game Object and weapons"));
 		
 		flightCC.actual_model = (GameObject) EditorGUILayout.ObjectField(new GUIContent("Ship Game Object", "Point this to the Game Object that actually contains the mesh for the ship. Generally, this is the first child of the empty container object this controller is placed in."), flightCC.actual_model, typeof(GameObject), true);
-		flightCC.weapon_hardpoint_1 = (Transform) EditorGUILayout.ObjectField(new GUIContent("Weapon Hardpoint", "Transform for the barrel of the weapon"), flightCC.weapon_hardpoint_1, typeof(Transform), true);
-		flightCC.bullet = (GameObject) EditorGUILayout.ObjectField(new GUIContent("Projectile Game Object", "Projectile that will be fired from the weapon hardpoint."), flightCC.bullet, typeof(GameObject), true);
+		flightCC.weapon_hardpoint_1 = (Transform) EditorGUILayout.ObjectField(new GUIContent("Weapon Hardpoint 1", "Transform for the barrel of the weapon"), flightCC.weapon_hardpoint_1, typeof(Transform), true);
+        flightCC.weapon_hardpoint_2 = (Transform)EditorGUILayout.ObjectField(new GUIContent("Weapon Hardpoint 2", "Transform for the barrel of the weapon"), flightCC.weapon_hardpoint_2, typeof(Transform), true);
+        flightCC.bullet = (GameObject) EditorGUILayout.ObjectField(new GUIContent("Projectile Game Object", "Projectile that will be fired from the weapon hardpoint."), flightCC.bullet, typeof(GameObject), true);
 
 		//new GUIContent("", "")
 		EditorGUILayout.Separator();

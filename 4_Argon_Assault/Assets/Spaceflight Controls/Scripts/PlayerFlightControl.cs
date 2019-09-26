@@ -7,8 +7,9 @@ public class PlayerFlightControl : MonoBehaviour
 
 	//"Objects", "For the main ship Game Object and weapons"));
 	public GameObject actual_model; //"Ship GameObject", "Point this to the Game Object that actually contains the mesh for the ship. Generally, this is the first child of the empty container object this controller is placed in."
-	public Transform weapon_hardpoint_1; //"Weapon Hardpoint", "Transform for the barrel of the weapon"
-	public GameObject bullet; //"Projectile GameObject", "Projectile that will be fired from the weapon hardpoint."
+	public Transform weapon_hardpoint_1;
+    public Transform weapon_hardpoint_2;//"Weapon Hardpoint", "Transform for the barrel of the weapon"
+    public GameObject bullet; //"Projectile GameObject", "Projectile that will be fired from the weapon hardpoint."
 
 	//"Core Movement", "Controls for the various speeds for different operations."
 	public float speed = 20.0f; //"Base Speed", "Primary flight speed, without afterburners or brakes"
@@ -47,7 +48,7 @@ public class PlayerFlightControl : MonoBehaviour
 	float currentMag = 0f; //Current speed/magnitude
 	
 	bool thrust_exists = true;
-    bool break_exists = true;
+    bool brake_exists = true;
     bool roll_exists = true;
 	
 	//---------------------------------------------------------------------------------
@@ -69,12 +70,12 @@ public class PlayerFlightControl : MonoBehaviour
 
         try
         {
-            Input.GetAxis("Break");
+            Input.GetAxis("Brake");
         }
         catch
         {
-            break_exists = false;
-            Debug.LogError("(Flight Controls) Break input axis not set up! Go to Edit>Project Settings>Input to create a new axis called 'Break' so the ship can change speeds.");
+            brake_exists = false;
+            Debug.LogError("(Flight Controls) Brake input axis not set up! Go to Edit>Project Settings>Input to create a new axis called 'Break' so the ship can change speeds.");
         }
 
         try {
@@ -126,9 +127,9 @@ public class PlayerFlightControl : MonoBehaviour
 			}
 		}
 
-        if (break_exists)
+        if (brake_exists)
         {
-            if (Input.GetAxis("Break") > 0) { //If input on the thrust axis is negatve, activate brakes.
+            if (Input.GetAxis("Brake") > 0) { //If input on the thrust axis is negatve, activate brakes.
                 slow_Active = true;
                 afterburner_Active = false;
                 currentMag = Mathf.Lerp(currentMag, slow_speed, thrust_transition_speed * Time.deltaTime);
@@ -213,7 +214,7 @@ public class PlayerFlightControl : MonoBehaviour
 	
 	public void fireShot() {
 	
-		if (weapon_hardpoint_1 == null) {
+		if (weapon_hardpoint_1 == null || weapon_hardpoint_2 == null) {
 			Debug.LogError("(FlightControls) Trying to fire weapon, but no hardpoint set up!");
 			return;
 		}
@@ -230,8 +231,9 @@ public class PlayerFlightControl : MonoBehaviour
 		}
 		
 		GameObject shot1 = (GameObject) GameObject.Instantiate(bullet, weapon_hardpoint_1.position, Quaternion.identity);
-		
-		Ray vRay;
+        GameObject shot2 = (GameObject)GameObject.Instantiate(bullet, weapon_hardpoint_2.position, Quaternion.identity);
+
+        Ray vRay;
 		
 		if (!CustomPointer.instance.center_lock)
 			vRay = Camera.main.ScreenPointToRay(CustomPointer.pointerPosition);
@@ -245,11 +247,16 @@ public class PlayerFlightControl : MonoBehaviour
 		if (Physics.Raycast(vRay, out hit)) {
 			shot1.transform.LookAt(hit.point);
 			shot1.GetComponent<Rigidbody>().AddForce((shot1.transform.forward) * 9000f);
-		
-		//Otherwise, since the ray didn't hit anything, we're just going to guess and shoot the projectile in the general direction.
-		} else {
+            
+
+            shot2.transform.LookAt(hit.point);
+            shot2.GetComponent<Rigidbody>().AddForce((shot2.transform.forward) * 9000f);
+
+            //Otherwise, since the ray didn't hit anything, we're just going to guess and shoot the projectile in the general direction.
+        } else {
 			shot1.GetComponent<Rigidbody>().AddForce((vRay.direction) * 9000f);
-		}
+            shot2.GetComponent<Rigidbody>().AddForce((vRay.direction) * 9000f);
+        }
 	
 	}
 	

@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MyScripts\BetterWaypointFollower.cs" />
     <Compile Include="Assets\MyScripts\MusicPlayer.cs" />
     <Compile Include="Assets\MyScripts\Player.cs" />
     <Compile Include="Assets\Spaceflight Controls\Scripts\bullet.cs" />

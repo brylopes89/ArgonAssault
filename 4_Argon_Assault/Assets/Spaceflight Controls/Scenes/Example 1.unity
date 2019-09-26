@@ -186,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actual_model: {fileID: 1013142480}
   weapon_hardpoint_1: {fileID: 742743257}
+  weapon_hardpoint_2: {fileID: 60514952}
   bullet: {fileID: 100000, guid: 66405a5a840355b489214db60c64d3b5, type: 3}
   speed: 20
   afterburner_speed: 55
