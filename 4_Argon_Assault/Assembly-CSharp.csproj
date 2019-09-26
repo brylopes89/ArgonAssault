@@ -192,8 +192,11 @@
     <Compile Include="Assets\Asset Packs\StarNestSkybox\Scripts\CameraScroll.cs" />
     <Compile Include="Assets\Asset Packs\StarNestSkybox\Scripts\SkyboxSwitcher.cs" />
     <Compile Include="Assets\MyScripts\BetterWaypointFollower.cs" />
+    <Compile Include="Assets\MyScripts\CollisionHandler.cs" />
     <Compile Include="Assets\MyScripts\MusicPlayer.cs" />
-    <Compile Include="Assets\MyScripts\Player.cs" />
+    <Compile Include="Assets\MyScripts\PlayerController.cs" />
+    <Compile Include="Assets\MyScripts\Practice.cs" />
+    <Compile Include="Assets\MyScripts\SceneLoader.cs" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
@@ -482,9 +485,6 @@
     </Reference>
     <Reference Include="UnityEngine.XRModule">
       <HintPath>D:/Unity/Hub/Editor/2019.2.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>D:/src/ArgonAssault/4_Argon_Assault/Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>D:/src/ArgonAssault/4_Argon_Assault/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>

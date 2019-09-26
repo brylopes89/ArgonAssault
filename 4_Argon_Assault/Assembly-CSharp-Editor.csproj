@@ -298,12 +298,6 @@
     <Reference Include="UnityEngine.XRModule">
       <HintPath>D:/Unity/Hub/Editor/2019.2.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>D:/src/ArgonAssault/4_Argon_Assault/Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp-Editor-firstpass">
-      <HintPath>D:/src/ArgonAssault/4_Argon_Assault/Library/ScriptAssemblies/Assembly-CSharp-Editor-firstpass.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.VR">
       <HintPath>D:/Unity/Hub/Editor/2019.2.5f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
     </Reference>

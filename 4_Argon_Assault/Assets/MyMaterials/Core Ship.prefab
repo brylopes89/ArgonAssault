@@ -14408,8 +14408,9 @@ GameObject:
   - component: {fileID: 5343383111301831018}
   - component: {fileID: 5343383111298439502}
   - component: {fileID: 5343383111299406734}
-  - component: {fileID: 5343383111295052782}
-  - component: {fileID: 3674391645543154958}
+  - component: {fileID: 1505072094}
+  - component: {fileID: 1505072091}
+  - component: {fileID: 1505072090}
   m_Layer: 2
   m_Name: Core Ship
   m_TagString: Untagged
@@ -14424,7 +14425,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5343383111301334346}
-  m_LocalRotation: {x: -0.10738848, y: 0.008317609, z: -0.000872682, w: 0.994182}
+  m_LocalRotation: {x: -0.10738588, y: 0.008317286, z: -0.0008767183, w: 0.9941823}
   m_LocalPosition: {x: 0.3751541, y: -1.2702978, z: 8.252154}
   m_LocalScale: {x: 0.24711175, y: 0.24711184, z: 0.24711168}
   m_Children:
@@ -14434,7 +14435,7 @@ Transform:
   - {fileID: 5343383111301831022}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -12.328001, y: 0.98100007, z: -0.20700002}
 --- !u!33 &5343383111298439502
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14481,21 +14482,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &5343383111295052782
-MeshCollider:
+--- !u!54 &1505072094
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5343383111301334346}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1505072091
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5343383111301334346}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: 30ce66f05d2eb514d8ddcd2571c8857d, type: 3}
---- !u!114 &3674391645543154958
+  serializedVersion: 2
+  m_Size: {x: 11.185302, y: 2.0851133, z: 13.986211}
+  m_Center: {x: 0.0000038147446, y: 0.26392677, z: 0.9817063}
+--- !u!114 &1505072090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14504,16 +14520,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5343383111301334346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef0808b25b3af774a847a78612260ae3, type: 3}
+  m_Script: {fileID: 11500000, guid: c7565b38d110039428b894f19bb6a13d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 20
-  xRange: 5
-  yRange: 3
-  positionPitchFactor: -5
-  controlPitchFactor: -20
-  positionYawFactor: 5
-  controlRollFactor: -50
 --- !u!1 &5343383111301334350
 GameObject:
   m_ObjectHideFlags: 0
