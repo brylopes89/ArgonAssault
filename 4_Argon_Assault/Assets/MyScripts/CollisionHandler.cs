@@ -7,10 +7,9 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
     [Tooltip("In seconds")][SerializeField] float levelLoadDelay = 2f;
-    [Tooltip("FX pefab on player")][SerializeField] GameObject deathFX;
+    [Tooltip("FX pefab on player")][SerializeField] GameObject deathFX;    
 
-
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         StartDeathSequence();
         deathFX.SetActive(true);
@@ -22,7 +21,7 @@ public class CollisionHandler : MonoBehaviour
         SendMessage("OnPlayerDeath");
     }
 
-    private void ReloadScene() // string referenced
+    void ReloadScene() // string referenced
     {
         SceneManager.LoadScene(1);
     }
