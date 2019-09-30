@@ -525,9 +525,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265683503}
-  m_LocalRotation: {x: -0.10738848, y: 0.008317609, z: -0.000872682, w: 0.994182}
-  m_LocalPosition: {x: 3.2246351, y: -23.663517, z: 24.923172}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.745564, y: -102.93639, z: 46.742516}
+  m_LocalScale: {x: 4.046752, y: 4.04675, z: 4.046753}
   m_Children:
   - {fileID: 1720686428}
   - {fileID: 420047453}
@@ -538,8 +538,8 @@ Transform:
   - {fileID: 1146888843}
   - {fileID: 1104212450}
   - {fileID: 1623990928}
-  m_Father: {fileID: 619238753}
-  m_RootOrder: 1
+  m_Father: {fileID: 8708146500316996628}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &420047452
 GameObject:
@@ -817,7 +817,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 149606571}
-  - {fileID: 265683505}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 12.33, y: -0.95900005, z: -0.003}
@@ -964,6 +963,12 @@ Light:
   m_CorrespondingSourceObject: {fileID: 5194987168044536399, guid: f53b461be9eb7d2488b540a9e0bb099c,
     type: 3}
   m_PrefabInstance: {fileID: 5194987168481468629}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &718359069 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3468845264113117352, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3126163025736493073}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &866935762 stripped
 Transform:
@@ -2196,6 +2201,11 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1845441269322303157, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+        type: 3}
+      propertyPath: deathFX
+      value: 
+      objectReference: {fileID: 718359069}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d8b5df027d94c44db7bcfa9942f090c, type: 3}
 --- !u!1001 &5194987168481468629
