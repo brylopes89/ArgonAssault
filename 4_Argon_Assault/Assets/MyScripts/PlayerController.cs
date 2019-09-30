@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [Header("General")]
     [Tooltip("In ms^-1")][SerializeField] float controlSpeed = 20f;    
     [Tooltip("In ms")] [SerializeField] float xRange = 5f;
-    [Tooltip("In ms")] [SerializeField] float yRange = 3f;
+    [Tooltip("In ms")] [SerializeField] float yRange = 3f;    
 
     [Header("Screen-position Based")]
     [SerializeField] float positionPitchFactor = -5f;
@@ -18,6 +18,12 @@ public class PlayerController : MonoBehaviour
     [Header("Control Throw Based")]
     [SerializeField] float positionYawFactor = 5;
     [SerializeField] float controlRollFactor = -20;
+
+    [Header("Weapon Damage")]
+    [SerializeField] int weaponDamage = 10;
+
+    [Header("Laser Projectiles")]
+    [SerializeField] GameObject[] projectiles;
 
     float xThrow, yThrow;
     bool isControlEnabled = true;
@@ -29,8 +35,9 @@ public class PlayerController : MonoBehaviour
         {
             ProcessTranslation();
             ProcessRotation();
+            ProcessFiring();
         }        
-    }
+    }  
 
     void OnPlayerDeath() // called by string reference
     {
@@ -66,4 +73,39 @@ public class PlayerController : MonoBehaviour
 
         transform.localPosition = new Vector3(clampedXPos, clampedYPos, transform.localPosition.z);
     }
+    private void ProcessFiring()
+    {
+        if (CrossPlatformInputManager.GetButton("Fire1"))
+        {
+            ActivateGuns();
+        }
+        else
+        {
+            DeactivateGuns();
+        }
+    }
+
+    private void ActivateGuns()
+    {
+        foreach (GameObject projectile in projectiles)
+        {
+            projectile.SetActive(true);
+        }
+    }
+
+    private void DeactivateGuns()
+    {
+        foreach (GameObject projectile in projectiles)
+        {
+            projectile.SetActive(false);
+        }
+    }
+
+    public int CalculateWeaponDamage()
+    {
+        int damageDealt = weaponDamage;
+        return damageDealt;
+    }
+
+    
 }

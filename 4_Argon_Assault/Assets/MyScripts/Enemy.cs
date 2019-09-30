@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] GameObject deathFX;
     [SerializeField] Transform parent;
-    [SerializeField] int scorePerHit = 12;
+    [SerializeField] int scorePerHit = 10;
+    [SerializeField] int health = 20;
 
     ScoreBoard scoreBoard;
     bool hasBeenHit = false;
@@ -27,17 +28,31 @@ public class Enemy : MonoBehaviour
     }
 
     void OnParticleCollision(GameObject other)
-    {        
-        if (!hasBeenHit)
-        {
+    {
+
+                  
             hasBeenHit = true;
-            scoreBoard.ScoreHit(scorePerHit);
-            Destroy(gameObject);
-        }
-                
-        GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
-        fx.transform.parent = parent;
-        
+            health -= GameObject.FindObjectOfType<PlayerController>().CalculateWeaponDamage();
+            ProcessHit();
+
+            if (health <= 0)
+            {
+                KillEnemy();
+            }       
     }
 
+    private void ProcessHit()
+    {        
+        scoreBoard.ScoreHit(scorePerHit);        
+        print(health);
+    }
+
+    private void KillEnemy()
+    {
+        hasBeenHit = false;
+        GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
+        fx.transform.parent = parent;
+        Destroy(gameObject);       
+        
+    }
 }

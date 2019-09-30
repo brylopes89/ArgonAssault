@@ -8,7 +8,7 @@ public class ScoreBoard : MonoBehaviour
     int score; // 0 by default
     Text scoreText;
 
-    // Start is called before the first frame update
+        // Start is called before the first frame update
     void Start()
     {
         scoreText = GetComponent<Text>();
@@ -17,7 +17,7 @@ public class ScoreBoard : MonoBehaviour
 
     public void ScoreHit(int scoreIncrease)
     {
-        this.score = score + scoreIncrease;
+        this.score += scoreIncrease;
         scoreText.text = this.score.ToString();
     }
 }
