@@ -200,6 +200,7 @@
     <Compile Include="Assets\MyScripts\SceneLoader.cs" />
     <Compile Include="Assets\MyScripts\ScoreBoard.cs" />
     <Compile Include="Assets\MyScripts\SelfDestructor.cs" />
+    <Compile Include="Assets\MyScripts\Test.cs" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
