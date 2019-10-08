@@ -79,6 +79,7 @@
     <Compile Include="Assets\Asset Packs\Standard Assets\Effects\Common\Editor\EditorGUIHelper.cs" />
     <Compile Include="Assets\Asset Packs\Standard Assets\Effects\Common\Editor\FieldFinder.cs" />
     <Compile Include="Assets\Asset Packs\Standard Assets\Effects\Common\Editor\MinDrawer.cs" />
+    <Compile Include="Assets\Editor\LookAtPointEditor.cs" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>D:/src/ArgonAssault/4_Argon_Assault/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>

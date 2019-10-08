@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
         foreach (GameObject projectile in projectiles)
         {
             var emissionModule = projectile.GetComponent<ParticleSystem>().emission;
-            emissionModule.enabled = isActive;
+            emissionModule.enabled = isActive; 
         }
     }
 

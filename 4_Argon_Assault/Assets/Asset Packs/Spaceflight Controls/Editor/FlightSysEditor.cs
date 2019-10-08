@@ -8,7 +8,7 @@ public class FlightControllerEditor : Editor
 {
 	public override void OnInspectorGUI()
 	{
-
+        serializedObject.Update();
 		PlayerFlightControl flightCC = (PlayerFlightControl)target;
 		
 		EditorGUILayout.Separator();
@@ -18,9 +18,11 @@ public class FlightControllerEditor : Editor
 		flightCC.weapon_hardpoint_1 = (Transform) EditorGUILayout.ObjectField(new GUIContent("Weapon Hardpoint 1", "Transform for the barrel of the weapon"), flightCC.weapon_hardpoint_1, typeof(Transform), true);
         flightCC.weapon_hardpoint_2 = (Transform)EditorGUILayout.ObjectField(new GUIContent("Weapon Hardpoint 2", "Transform for the barrel of the weapon"), flightCC.weapon_hardpoint_2, typeof(Transform), true);
         flightCC.bullet = (GameObject) EditorGUILayout.ObjectField(new GUIContent("Projectile Game Object", "Projectile that will be fired from the weapon hardpoint."), flightCC.bullet, typeof(GameObject), true);
+        flightCC.emission_left= (GameObject)EditorGUILayout.ObjectField(new GUIContent("Thruster emission left", "Particle system emission from engine"), flightCC.emission_left, typeof(GameObject), true);
+        flightCC.emission_right = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Thruster emission right", "Particle system emission from engine"), flightCC.emission_right, typeof(GameObject), true);
 
-		//new GUIContent("", "")
-		EditorGUILayout.Separator();
+        //new GUIContent("", "")
+        EditorGUILayout.Separator();
 		GUILayout.Label(new GUIContent("Core Movement", "Controls for the various speeds for different operations."));
 		
 		flightCC.speed = EditorGUILayout.FloatField(new GUIContent("Base Speed", "Primary flight speed, without afterburners or brakes"), flightCC.speed);	

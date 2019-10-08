@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 [System.Serializable]
 public class PlayerFlightControl : MonoBehaviour
@@ -10,9 +11,12 @@ public class PlayerFlightControl : MonoBehaviour
 	public Transform weapon_hardpoint_1;
     public Transform weapon_hardpoint_2;//"Weapon Hardpoint", "Transform for the barrel of the weapon"
     public GameObject bullet; //"Projectile GameObject", "Projectile that will be fired from the weapon hardpoint."
+    public GameObject emission_left; //thruster emission
+    public GameObject emission_right; //thruster emission
 
-	//"Core Movement", "Controls for the various speeds for different operations."
-	public float speed = 20.0f; //"Base Speed", "Primary flight speed, without afterburners or brakes"
+
+    //"Core Movement", "Controls for the various speeds for different operations."
+    public float speed = 20.0f; //"Base Speed", "Primary flight speed, without afterburners or brakes"
 	public float afterburner_speed = 40f; //Afterburner Speed", "Speed when the button for positive thrust is being held down"
 	public float slow_speed = 4f; //"Brake Speed", "Speed when the button for negative thrust is being held down"
 	public float thrust_transition_speed = 5f; //Thrust Transition Speed", "How quickly afterburners/brakes will reach their maximum effect"
@@ -38,8 +42,10 @@ public class PlayerFlightControl : MonoBehaviour
 	public bool afterburner_Active = false; //True if afterburners are on.
 	[HideInInspector]
 	public bool slow_Active = false; //True if brakes are on
-	
-	float distFromVertical; //Distance in pixels from the vertical center of the screen.
+    [HideInInspector]
+    public bool start_Speed = false;
+
+    float distFromVertical; //Distance in pixels from the vertical center of the screen.
 	float distFromHorizontal; //Distance in pixel from the horizontal center of the screen.
 
 	Vector2 mousePos = new Vector2(0,0); //Pointer position from CustomPointer
@@ -50,12 +56,15 @@ public class PlayerFlightControl : MonoBehaviour
 	bool thrust_exists = true;
     bool brake_exists = true;
     bool roll_exists = true;
-	
-	//---------------------------------------------------------------------------------
-	
-	void Start() {
-	
-		mousePos = new Vector2(0,0);	
+
+
+    public float eRate = 100.0f;
+
+    //---------------------------------------------------------------------------------
+
+    void Start() {        
+
+        mousePos = new Vector2(0,0);	
 		DZ = CustomPointer.instance.deadzone_radius;
 		
 		roll = 0; //Setting this equal to 0 here as a failsafe in case the roll axis is not set up.
@@ -88,15 +97,23 @@ public class PlayerFlightControl : MonoBehaviour
 	}
 	
 	
-	void FixedUpdate () {
-		
-		if (actual_model == null) {
+	public void FixedUpdate () {     
+
+        if (actual_model == null) {
 			Debug.LogError("(FlightControls) Ship GameObject is null.");
 			return;
 		}
-		
-		
-		updateCursorPosition();
+
+        /*if (emission_left || emission_right == null)
+        {
+            Debug.LogError("(FlightControls) emission GameObject is null!");
+            return;
+        }*/
+
+        
+
+
+        updateCursorPosition();
 		
 		//Clamping the pitch and yaw values, and taking in the roll input.
 		pitch = Mathf.Clamp(distFromVertical, -screen_clamp - DZ, screen_clamp  + DZ) * pitchYaw_strength;
@@ -107,23 +124,25 @@ public class PlayerFlightControl : MonoBehaviour
 		
 		//Getting the current speed.
 		currentMag = GetComponent<Rigidbody>().velocity.magnitude;
-		
-		//If input on the thrust axis is positive, activate afterburners.
 
-		if (thrust_exists) {
-			if (Input.GetAxis("Thrust") > 0) {
-                
-				afterburner_Active = true;
-				slow_Active = false;
-				currentMag = Mathf.Lerp(currentMag, afterburner_speed, thrust_transition_speed * Time.deltaTime);
-				
-			}
+        //If input on the thrust axis is positive, activate afterburners.
+        
+
+        if (thrust_exists) {
+			if (Input.GetAxis("Thrust") > 0)
+            {
+                IncreaseEmission();
+                afterburner_Active = true;
+                slow_Active = false;
+                currentMag = Mathf.Lerp(currentMag, afterburner_speed, thrust_transition_speed * Time.deltaTime);
+
+            }
 
             else { //Otherwise, hold normal speed.
-				slow_Active = false;
+                DecreaseEmission();
+                slow_Active = false;
 				afterburner_Active = false;
-				currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);
-				
+				currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);				
 			}
 		}
 
@@ -148,10 +167,37 @@ public class PlayerFlightControl : MonoBehaviour
 		if (use_banking)
 			updateBanking(); //Calculate banking.
 		
-	}		
-		
-		
-	void updateCursorPosition() {
+	}
+    private void IncreaseEmission()
+    {
+
+        start_Speed = true;
+        var emLeft = emission_left.GetComponent<ParticleSystem>();
+        var emRight = emission_right.GetComponent<ParticleSystem>();
+        var main1 = emLeft.main;
+        var main2 = emRight.main;
+
+        main1.startSpeed = 100.0f;
+        main1.startLifetime = 20.0f;
+        main2.startSpeed = 100.0f;
+        main2.startLifetime = 20.0f;
+    }
+
+    void DecreaseEmission()
+    {
+        start_Speed = false;
+        var emLeft = emission_left.GetComponent<ParticleSystem>();
+        var emRight = emission_right.GetComponent<ParticleSystem>();
+        var main1 = emLeft.main;
+        var main2 = emRight.main;
+
+        main1.startSpeed = 5.0f;
+        
+        main2.startSpeed = 5.0f;
+        
+    }
+
+    void updateCursorPosition() {
 
 		mousePos = CustomPointer.pointerPosition;
 		
@@ -205,9 +251,10 @@ public class PlayerFlightControl : MonoBehaviour
 
 	
 	void Update() {
-	
-		//Please remove this and replace it with a shooting system that works for your game, if you need one.
-		if (Input.GetButton("Fire1")) {
+         
+
+        //Please remove this and replace it with a shooting system that works for your game, if you need one.
+        if (Input.GetButton("Fire1")) {
 			fireShot();
 		}	
 	}	
