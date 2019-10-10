@@ -8,9 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: rock1
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _DETAIL_MULX2 _NORMALMAP
-  m_LightmapFlags: 5
+  m_Shader: {fileID: 4800000, guid: 0a4b0bce1e250a14bb534d70bce205fa, type: 3}
+  m_ShaderKeywords: _DETAIL_MULX2 _EMISSION _NORMALMAP
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -21,7 +21,7 @@ Material:
     m_TexEnvs:
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: dada7846d4761ca478eafc09baeebe17, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 1, y: 0.16}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 2800000, guid: 0ee397d9e4c9c9e41b8404b84f888852, type: 3}
@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0.68, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: c01c4f61572ab2f4b85ef4a485263db6, type: 3}
-        m_Scale: {x: 2, y: 2}
+        m_Scale: {x: 2, y: 0.16}
         m_Offset: {x: 0.68, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -52,22 +52,29 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Texture: {fileID: 2800000, guid: 17da6d53ec93a0444bd0f751b1d02477, type: 3}
+        m_Scale: {x: 2.53, y: 0.16}
+        m_Offset: {x: 0, y: -146.97}
     m_Floats:
     - _BumpScale: 0.26
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EdgeLength: 50
+    - _GlossMapScale: 1
     - _Glossiness: 0.109
+    - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 0.374
-    - _Parallax: 0.02
+    - _Parallax: 0
+    - _Shininess: 0.03
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}

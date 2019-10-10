@@ -11,14 +11,14 @@ public class PlayerFlightControl : MonoBehaviour
 	public Transform weapon_hardpoint_1;
     public Transform weapon_hardpoint_2;//"Weapon Hardpoint", "Transform for the barrel of the weapon"
     public GameObject bullet; //"Projectile GameObject", "Projectile that will be fired from the weapon hardpoint."
-    public GameObject emission_left; //thruster emission
-    public GameObject emission_right; //thruster emission
+    
+    //public GameObject emission_right; //thruster emission
 
 
     //"Core Movement", "Controls for the various speeds for different operations."
     public float speed = 20.0f; //"Base Speed", "Primary flight speed, without afterburners or brakes"
 	public float afterburner_speed = 40f; //Afterburner Speed", "Speed when the button for positive thrust is being held down"
-	public float slow_speed = 4f; //"Brake Speed", "Speed when the button for negative thrust is being held down"
+	public float slow_speed = 4f; //"Brake Speed", "Speed when the button for negative thrust is being held down"    
 	public float thrust_transition_speed = 5f; //Thrust Transition Speed", "How quickly afterburners/brakes will reach their maximum effect"
 	public float turnspeed = 15.0f; //"Turn/Roll Speed", "How fast turns and rolls will be executed "
 	public float rollSpeedModifier = 7; //"Roll Speed", "Multiplier for roll speed. Base roll is determined by turn speed"
@@ -33,17 +33,13 @@ public class PlayerFlightControl : MonoBehaviour
 	
 	public float screen_clamp = 500; //"Screen Clamp (Pixels)", "Once the pointer is more than this many pixels from the center, the input in that direction(s) will be treated as the maximum value."
 	
-
-
-
 	[HideInInspector]
 	public float roll, yaw, pitch; //Inputs for roll, yaw, and pitch, taken from Unity's input system.
 	[HideInInspector]
 	public bool afterburner_Active = false; //True if afterburners are on.
 	[HideInInspector]
 	public bool slow_Active = false; //True if brakes are on
-    [HideInInspector]
-    public bool start_Speed = false;
+    
 
     float distFromVertical; //Distance in pixels from the vertical center of the screen.
 	float distFromHorizontal; //Distance in pixel from the horizontal center of the screen.
@@ -55,15 +51,12 @@ public class PlayerFlightControl : MonoBehaviour
 	
 	bool thrust_exists = true;
     bool brake_exists = true;
-    bool roll_exists = true;
-
-
-    public float eRate = 100.0f;
+    bool roll_exists = true;  
 
     //---------------------------------------------------------------------------------
 
-    void Start() {        
-
+    void Start()
+    {
         mousePos = new Vector2(0,0);	
 		DZ = CustomPointer.instance.deadzone_radius;
 		
@@ -95,106 +88,83 @@ public class PlayerFlightControl : MonoBehaviour
 		}
 		
 	}
-	
-	
-	public void FixedUpdate () {     
 
-        if (actual_model == null) {
-			Debug.LogError("(FlightControls) Ship GameObject is null.");
-			return;
-		}
 
-        /*if (emission_left || emission_right == null)
+    public void FixedUpdate()
+    {
+        if (actual_model == null)
         {
-            Debug.LogError("(FlightControls) emission GameObject is null!");
+            Debug.LogError("(FlightControls) Ship GameObject is null.");
             return;
-        }*/
-
-        
-
+        }
 
         updateCursorPosition();
-		
-		//Clamping the pitch and yaw values, and taking in the roll input.
-		pitch = Mathf.Clamp(distFromVertical, -screen_clamp - DZ, screen_clamp  + DZ) * pitchYaw_strength;
-		yaw = Mathf.Clamp(distFromHorizontal, -screen_clamp - DZ, screen_clamp  + DZ) * pitchYaw_strength;
-		if (roll_exists)
-			roll = (Input.GetAxis("Roll") * -rollSpeedModifier);
-			
-		
-		//Getting the current speed.
-		currentMag = GetComponent<Rigidbody>().velocity.magnitude;
+
+        //Clamping the pitch and yaw values, and taking in the roll input.
+        pitch = Mathf.Clamp(distFromVertical, -screen_clamp - DZ, screen_clamp + DZ) * pitchYaw_strength;
+        yaw = Mathf.Clamp(distFromHorizontal, -screen_clamp - DZ, screen_clamp + DZ) * pitchYaw_strength;
+        if (roll_exists)
+            roll = (Input.GetAxis("Roll") * -rollSpeedModifier);
+
+
+        //Getting the current speed.
+        currentMag = GetComponent<Rigidbody>().velocity.magnitude;
 
         //If input on the thrust axis is positive, activate afterburners.
-        
 
-        if (thrust_exists) {
-			if (Input.GetAxis("Thrust") > 0)
+
+        if (thrust_exists)
+        {
+            if (Input.GetAxis("Thrust") > 0)
             {
-                IncreaseEmission();
-                afterburner_Active = true;
-                slow_Active = false;
-                currentMag = Mathf.Lerp(currentMag, afterburner_speed, thrust_transition_speed * Time.deltaTime);
-
+                IncreaseThrust();
             }
 
-            else { //Otherwise, hold normal speed.
-                DecreaseEmission();
-                slow_Active = false;
-				afterburner_Active = false;
-				currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);				
-			}
-		}
-
-        if (brake_exists)
-        {
-            if (Input.GetAxis("Brake") > 0) { //If input on the thrust axis is negatve, activate brakes.
-                slow_Active = true;
-                afterburner_Active = false;
-                currentMag = Mathf.Lerp(currentMag, slow_speed, thrust_transition_speed * Time.deltaTime);
+            else
+            { //Otherwise, hold normal speed.
+                DecreaseThrust();
             }
         }
 
-				
-		//Apply all these values to the rigidbody on the container.
-		GetComponent<Rigidbody>().AddRelativeTorque(
-			(pitch * turnspeed * Time.deltaTime),
-			(yaw * turnspeed * Time.deltaTime),
-			(roll * turnspeed *  (rollSpeedModifier / 2) * Time.deltaTime));
-		
-		GetComponent<Rigidbody>().velocity = transform.forward * currentMag; //Apply speed
-		
-		if (use_banking)
-			updateBanking(); //Calculate banking.
-		
-	}
-    private void IncreaseEmission()
-    {
+        if (brake_exists && Input.GetAxis("Brake") > 0)
+        { //If input on the thrust axis is negatve, activate brakes.
+            ApplyBrake();
+        }
 
-        start_Speed = true;
-        var emLeft = emission_left.GetComponent<ParticleSystem>();
-        var emRight = emission_right.GetComponent<ParticleSystem>();
-        var main1 = emLeft.main;
-        var main2 = emRight.main;
 
-        main1.startSpeed = 100.0f;
-        main1.startLifetime = 20.0f;
-        main2.startSpeed = 100.0f;
-        main2.startLifetime = 20.0f;
+        //Apply all these values to the rigidbody on the container.
+        GetComponent<Rigidbody>().AddRelativeTorque(
+            (pitch * turnspeed * Time.deltaTime),
+            (yaw * turnspeed * Time.deltaTime),
+            (roll * turnspeed * (rollSpeedModifier / 2) * Time.deltaTime));
+
+        GetComponent<Rigidbody>().velocity = transform.forward * currentMag; //Apply speed
+
+        if (use_banking)
+        {
+            updateBanking(); //Calculate banking.
+        }
+
+    }
+    void IncreaseThrust()
+    {        
+        afterburner_Active = true;
+        slow_Active = false;
+        currentMag = Mathf.Lerp(currentMag, afterburner_speed, thrust_transition_speed * Time.deltaTime);      
+    }   
+
+    void DecreaseThrust()
+    {        
+        slow_Active = false;
+        afterburner_Active = false;
+        currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);     
     }
 
-    void DecreaseEmission()
+    void ApplyBrake()
     {
-        start_Speed = false;
-        var emLeft = emission_left.GetComponent<ParticleSystem>();
-        var emRight = emission_right.GetComponent<ParticleSystem>();
-        var main1 = emLeft.main;
-        var main2 = emRight.main;
-
-        main1.startSpeed = 5.0f;
-        
-        main2.startSpeed = 5.0f;
-        
+        slow_Active = true;
+        afterburner_Active = false;
+        currentMag = Mathf.Lerp(currentMag, slow_speed, thrust_transition_speed * Time.deltaTime);
     }
 
     void updateCursorPosition() {
@@ -229,11 +199,7 @@ public class PlayerFlightControl : MonoBehaviour
 		if (mousePos.y >= Screen.height / 2 && distFromVertical != 0) {
 			distFromVertical *= -1;
 		}
-		
-
 	}
-
-
 	void updateBanking() {
 
 		//Load rotation information.
@@ -248,34 +214,37 @@ public class PlayerFlightControl : MonoBehaviour
 		actual_model.transform.rotation = Quaternion.Slerp(actual_model.transform.rotation, newRotation, bank_rotation_speed * Time.deltaTime);
 	
 	}
-
 	
-	void Update() {
-         
-
-        //Please remove this and replace it with a shooting system that works for your game, if you need one.
-        if (Input.GetButton("Fire1")) {
-			fireShot();
-		}	
-	}	
+	void Update()
+        {
+            //Please remove this and replace it with a shooting system that works for your game, if you need one.
+            if (Input.GetButton("Fire1"))
+            {
+			    fireShot();
+		    }  	
+	    }	
 	
-	public void fireShot() {
+	public void fireShot()
+    {
 	
-		if (weapon_hardpoint_1 == null || weapon_hardpoint_2 == null) {
-			Debug.LogError("(FlightControls) Trying to fire weapon, but no hardpoint set up!");
-			return;
-		}
+		if (weapon_hardpoint_1 == null || weapon_hardpoint_2 == null)
+            {
+			    Debug.LogError("(FlightControls) Trying to fire weapon, but no hardpoint set up!");
+			    return;
+		    }
 		
-		if (bullet == null) {
-			Debug.LogError("(FlightControls) Bullet GameObject is null!");
-			return;
-		}
+		if (bullet == null)
+            {
+			    Debug.LogError("(FlightControls) Bullet GameObject is null!");
+			    return;
+		    }
 		
 		//Shoots it in the direction that the pointer is pointing. Might want to take note of this line for when you upgrade the shooting system.
-		if (Camera.main == null) {
-			Debug.LogError("(FlightControls) Main camera is null! Make sure the flight camera has the tag of MainCamera!");
-			return;
-		}
+		if (Camera.main == null)
+            {
+			    Debug.LogError("(FlightControls) Main camera is null! Make sure the flight camera has the tag of MainCamera!");
+			    return;
+		    }
 		
 		GameObject shot1 = (GameObject) GameObject.Instantiate(bullet, weapon_hardpoint_1.position, Quaternion.identity);
         GameObject shot2 = (GameObject)GameObject.Instantiate(bullet, weapon_hardpoint_2.position, Quaternion.identity);
@@ -300,7 +269,8 @@ public class PlayerFlightControl : MonoBehaviour
             shot2.GetComponent<Rigidbody>().AddForce((shot2.transform.forward) * 9000f);
 
             //Otherwise, since the ray didn't hit anything, we're just going to guess and shoot the projectile in the general direction.
-        } else {
+        }
+        else {
 			shot1.GetComponent<Rigidbody>().AddForce((vRay.direction) * 9000f);
             shot2.GetComponent<Rigidbody>().AddForce((vRay.direction) * 9000f);
         }
