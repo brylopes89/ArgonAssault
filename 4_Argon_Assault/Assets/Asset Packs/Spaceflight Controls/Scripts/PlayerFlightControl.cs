@@ -51,7 +51,8 @@ public class PlayerFlightControl : MonoBehaviour
 	
 	bool thrust_exists = true;
     bool brake_exists = true;
-    bool roll_exists = true;  
+    bool roll_exists = true;
+    bool isControlEnabled = true;
 
     //---------------------------------------------------------------------------------
 
@@ -98,54 +99,57 @@ public class PlayerFlightControl : MonoBehaviour
             return;
         }
 
-        updateCursorPosition();
+        if (isControlEnabled)
+        {
+            updateCursorPosition();
+            RollInput();
+            currentMag = GetComponent<Rigidbody>().velocity.magnitude; //Getting the current speed.        
+            ProcessAxisInput();
+            RigidBodyValues(); //Apply all these values to the rigidbody on the container.
 
-        //Clamping the pitch and yaw values, and taking in the roll input.
-        pitch = Mathf.Clamp(distFromVertical, -screen_clamp - DZ, screen_clamp + DZ) * pitchYaw_strength;
-        yaw = Mathf.Clamp(distFromHorizontal, -screen_clamp - DZ, screen_clamp + DZ) * pitchYaw_strength;
-        if (roll_exists)
-            roll = (Input.GetAxis("Roll") * -rollSpeedModifier);
+            if (use_banking)
+            {
+                updateBanking(); //Calculate banking.
+            }
+        }
+    }
 
+    private void RigidBodyValues()
+    {
+        GetComponent<Rigidbody>().AddRelativeTorque((pitch * turnspeed * Time.deltaTime), (yaw * turnspeed * Time.deltaTime), (roll * turnspeed * (rollSpeedModifier / 2) * Time.deltaTime));
+        GetComponent<Rigidbody>().velocity = transform.forward * currentMag; //Apply speed
+    }
 
-        //Getting the current speed.
-        currentMag = GetComponent<Rigidbody>().velocity.magnitude;
-
-        //If input on the thrust axis is positive, activate afterburners.
-
-
-        if (thrust_exists)
+    private void ProcessAxisInput()
+    {
+        if (thrust_exists) //If input on the thrust axis is positive, activate afterburners.
         {
             if (Input.GetAxis("Thrust") > 0)
             {
                 IncreaseThrust();
             }
 
-            else
-            { //Otherwise, hold normal speed.
+            else //Otherwise, hold normal speed.
+            {
                 DecreaseThrust();
             }
         }
-
-        if (brake_exists && Input.GetAxis("Brake") > 0)
-        { //If input on the thrust axis is negatve, activate brakes.
+        if (brake_exists && Input.GetAxis("Brake") > 0) //If input on the thrust axis is negatve, activate brakes.
+        {
             ApplyBrake();
         }
-
-
-        //Apply all these values to the rigidbody on the container.
-        GetComponent<Rigidbody>().AddRelativeTorque(
-            (pitch * turnspeed * Time.deltaTime),
-            (yaw * turnspeed * Time.deltaTime),
-            (roll * turnspeed * (rollSpeedModifier / 2) * Time.deltaTime));
-
-        GetComponent<Rigidbody>().velocity = transform.forward * currentMag; //Apply speed
-
-        if (use_banking)
-        {
-            updateBanking(); //Calculate banking.
-        }
-
     }
+
+    private void RollInput()
+    {
+        //Clamping the pitch and yaw values, and taking in the roll input.
+        pitch = Mathf.Clamp(distFromVertical, -screen_clamp - DZ, screen_clamp + DZ) * pitchYaw_strength;
+        yaw = Mathf.Clamp(distFromHorizontal, -screen_clamp - DZ, screen_clamp + DZ) * pitchYaw_strength;
+
+        if (roll_exists)
+            roll = (Input.GetAxis("Roll") * -rollSpeedModifier);
+    }
+
     void IncreaseThrust()
     {        
         afterburner_Active = true;
@@ -216,13 +220,12 @@ public class PlayerFlightControl : MonoBehaviour
 	}
 	
 	void Update()
+    {        
+        if (Input.GetButton("Fire1"))//Please remove this and replace it with a shooting system that works for your game, if you need one.    
         {
-            //Please remove this and replace it with a shooting system that works for your game, if you need one.
-            if (Input.GetButton("Fire1"))
-            {
-			    fireShot();
-		    }  	
-	    }	
+            fireShot();
+        }                              
+	}	
 	
 	public void fireShot()
     {
@@ -276,6 +279,9 @@ public class PlayerFlightControl : MonoBehaviour
         }
 	
 	}
-	
 
+    void OnPlayerDeath() // called by string reference
+    {
+        isControlEnabled = false;
+    }
 }

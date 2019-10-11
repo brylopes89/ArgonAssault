@@ -22,14 +22,7 @@ public class ParticleEmission : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        thrusters = new GameObject[ps];
-
-        ps = GameObject.FindObjectOfType("
-        em = new ParticleSystem.MinMaxCurve[thrusters.Length];
-        for (int i = 0; i < thrusters.Length; i++)
-        {
-            em[i] = thrusters[i].GetComponentsInChildren<GameObject>();
-        }
+        ps = gameObject.GetComponentInChildren<ParticleSystem>();
         //ps = GetComponentsInChildren<ParticleSystem>()[thrusters.Length];
        // ps = GetComponents<GameObject>ParticleSystem
         main = ps.main;
@@ -44,7 +37,6 @@ public class ParticleEmission : MonoBehaviour
 
         main.startSpeed = new ParticleSystem.MinMaxCurve(min, max);
         main.simulationSpeed = 1;
-
         CurveIncrease();
       
     }

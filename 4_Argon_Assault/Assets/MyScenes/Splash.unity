@@ -406,6 +406,7 @@ GameObject:
   - component: {fileID: 1232561792}
   - component: {fileID: 1232561791}
   - component: {fileID: 1232561790}
+  - component: {fileID: 1232561794}
   - component: {fileID: 1232561789}
   m_Layer: 0
   m_Name: Cube
@@ -413,7 +414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1232561789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,10 +424,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1232561788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6842820a0957b8d489d74c6829e62133, type: 3}
+  m_Script: {fileID: 11500000, guid: 80dd4db6f1b10ec45b0c6dbf01c7cf61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
 --- !u!65 &1232561790
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -493,13 +493,32 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1232561788}
-  m_LocalRotation: {x: 0.064952105, y: 0.7180003, z: -0.06761677, w: 0.68969905}
-  m_LocalPosition: {x: -2930, y: 2046.4, z: 390.83563}
+  m_LocalRotation: {x: 0.2209112, y: -0.55066687, z: -0.06168736, w: -0.80259514}
+  m_LocalPosition: {x: -2929.85, y: 2678.95, z: 392.06}
   m_LocalScale: {x: 2.6076, y: 2.6076, z: 2.6076}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -24.995, y: 70.943, z: -9.160001}
+--- !u!95 &1232561794
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232561788}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d29d4911126c47448be87683b8c92cc6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1190865486225758076
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -511,6 +530,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scene Loader
+      objectReference: {fileID: 0}
+    - target: {fileID: 1190865487226139313, guid: c0e8df806c090174b9ffa6815963186d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1190865487226139315, guid: c0e8df806c090174b9ffa6815963186d,
         type: 3}

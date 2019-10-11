@@ -18,8 +18,8 @@ public class CollisionHandler : MonoBehaviour
     void StartDeathSequence()
     {
         print("Wipe yourself off, you dead.");
-        SendMessage("OnPlayerDeath");
-    }
+        SendMessageUpwards("OnPlayerDeath");        
+    }  
 
     void ReloadScene() // string referenced
     {

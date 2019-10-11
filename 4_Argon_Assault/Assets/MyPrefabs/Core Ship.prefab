@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &168013902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 168013903}
+  m_Layer: 2
+  m_Name: Hardpoint_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &168013903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168013902}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.81, y: -0.27, z: 2.71}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8708146500690304115}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1159162842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1159162843}
+  m_Layer: 2
+  m_Name: Hardpoint_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1159162843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159162842}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.85, y: -0.27, z: 2.62}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8708146500690304115}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1794955218672590
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +71,7 @@ GameObject:
   - component: {fileID: 4516847957459918}
   - component: {fileID: 198778859621009202}
   - component: {fileID: 199028213323206266}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Jet Particles Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4764,7 +4824,7 @@ GameObject:
   - component: {fileID: 4516849565364644}
   - component: {fileID: 198778859129927000}
   - component: {fileID: 199028214888381456}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Jet Particles Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9518,7 +9578,7 @@ GameObject:
   - component: {fileID: 5251604150864573840}
   - component: {fileID: 326540023711614811}
   - component: {fileID: 3478402216742405604}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player Death FX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14367,7 +14427,7 @@ GameObject:
   - component: {fileID: 6033646678589787147}
   - component: {fileID: 6033646678574582081}
   - component: {fileID: 6033646678574559457}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19103,7 +19163,7 @@ GameObject:
   - component: {fileID: 6033646678589787149}
   - component: {fileID: 6033646678574582083}
   - component: {fileID: 6033646678574559459}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23865,7 +23925,7 @@ GameObject:
   - component: {fileID: 6033646678589787151}
   - component: {fileID: 6033646678574582085}
   - component: {fileID: 6033646678574559461}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28626,7 +28686,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6033646678589787157}
   - component: {fileID: 6033646678582176387}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Engine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28764,7 +28824,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8708146500690304099}
   - component: {fileID: 8708146500680596213}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Engine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28903,7 +28963,7 @@ GameObject:
   - component: {fileID: 8708146500690304101}
   - component: {fileID: 8708146500671953201}
   - component: {fileID: 8708146500671987857}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33639,13 +33699,13 @@ GameObject:
   - component: {fileID: 8708146500690304103}
   - component: {fileID: 188165547}
   - component: {fileID: 188165546}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Gun Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8708146500690304103
 Transform:
   m_ObjectHideFlags: 0
@@ -38395,8 +38455,7 @@ GameObject:
   - component: {fileID: 1845441269322303153}
   - component: {fileID: 1845441269322303156}
   - component: {fileID: 1845441269322303157}
-  - component: {fileID: 3126163024533945293}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Core Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38419,6 +38478,8 @@ Transform:
   - {fileID: 8708146500690304103}
   - {fileID: 8708146500690304119}
   - {fileID: 2860878271860357474}
+  - {fileID: 1159162843}
+  - {fileID: 168013903}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -12.328001, y: 0.98100007, z: -0.20700002}
@@ -38447,7 +38508,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0c7b806bc486a0d45ad302001041fa43, type: 2}
+  - {fileID: 2100000, guid: 42672579dbdf2c8449598d21e2c569ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -38511,29 +38572,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelLoadDelay: 2
   deathFX: {fileID: 3468845264113117352}
---- !u!114 &3126163024533945293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8708146500690198611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef0808b25b3af774a847a78612260ae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controlSpeed: 20
-  xRange: 5
-  yRange: 3
-  positionPitchFactor: -5
-  controlPitchFactor: -20
-  positionYawFactor: 5
-  controlRollFactor: -20
-  weaponDamage: 10
-  projectiles:
-  - {fileID: 8708146500690198599}
-  - {fileID: 8708146500690198615}
 --- !u!1 &8708146500690198615
 GameObject:
   m_ObjectHideFlags: 0
@@ -38545,13 +38583,13 @@ GameObject:
   - component: {fileID: 8708146500690304119}
   - component: {fileID: 2008356919}
   - component: {fileID: 2008356918}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Gun Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8708146500690304119
 Transform:
   m_ObjectHideFlags: 0
