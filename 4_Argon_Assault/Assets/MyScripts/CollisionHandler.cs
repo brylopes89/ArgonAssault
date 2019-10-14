@@ -9,14 +9,14 @@ public class CollisionHandler : MonoBehaviour
     [Tooltip("In seconds")][SerializeField] float levelLoadDelay = 2f;
     [Tooltip("FX pefab on player")][SerializeField] GameObject deathFX;    
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
-        if(other.tag != "Ignore")
-        {
+        //if(other.gameObject.tag != "Ignore")
+        //{
             StartDeathSequence();
             deathFX.SetActive(true);
             Invoke("ReloadScene", levelLoadDelay);
-        }        
+        //}        
     }
     void StartDeathSequence()
     {
