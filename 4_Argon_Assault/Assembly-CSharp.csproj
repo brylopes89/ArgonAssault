@@ -66,7 +66,6 @@
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\CameraFlightFollow.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\CustomPointer.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\DemoUI.cs" />
-    <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\PlayerFlightControl.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\PSDestroy.cs" />
     <Compile Include="Assets\Asset Packs\Standard Assets\2D\Scripts\Camera2DFollow.cs" />
     <Compile Include="Assets\Asset Packs\Standard Assets\2D\Scripts\CameraFollow.cs" />
@@ -197,6 +196,7 @@
     <Compile Include="Assets\MyScripts\MusicPlayer.cs" />
     <Compile Include="Assets\MyScripts\ParticleEmission.cs" />
     <Compile Include="Assets\MyScripts\PlayerController.cs" />
+    <Compile Include="Assets\MyScripts\PlayerFlightControl.cs" />
     <Compile Include="Assets\MyScripts\Practice.cs" />
     <Compile Include="Assets\MyScripts\RedScript.cs" />
     <Compile Include="Assets\MyScripts\SceneLoader.cs" />
