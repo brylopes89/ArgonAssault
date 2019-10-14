@@ -335,7 +335,11 @@ GameObject:
   m_Component:
   - component: {fileID: 149606571}
   - component: {fileID: 149606568}
+<<<<<<< HEAD
   - component: {fileID: 149606569}
+=======
+  - component: {fileID: 149606572}
+>>>>>>> parent of 17164d9... Changed collision detection on core ship.
   m_Layer: 2
   m_Name: Player Rig
   m_TagString: Untagged
@@ -359,6 +363,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+<<<<<<< HEAD
 --- !u!114 &149606569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +397,8 @@ MonoBehaviour:
   pitch: 0
   afterburner_Active: 0
   slow_Active: 0
+=======
+>>>>>>> parent of 17164d9... Changed collision detection on core ship.
 --- !u!4 &149606571
 Transform:
   m_ObjectHideFlags: 0
@@ -408,6 +415,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 359.956, z: 0}
+--- !u!114 &149606572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149606567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2bfa72b8825cbe40ae2877700f6e437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actual_model: {fileID: 688999229}
+  weapon_hardpoint_1: {fileID: 1159162843}
+  weapon_hardpoint_2: {fileID: 168013903}
+  bullet: {fileID: 2291531647554663648, guid: aff20dddb93338248b70f0efcde21fa6, type: 3}
+  speed: 60
+  afterburner_speed: 500
+  slow_speed: -20
+  thrust_transition_speed: 40
+  turnspeed: 10
+  rollSpeedModifier: 10
+  pitchYaw_strength: 0.5
+  use_banking: 1
+  bank_angle_clamp: 360
+  bank_rotation_speed: 2.5
+  bank_rotation_multiplier: 7
+  screen_clamp: 500
+  roll: 0
+  yaw: 0
+  pitch: 0
+  afterburner_Active: 0
+  slow_Active: 0
 --- !u!1 &151501410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,7 +1462,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1091327391}
+<<<<<<< HEAD
   control: {fileID: 149606569}
+=======
+  control: {fileID: 149606572}
+>>>>>>> parent of 17164d9... Changed collision detection on core ship.
   follow_distance: 47
   camera_elevation: 3
   follow_tightness: 8
@@ -2402,6 +2446,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5251604150864573840, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+<<<<<<< HEAD
         type: 3}
       propertyPath: autoRandomSeed
       value: 0
@@ -2444,6 +2489,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198778859129927000, guid: 8d8b5df027d94c44db7bcfa9942f090c,
         type: 3}
+=======
+        type: 3}
+      propertyPath: autoRandomSeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5251604150864573840, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+        type: 3}
+      propertyPath: randomSeed
+      value: 2176
+      objectReference: {fileID: 0}
+    - target: {fileID: 6033646678589362219, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 188165547, guid: 8d8b5df027d94c44db7bcfa9942f090c, type: 3}
+      propertyPath: autoRandomSeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 188165547, guid: 8d8b5df027d94c44db7bcfa9942f090c, type: 3}
+      propertyPath: randomSeed
+      value: 2176
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008356919, guid: 8d8b5df027d94c44db7bcfa9942f090c, type: 3}
+      propertyPath: autoRandomSeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008356919, guid: 8d8b5df027d94c44db7bcfa9942f090c, type: 3}
+      propertyPath: randomSeed
+      value: 2176
+      objectReference: {fileID: 0}
+    - target: {fileID: 198778859621009202, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+        type: 3}
+      propertyPath: autoRandomSeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198778859621009202, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+        type: 3}
+      propertyPath: randomSeed
+      value: 2176
+      objectReference: {fileID: 0}
+    - target: {fileID: 198778859129927000, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+        type: 3}
+>>>>>>> parent of 17164d9... Changed collision detection on core ship.
       propertyPath: autoRandomSeed
       value: 0
       objectReference: {fileID: 0}
@@ -2455,6 +2544,7 @@ PrefabInstance:
     - target: {fileID: 6033646678574582081, guid: 8d8b5df027d94c44db7bcfa9942f090c,
         type: 3}
       propertyPath: autoRandomSeed
+<<<<<<< HEAD
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6033646678574582081, guid: 8d8b5df027d94c44db7bcfa9942f090c,
@@ -2487,6 +2577,40 @@ PrefabInstance:
       propertyPath: autoRandomSeed
       value: 0
       objectReference: {fileID: 0}
+=======
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6033646678574582081, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+        type: 3}
+      propertyPath: randomSeed
+      value: 2176
+      objectReference: {fileID: 0}
+    - target: {fileID: 8708146500671953201, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+        type: 3}
+      propertyPath: autoRandomSeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8708146500671953201, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+        type: 3}
+      propertyPath: randomSeed
+      value: 2176
+      objectReference: {fileID: 0}
+    - target: {fileID: 6033646678574582083, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+        type: 3}
+      propertyPath: autoRandomSeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6033646678574582083, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+        type: 3}
+      propertyPath: randomSeed
+      value: 2177
+      objectReference: {fileID: 0}
+    - target: {fileID: 6033646678574582085, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+        type: 3}
+      propertyPath: autoRandomSeed
+      value: 0
+      objectReference: {fileID: 0}
+>>>>>>> parent of 17164d9... Changed collision detection on core ship.
     - target: {fileID: 6033646678574582085, guid: 8d8b5df027d94c44db7bcfa9942f090c,
         type: 3}
       propertyPath: randomSeed
