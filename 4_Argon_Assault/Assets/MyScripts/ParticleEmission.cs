@@ -11,19 +11,19 @@ public class ParticleEmission : MonoBehaviour
 
     List<ParticleSystem> particleSystems = new List<ParticleSystem>();
     ParticleSystem.MinMaxCurve[] em;
-
+    
 
     float min = 0.2f;
     float max = 5.0f;
-
+    
     // Start is called before the first frame update
     void Start()
     {
 
-        foreach (GameObject obj in thrusters)
+        foreach(GameObject obj in thrusters)
         {
             var ps = obj.GetComponent<ParticleSystem>();
-            particleSystems.Add(ps);
+            particleSystems.Add(ps);     
         }
     }
 
@@ -37,10 +37,10 @@ public class ParticleEmission : MonoBehaviour
     {
         foreach (ParticleSystem ps in particleSystems) // 
         {
-            var main = ps.main;
+            var main = ps.main;            
 
             if (Input.GetAxis("Thrust") > 0)
-            {
+            {               
                 main.startSpeed = new ParticleSystem.MinMaxCurve(50.0f, 100.0f);
                 main.simulationSpeed = 100;
             }
@@ -49,7 +49,7 @@ public class ParticleEmission : MonoBehaviour
                 main.startSpeed = new ParticleSystem.MinMaxCurve(min, max);
                 main.simulationSpeed = 1;
             }
-        }
-
-    }
+        }      
+              
+    } 
 }
