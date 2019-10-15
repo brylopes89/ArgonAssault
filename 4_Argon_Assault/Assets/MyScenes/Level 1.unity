@@ -335,8 +335,8 @@ GameObject:
   m_Component:
   - component: {fileID: 149606571}
   - component: {fileID: 149606568}
-  - component: {fileID: 149606572}
   - component: {fileID: 149606569}
+  - component: {fileID: 149606570}
   m_Layer: 2
   m_Name: Player Rig
   m_TagString: Untagged
@@ -379,6 +379,39 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &149606570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149606567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc84cbe2e0b551645a7d056c263a4032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actual_model: {fileID: 688999229}
+  weapon_hardpoint_1: {fileID: 1159162843}
+  weapon_hardpoint_2: {fileID: 168013903}
+  bullet: {fileID: 2291531647554663648, guid: aff20dddb93338248b70f0efcde21fa6, type: 3}
+  speed: 20
+  afterburner_speed: 40
+  slow_speed: 4
+  thrust_transition_speed: 5
+  turnspeed: 15
+  rollSpeedModifier: 7
+  pitchYaw_strength: 0.5
+  use_banking: 1
+  bank_angle_clamp: 360
+  bank_rotation_speed: 3
+  bank_rotation_multiplier: 1
+  screen_clamp: 500
+  roll: 0
+  yaw: 0
+  pitch: 0
+  afterburner_Active: 0
+  slow_Active: 0
 --- !u!4 &149606571
 Transform:
   m_ObjectHideFlags: 0
@@ -395,39 +428,6 @@ Transform:
   m_Father: {fileID: 2098488550}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 359.956, z: 0}
---- !u!114 &149606572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 149606567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2bfa72b8825cbe40ae2877700f6e437, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actual_model: {fileID: 688999229}
-  weapon_hardpoint_1: {fileID: 1159162843}
-  weapon_hardpoint_2: {fileID: 168013903}
-  bullet: {fileID: 2291531647554663648, guid: aff20dddb93338248b70f0efcde21fa6, type: 3}
-  speed: 60
-  afterburner_speed: 500
-  slow_speed: -20
-  thrust_transition_speed: 40
-  turnspeed: 10
-  rollSpeedModifier: 10
-  pitchYaw_strength: 0.5
-  use_banking: 1
-  bank_angle_clamp: 360
-  bank_rotation_speed: 2.5
-  bank_rotation_multiplier: 7
-  screen_clamp: 500
-  roll: 0
-  yaw: 0
-  pitch: 0
-  afterburner_Active: 0
-  slow_Active: 0
 --- !u!1 &151501410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,7 +1448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1091327391}
-  control: {fileID: 149606572}
+  control: {fileID: 0}
   follow_distance: 47
   camera_elevation: 3
   follow_tightness: 8
