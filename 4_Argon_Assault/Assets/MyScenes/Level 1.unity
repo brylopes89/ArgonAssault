@@ -398,7 +398,7 @@ MonoBehaviour:
   speed: 80
   afterburner_speed: 500
   slow_speed: 20
-  thrust_transition_speed: 20
+  thrust_transition_speed: 10
   turnspeed: 15
   rollSpeedModifier: 7
   pitchYaw_strength: 0.5
