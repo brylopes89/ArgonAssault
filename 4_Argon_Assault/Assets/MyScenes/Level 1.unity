@@ -395,18 +395,18 @@ MonoBehaviour:
   weapon_hardpoint_1: {fileID: 1159162843}
   weapon_hardpoint_2: {fileID: 168013903}
   bullet: {fileID: 2291531647554663648, guid: aff20dddb93338248b70f0efcde21fa6, type: 3}
-  speed: 20
-  afterburner_speed: 40
-  slow_speed: 4
-  thrust_transition_speed: 5
+  speed: 80
+  afterburner_speed: 500
+  slow_speed: 20
+  thrust_transition_speed: 20
   turnspeed: 15
   rollSpeedModifier: 7
   pitchYaw_strength: 0.5
   use_banking: 1
-  bank_angle_clamp: 360
+  bank_angle_clamp: 90
   bank_rotation_speed: 3
-  bank_rotation_multiplier: 1
-  screen_clamp: 500
+  bank_rotation_multiplier: 6
+  screen_clamp: 180
   roll: 0
   yaw: 0
   pitch: 0
@@ -763,6 +763,21 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3126163025736493073}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &688999235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688999229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c90e3d2b87134d643865e8e5165cb98e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrusters:
+  - {fileID: 1842311526}
+  - {fileID: 1368866223}
 --- !u!108 &705507994 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 5194987168044536399, guid: f53b461be9eb7d2488b540a9e0bb099c,
@@ -1427,7 +1442,7 @@ MonoBehaviour:
   center_lock: 0
   invert_y_axis: 1
   deadzone_radius: 10
-  thumbstick_speed_modifier: 15
+  thumbstick_speed_modifier: 10
   mouse_sensitivity_modifier: 15
   deadzone_rect:
     serializedVersion: 2
@@ -1448,7 +1463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1091327391}
-  control: {fileID: 0}
+  control: {fileID: 149606570}
   follow_distance: 47
   camera_elevation: 3
   follow_tightness: 8
@@ -1612,6 +1627,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1368866223 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1794955218672590, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3126163025736493073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1407476669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2017,6 +2038,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1842311526 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1794956891580836, guid: 8d8b5df027d94c44db7bcfa9942f090c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3126163025736493073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1871892274
 PrefabInstance:
   m_ObjectHideFlags: 0

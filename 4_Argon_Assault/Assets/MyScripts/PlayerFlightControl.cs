@@ -18,7 +18,7 @@ public class PlayerFlightControl : MonoBehaviour
     //"Core Movement", "Controls for the various speeds for different operations."
     public float speed = 20.0f; //"Base Speed", "Primary flight speed, without afterburners or brakes"
 	public float afterburner_speed = 40f; //Afterburner Speed", "Speed when the button for positive thrust is being held down"
-	public float slow_speed = 4f; //"Brake Speed", "Speed when the button for negative thrust is being held down"    
+	public float slow_speed = 1f; //"Brake Speed", "Speed when the button for negative thrust is being held down"    
 	public float thrust_transition_speed = 5f; //Thrust Transition Speed", "How quickly afterburners/brakes will reach their maximum effect"
 	public float turnspeed = 15.0f; //"Turn/Roll Speed", "How fast turns and rolls will be executed "
 	public float rollSpeedModifier = 7; //"Roll Speed", "Multiplier for roll speed. Base roll is determined by turn speed"
@@ -168,7 +168,7 @@ public class PlayerFlightControl : MonoBehaviour
     {
         slow_Active = true;
         afterburner_Active = false;
-        currentMag = Mathf.Lerp(currentMag, slow_speed, thrust_transition_speed * Time.deltaTime);
+        currentMag = Mathf.Lerp(slow_speed, currentMag, thrust_transition_speed * Time.deltaTime);
     }
 
     void updateCursorPosition() {
