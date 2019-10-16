@@ -101,9 +101,7 @@ public class PlayerFlightControl : MonoBehaviour
         {
             Debug.LogError("(FlightControls) Ship GameObject is null.");
             return;
-        }
-
-       
+        }       
 
         if (isControlEnabled)
         {
@@ -111,9 +109,8 @@ public class PlayerFlightControl : MonoBehaviour
             RollInput();
             currentMag = GetComponent<Rigidbody>().velocity.magnitude; //Getting the current speed.        
             ProcessAxisInput();
-            RigidBodyValues(); //Apply all these values to the rigidbody on the container.
-            
-            currentMag = GetComponent<Rigidbody>().velocity.magnitude; //Getting the current speed.     
+            RigidBodyValues(); //Apply all these values to the rigidbody on the container.            
+              
             if (use_banking)
             {
                 updateBanking(); //Calculate banking.
@@ -131,9 +128,11 @@ public class PlayerFlightControl : MonoBehaviour
     {
         if (thrust_exists) //If input on the thrust axis is positive, activate afterburners.
         {
+            BroadcastMessage("CurveIncrease", true);
+
             if (Input.GetAxis("Thrust") > 0)
             {
-                IncreaseThrust();
+                IncreaseThrust();                
             }
 
             else //Otherwise, hold normal speed.
@@ -162,13 +161,14 @@ public class PlayerFlightControl : MonoBehaviour
         afterburner_Active = true;
         slow_Active = false;
         currentMag = Mathf.Lerp(currentMag, afterburner_speed, thrust_transition_speed * Time.deltaTime);
+        
     }
 
     void DecreaseThrust()
     {
         slow_Active = false;
         afterburner_Active = false;
-        currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);
+        currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);        
     }
 
     void ApplyBrake()
@@ -299,6 +299,6 @@ public class PlayerFlightControl : MonoBehaviour
         thrust_exists = false;
         brake_exists = false;
         roll_exists = false;
-        
+        //BroadcastMessage("CurveIncrease", false);
     }
 }

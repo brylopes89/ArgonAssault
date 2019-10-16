@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class ParticleEmission : MonoBehaviour
 {
@@ -16,31 +17,31 @@ public class ParticleEmission : MonoBehaviour
         foreach(GameObject obj in thrusters)
         {
             var ps = obj.GetComponent<ParticleSystem>();
-            particleSystems.Add(ps);
+            particleSystems.Add(ps);            
         }
     }
     // Update is called once per frame
     void Update()
-    {      
-        CurveIncrease();      
-    }
+    {
+       // CurveIncrease(true);
+    }   
 
-    void CurveIncrease()
+    void CurveIncrease(bool isActive)
     {
         foreach(ParticleSystem ps in particleSystems)
         {
             var main = ps.main;
 
-            if (Input.GetAxis("Thrust") > 0)
+            if (Input.GetAxis("Thrust")>0)
             {                
                 main.startSpeed = new ParticleSystem.MinMaxCurve(50.0f, 100.0f);
                 main.simulationSpeed = 100;
             }
             else
-            {                
+            {
                 main.startSpeed = new ParticleSystem.MinMaxCurve(min, max);
                 main.simulationSpeed = 1;
             }
         }        
-    } 
+    }
 }
