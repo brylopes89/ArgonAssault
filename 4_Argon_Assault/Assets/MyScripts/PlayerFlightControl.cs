@@ -103,7 +103,7 @@ public class PlayerFlightControl : MonoBehaviour
             return;
         }
 
-        currentMag = GetComponent<Rigidbody>().velocity.magnitude; //Getting the current speed.     
+       
 
         if (isControlEnabled)
         {
@@ -112,7 +112,8 @@ public class PlayerFlightControl : MonoBehaviour
             currentMag = GetComponent<Rigidbody>().velocity.magnitude; //Getting the current speed.        
             ProcessAxisInput();
             RigidBodyValues(); //Apply all these values to the rigidbody on the container.
-
+            
+            currentMag = GetComponent<Rigidbody>().velocity.magnitude; //Getting the current speed.     
             if (use_banking)
             {
                 updateBanking(); //Calculate banking.
@@ -295,5 +296,9 @@ public class PlayerFlightControl : MonoBehaviour
     void OnPlayerDeath() // called by string reference
     {
         isControlEnabled = false;
+        thrust_exists = false;
+        brake_exists = false;
+        roll_exists = false;
+        
     }
 }

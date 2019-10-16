@@ -110,7 +110,7 @@ ParticleSystem:
   prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
@@ -168,7 +168,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 0
+  randomSeed: 2176
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4863,7 +4863,7 @@ ParticleSystem:
   prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
@@ -4921,7 +4921,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 0
+  randomSeed: 2176
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9617,7 +9617,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
@@ -9675,7 +9675,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 0
+  randomSeed: 2176
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -14688,7 +14688,7 @@ TrailRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0.1
-  m_Autodestruct: 1
+  m_Autodestruct: 0
   m_Emitting: 1
 --- !u!1 &8708146500690198611
 GameObject:
@@ -14704,6 +14704,7 @@ GameObject:
   - component: {fileID: 1845441269322303153}
   - component: {fileID: 1845441269322303156}
   - component: {fileID: 1845441269322303157}
+  - component: {fileID: 688999235}
   m_Layer: 2
   m_Name: Core Ship
   m_TagString: Untagged
@@ -14819,3 +14820,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelLoadDelay: 2
   deathFX: {fileID: 3468845264113117352}
+--- !u!114 &688999235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8708146500690198611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c90e3d2b87134d643865e8e5165cb98e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrusters:
+  - {fileID: 1794956891580836}
+  - {fileID: 1794955218672590}
