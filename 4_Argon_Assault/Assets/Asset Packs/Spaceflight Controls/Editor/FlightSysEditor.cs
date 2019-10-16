@@ -26,8 +26,9 @@ public class FlightControllerEditor : Editor
 		flightCC.speed = EditorGUILayout.FloatField(new GUIContent("Base Speed", "Primary flight speed, without afterburners or brakes"), flightCC.speed);	
 		flightCC.slow_speed = EditorGUILayout.FloatField(new GUIContent("Brake Speed", "Speed when the button for negative thrust is being held down"), flightCC.slow_speed);	
 		flightCC.afterburner_speed = EditorGUILayout.FloatField(new GUIContent("Afterburner Speed", "Speed when the button for positive thrust is being held down"), flightCC.afterburner_speed);
-		flightCC.thrust_transition_speed = EditorGUILayout.FloatField(new GUIContent("Thrust Transition Speed", "How quickly afterburners/brakes will reach their maximum effect"), flightCC.thrust_transition_speed);			
-		flightCC.turnspeed = EditorGUILayout.FloatField(new GUIContent("Turn/Roll Speed", "How fast turns and rolls will be executed"), flightCC.turnspeed);
+		flightCC.thrust_transition_speed = EditorGUILayout.FloatField(new GUIContent("Thrust Transition Speed", "How quickly afterburners will reach their maximum effect"), flightCC.thrust_transition_speed);
+        flightCC.brake_transition_speed = EditorGUILayout.FloatField(new GUIContent("Brake Transition Speed", "How quickly brakes will reach their maximum effect"), flightCC.brake_transition_speed);
+        flightCC.turnspeed = EditorGUILayout.FloatField(new GUIContent("Turn/Roll Speed", "How fast turns and rolls will be executed"), flightCC.turnspeed);
 		flightCC.rollSpeedModifier = EditorGUILayout.FloatField(new GUIContent("Roll Speed", "Multiplier for roll speed. Base roll is determined by turn speed"), flightCC.rollSpeedModifier);				
 		flightCC.pitchYaw_strength = EditorGUILayout.FloatField(new GUIContent("Pitch/Yaw Multiplier", "Controls the intensity of pitch and yaw inputs"), flightCC.pitchYaw_strength);			
 		

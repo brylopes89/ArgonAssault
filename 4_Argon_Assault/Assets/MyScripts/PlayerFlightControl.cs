@@ -20,6 +20,7 @@ public class PlayerFlightControl : MonoBehaviour
     public float afterburner_speed = 40f; //Afterburner Speed", "Speed when the button for positive thrust is being held down"
     public float slow_speed = 4f; //"Brake Speed", "Speed when the button for negative thrust is being held down"    
     public float thrust_transition_speed = 5f; //Thrust Transition Speed", "How quickly afterburners/brakes will reach their maximum effect"
+    public float brake_transition_speed = 5f; //Thrust Transition Speed", "How quickly afterburners/brakes will reach their maximum effect"
     public float turnspeed = 15.0f; //"Turn/Roll Speed", "How fast turns and rolls will be executed "
     public float rollSpeedModifier = 7; //"Roll Speed", "Multiplier for roll speed. Base roll is determined by turn speed"
     public float pitchYaw_strength = 0.5f; //"Pitch/Yaw Multiplier", "Controls the intensity of pitch and yaw inputs"
@@ -41,13 +42,14 @@ public class PlayerFlightControl : MonoBehaviour
     public bool slow_Active = false; //True if brakes are on
 
 
+
     float distFromVertical; //Distance in pixels from the vertical center of the screen.
     float distFromHorizontal; //Distance in pixel from the horizontal center of the screen.
 
     Vector2 mousePos = new Vector2(0, 0); //Pointer position from CustomPointer
 
     float DZ = 0; //Deadzone, taken from CustomPointer.
-    float currentMag = 0f; //Current speed/magnitude
+    float currentMag = 0f; //Current speed/magnitude   
 
     bool thrust_exists = true;
     bool brake_exists = true;
@@ -57,9 +59,9 @@ public class PlayerFlightControl : MonoBehaviour
     //---------------------------------------------------------------------------------
 
     void Start()
-    {
+    {       
         mousePos = new Vector2(0, 0);
-        DZ = CustomPointer.instance.deadzone_radius;
+        DZ = CustomPointer.instance.deadzone_radius;        
 
         roll = 0; //Setting this equal to 0 here as a failsafe in case the roll axis is not set up.
 
@@ -101,16 +103,17 @@ public class PlayerFlightControl : MonoBehaviour
         {
             Debug.LogError("(FlightControls) Ship GameObject is null.");
             return;
-        }       
+        }
 
+        currentMag = GetComponent<Rigidbody>().velocity.magnitude; //Getting the current speed. 
+       
         if (isControlEnabled)
         {
             updateCursorPosition();
-            RollInput();
-            currentMag = GetComponent<Rigidbody>().velocity.magnitude; //Getting the current speed.        
+            RollInput();                  
             ProcessAxisInput();
-            RigidBodyValues(); //Apply all these values to the rigidbody on the container.            
-              
+            RigidBodyValues(); //Apply all these values to the rigidbody on the container.                        
+            
             if (use_banking)
             {
                 updateBanking(); //Calculate banking.
@@ -126,11 +129,11 @@ public class PlayerFlightControl : MonoBehaviour
 
     private void ProcessAxisInput()
     {
-        if (thrust_exists) //If input on the thrust axis is positive, activate afterburners.
+        if (thrust_exists) 
         {
             BroadcastMessage("CurveIncrease", true);
 
-            if (Input.GetAxis("Thrust") > 0)
+            if (Input.GetAxis("Thrust") > 0)//If input on the thrust axis is positive, activate afterburners.
             {
                 IncreaseThrust();                
             }
@@ -141,8 +144,8 @@ public class PlayerFlightControl : MonoBehaviour
             }
         }
         if (brake_exists && Input.GetAxis("Brake") > 0) //If input on the thrust axis is negatve, activate brakes.
-        {
-            ApplyBrake();
+        {           
+            ApplyBrake();            
         }
     }
 
@@ -158,24 +161,24 @@ public class PlayerFlightControl : MonoBehaviour
 
     void IncreaseThrust()
     {
-        afterburner_Active = true;
-        slow_Active = false;
+        afterburner_Active = true;       
         currentMag = Mathf.Lerp(currentMag, afterburner_speed, thrust_transition_speed * Time.deltaTime);
-        
+        print(currentMag);
     }
 
     void DecreaseThrust()
-    {
-        slow_Active = false;
+    {        
         afterburner_Active = false;
-        currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);        
+        currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);
+        print(currentMag);
     }
 
     void ApplyBrake()
-    {
+    {        
         slow_Active = true;
         afterburner_Active = false;
-        currentMag = Mathf.Lerp(slow_speed, currentMag, thrust_transition_speed * Time.deltaTime);
+        currentMag = Mathf.Lerp(currentMag, slow_speed, brake_transition_speed * Time.deltaTime);
+        print(currentMag);
     }
 
     void updateCursorPosition()

@@ -387,7 +387,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149606567}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc84cbe2e0b551645a7d056c263a4032, type: 3}
   m_Name: 
@@ -398,8 +398,9 @@ MonoBehaviour:
   bullet: {fileID: 2291531647554663648, guid: aff20dddb93338248b70f0efcde21fa6, type: 3}
   speed: 80
   afterburner_speed: 500
-  slow_speed: 20
-  thrust_transition_speed: 10
+  slow_speed: 1
+  thrust_transition_speed: 2
+  brake_transition_speed: 15
   turnspeed: 10
   rollSpeedModifier: 15
   pitchYaw_strength: 3
