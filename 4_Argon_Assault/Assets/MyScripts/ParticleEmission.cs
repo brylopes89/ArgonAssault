@@ -34,12 +34,14 @@ public class ParticleEmission : MonoBehaviour
 
             if (Input.GetAxis("Thrust")>0)
             {                
-                main.startSpeed = new ParticleSystem.MinMaxCurve(50.0f, 100.0f);
+                main.startSpeed = new ParticleSystem.MinMaxCurve(50.0f, 100.0f);                
+                main.startSize = new ParticleSystem.MinMaxCurve(3.0f, 10.0f);
                 main.simulationSpeed = 100;
             }
             else
             {
-                main.startSpeed = new ParticleSystem.MinMaxCurve(min, max);
+                main.startSpeed = new ParticleSystem.MinMaxCurve(min, max);                
+                main.startSize = new ParticleSystem.MinMaxCurve(2.0f, 5.0f);
                 main.simulationSpeed = 1;
             }
         }        

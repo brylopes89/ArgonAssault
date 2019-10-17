@@ -193,6 +193,7 @@
     <Compile Include="Assets\MyScripts\BetterWaypointFollower.cs" />
     <Compile Include="Assets\MyScripts\CollisionHandler.cs" />
     <Compile Include="Assets\MyScripts\Enemy.cs" />
+    <Compile Include="Assets\MyScripts\Flight.cs" />
     <Compile Include="Assets\MyScripts\MusicPlayer.cs" />
     <Compile Include="Assets\MyScripts\ParticleEmission.cs" />
     <Compile Include="Assets\MyScripts\PlayerController.cs" />
