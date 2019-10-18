@@ -8,7 +8,7 @@ public class Flight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+       anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -16,9 +16,17 @@ public class Flight : MonoBehaviour
     {
         if (Input.GetButton("Submit"))
         {
-            
-            anim.SetTrigger("LiftOff");
-           
-        }      
+            StartCoroutine(ObjectActive());
+        }           
     }
+
+    IEnumerator ObjectActive()
+    {        
+        anim.SetTrigger("LiftOff");
+        anim.enabled = false;
+        yield return new WaitForSeconds(4);
+        
+    }
+
 }
+
