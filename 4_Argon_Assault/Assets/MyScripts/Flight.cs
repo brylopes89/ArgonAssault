@@ -22,10 +22,10 @@ public class Flight : MonoBehaviour
 
     IEnumerator ObjectActive()
     {        
-        anim.SetTrigger("LiftOff");
+        anim.SetTrigger("LiftOff");        
+        yield return new WaitForSeconds(5.1f);
         anim.enabled = false;
-        yield return new WaitForSeconds(4);
-        
+
     }
 
 }
