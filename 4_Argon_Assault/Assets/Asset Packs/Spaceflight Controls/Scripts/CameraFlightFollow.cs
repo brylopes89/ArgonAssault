@@ -19,15 +19,14 @@ public class CameraFlightFollow : MonoBehaviour {
 	public bool shake_on_afterburn = true; //The camera will shake when afterburners are active.
 	
 	public static CameraFlightFollow instance; //The instance of this class. Should only be one.
-	
+
+    public FlightAnim flightAnim;
 	
 	void Awake() {
 	
-		instance = this;
-	
+		instance = this;	
 	
 	}
-
 	
 	void FixedUpdate () {
 
@@ -39,32 +38,39 @@ public class CameraFlightFollow : MonoBehaviour {
 		if (control == null) {
 			Debug.LogError("(Flight Controls) Flight controller is null on camera!");
 			return;
-		}	
-		
-		//Calculate where we want the camera to be.
-		Vector3 newPosition = target.TransformPoint(control.yaw * yawMultiplier, camera_elevation, -follow_distance);
+		}			
 
-		//Get the difference between the current location and the target's current location.
-		Vector3 positionDifference = target.position - transform.position;
-		//Move the camera towards the new position.
-		transform.position = Vector3.Lerp (transform.position, newPosition, Time.deltaTime * follow_tightness);
-		
-		Quaternion newRotation;
-		if (control.afterburner_Active && shake_on_afterburn) {
-			//Shake the camera while looking towards the targeter.
-			newRotation = Quaternion.LookRotation(positionDifference + new Vector3(
-				Random.Range(-afterburner_Shake_Amount, afterburner_Shake_Amount),
-				Random.Range(-afterburner_Shake_Amount, afterburner_Shake_Amount),
-				Random.Range(-afterburner_Shake_Amount, afterburner_Shake_Amount)),
-				target.up);
-				
-		} else {
-			//Look towards the targeter
-			newRotation = Quaternion.LookRotation(positionDifference, target.up);
-		
-		}
-		
-		transform.rotation = Quaternion.Slerp (transform.rotation, newRotation, Time.deltaTime * rotation_tightness);
-
+        NewRotation();
 	}
+
+    void NewRotation()
+    {
+        //Calculate where we want the camera to be.
+        Vector3 newPosition = target.TransformPoint(control.yaw * yawMultiplier, camera_elevation, -follow_distance);
+
+        //Get the difference between the current location and the target's current location.
+        Vector3 positionDifference = target.position - transform.position;
+        //Move the camera towards the new position.
+        transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * follow_tightness);
+
+        Quaternion newRotation;
+        if (control.afterburner_Active && shake_on_afterburn || flightAnim.isActive)
+        {
+            //Shake the camera while looking towards the targeter.
+            newRotation = Quaternion.LookRotation(positionDifference + new Vector3(
+                Random.Range(-afterburner_Shake_Amount, afterburner_Shake_Amount),
+                Random.Range(-afterburner_Shake_Amount, afterburner_Shake_Amount),
+                Random.Range(-afterburner_Shake_Amount, afterburner_Shake_Amount)),
+                target.up);
+            
+        }
+        else
+        {
+            //Look towards the targeter
+            newRotation = Quaternion.LookRotation(positionDifference, target.up);
+            flightAnim.isActive = false;
+        }
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rotation_tightness);
+    }
 }

@@ -163,14 +163,14 @@ public class PlayerFlightControl : MonoBehaviour
     {
         afterburner_Active = true;       
         currentMag = Mathf.Lerp(currentMag, afterburner_speed, thrust_transition_speed * Time.deltaTime);
-        print(currentMag);
+        //print(currentMag);
     }
 
     void DecreaseThrust()
     {        
         afterburner_Active = false;
         currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);
-        print(currentMag);
+        //print(currentMag);
     }
 
     void ApplyBrake()
@@ -178,7 +178,7 @@ public class PlayerFlightControl : MonoBehaviour
         slow_Active = true;
         afterburner_Active = false;
         currentMag = Mathf.Lerp(currentMag, slow_speed, brake_transition_speed * Time.deltaTime);
-        print(currentMag);
+        //print(currentMag);
     }
 
     void updateCursorPosition()
@@ -301,7 +301,6 @@ public class PlayerFlightControl : MonoBehaviour
         isControlEnabled = false;
         thrust_exists = false;
         brake_exists = false;
-        roll_exists = false;
-        //BroadcastMessage("CurveIncrease", false);
+        roll_exists = false;        
     }
 }
