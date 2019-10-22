@@ -41,11 +41,14 @@ public class FlightAnim : MonoBehaviour
     //meters/second
     public float maxGroundForwardSpeed = 40;
     //degrees/second
-    public float groundDrag = 1.0f;
+    public float groundDrag = 5;
     public float maxGroundTurningDegreesSecond = 40;
 
     void Awake()
-    {       
+    {
+        setupSound(takeoffSoundClip, ref takeoffSoundSource);
+        //setupSound(landingSoundClip, ref landingSoundSource);
+       
         //GetComponent<Rigidbody>().freezeRotation = true;
         //GetComponent<Rigidbody>().isKinematic = false;
     }
@@ -73,7 +76,7 @@ public class FlightAnim : MonoBehaviour
         }
         else if (isFlying())
         {
-            GetComponentInChildren<Rigidbody>().drag = 0;
+            GetComponent<Rigidbody>().drag = 0;
         } 
     }
 
@@ -98,7 +101,6 @@ public class FlightAnim : MonoBehaviour
         _inputGroundTurning = Input.GetAxis("Horizontal");
         _inputSubmit = Input.GetButton("Submit");
         _inputTakeoff = _inputSubmit;
-        //anim.enabled = false;
     }
 
     void applyGroundInputs()
@@ -114,22 +116,20 @@ public class FlightAnim : MonoBehaviour
 
     void Submit()
     {
-        state = FlightState.Flight;
         StartCoroutine(ObjectActive());
-        anim.enabled = true;
-        
+        state = FlightState.Flight;
     }
 
     private void groundMove()
     {
-        GetComponentInChildren<Rigidbody>().drag = 1.0f;
+        GetComponent<Rigidbody>().drag = 1;
         if (_inputGroundForward > 0f)
         {           
-            GetComponentInChildren<Rigidbody>().AddRelativeForce(Vector3.forward * maxGroundForwardSpeed * _inputGroundForward * Time.deltaTime, ForceMode.VelocityChange);
+            GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * maxGroundForwardSpeed * _inputGroundForward * Time.deltaTime, ForceMode.VelocityChange);
         }
      
         float turningSpeed = maxGroundTurningDegreesSecond * _inputGroundTurning * Time.deltaTime;
-        GetComponentInChildren<Rigidbody>().rotation *= Quaternion.AngleAxis(turningSpeed, Vector3.up);
+        GetComponent<Rigidbody>().rotation *= Quaternion.AngleAxis(turningSpeed, Vector3.up);
     }
 
     private void launchIfAirborn(float minHeight)
@@ -145,7 +145,8 @@ public class FlightAnim : MonoBehaviour
         if (!isFlying())
         {
             state = FlightState.Flight;            
-            //GetComponent<Rigidbody>().isKinematic = false;            
+            GetComponent<Rigidbody>().isKinematic = false;
+            playSound(takeoffSoundSource);
         }   
     }
 
@@ -157,6 +158,38 @@ public class FlightAnim : MonoBehaviour
         yield return new WaitForSeconds(5.1f);
         anim.enabled = false;
         isActive = false;
+    }
+
+    protected AudioSource setupSound(AudioClip sound, ref AudioSource source)
+    {
+
+        if (!sound && source)
+            Destroy(source);
+
+        if (!sound && !source)
+            return null;
+
+        if (sound && !source)
+        {
+            source = gameObject.AddComponent<AudioSource>();
+            source.loop = false;
+        }
+
+        if (!source.clip)
+        {
+            source.clip = sound;
+        }
+
+        return source;
+    }
+
+    protected void playSound(AudioSource source)
+    {
+        if (source)
+        {
+            source.Play();
+        }
+
     }
 
 }
