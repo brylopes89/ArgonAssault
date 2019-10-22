@@ -54,7 +54,7 @@ public class CameraFlightFollow : MonoBehaviour {
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * follow_tightness);
 
         Quaternion newRotation;
-        if (control.afterburner_Active && shake_on_afterburn || flightAnim.isActive)
+        if (control.afterburner_Active && shake_on_afterburn)
         {
             //Shake the camera while looking towards the targeter.
             newRotation = Quaternion.LookRotation(positionDifference + new Vector3(
@@ -68,7 +68,7 @@ public class CameraFlightFollow : MonoBehaviour {
         {
             //Look towards the targeter
             newRotation = Quaternion.LookRotation(positionDifference, target.up);
-            flightAnim.isActive = false;
+            //flightAnim.isActive = false;
         }
 
         transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rotation_tightness);

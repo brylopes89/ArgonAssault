@@ -443,7 +443,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d906bc3b55efc64aa8e33a9d24199bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 149606569}
+  state: 0
+  anim: {fileID: 0}
   isActive: 0
 --- !u!114 &149606573
 MonoBehaviour:
@@ -2448,22 +2449,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 19800004, guid: ccbcfc705a39717429590a9f247ec30a, type: 3}
-      propertyPath: InitialModule.startColor.minColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800004, guid: ccbcfc705a39717429590a9f247ec30a, type: 3}
-      propertyPath: InitialModule.startColor.minColor.g
-      value: 0.42476594
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800004, guid: ccbcfc705a39717429590a9f247ec30a, type: 3}
-      propertyPath: InitialModule.startColor.minColor.b
-      value: 0.9622642
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800004, guid: ccbcfc705a39717429590a9f247ec30a, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: ccbcfc705a39717429590a9f247ec30a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -2523,6 +2508,22 @@ PrefabInstance:
     - target: {fileID: 19800002, guid: ccbcfc705a39717429590a9f247ec30a, type: 3}
       propertyPath: InitialModule.startRotationY.scalar
       value: 3.1415927
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: ccbcfc705a39717429590a9f247ec30a, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: ccbcfc705a39717429590a9f247ec30a, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.42476594
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: ccbcfc705a39717429590a9f247ec30a, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.9622642
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: ccbcfc705a39717429590a9f247ec30a, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccbcfc705a39717429590a9f247ec30a, type: 3}

@@ -4,62 +4,159 @@ using UnityEngine;
 
 public class FlightAnim : MonoBehaviour
 {
-   
+
     public enum FlightState { None, Ground, Flight };
-    private FlightState _state = FlightState.Ground;
-    public FlightState state;
+    private FlightState _state = FlightState.Ground;   
+
+    public FlightState state
+    {
+        get { return _state; }
+        set { _state = value; }
+    }
 
     public Animator anim;
     public bool isActive;
 
-    public bool enabledLaunchIfAirborn = true;
-    public bool enabledDiving = false;
-    public bool enabledTakeoff = true;
-    public bool enabledLanding = true;
-    public bool enabledCrashing = false;
-    public float crashSpeed = 40f;
+    [Range(-1.0f, 1.0f)]
+    protected float _inputGroundForward;
+    [Range(-1.0f, 1.0f)]
+    protected float _inputGroundTurning;
 
-    //===========
-    //USER INPUT FLIGHT
-    //===========
+    protected bool _inputSubmit;
+    public bool InputSubmit { get { return _inputSubmit; } }
 
     protected bool _inputTakeoff = false;
-    protected bool _inputFlaring = false;
-    protected bool _inputDiving = false;
-    protected bool _inputFlap = false;
-
     public bool InputTakeoff { get { return _inputTakeoff; } }
-    public bool InputDiving { get { return _inputDiving; } }
 
-    // Start is called before the first frame update
+    public float InputGroundForward { get { return _inputGroundForward; } }
+    public float InputGroundTurning { get { return _inputGroundTurning; } }
+
+    public bool enabledTakeoff = true;
+    public AudioClip takeoffSoundClip;
+    private AudioSource takeoffSoundSource;
+
+    public bool enabledLaunchIfAirborn = true;
+    public float minHeightToLaunchIfAirborn = 2f;
+
+    //meters/second
+    public float maxGroundForwardSpeed = 40;
+    //degrees/second
+    public float groundDrag = 1.0f;
+    public float maxGroundTurningDegreesSecond = 40;
+
+    void Awake()
+    {       
+        //GetComponent<Rigidbody>().freezeRotation = true;
+        //GetComponent<Rigidbody>().isKinematic = false;
+    }
+
+
     void Start()
     {
-       anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-
-    }
+        if (isGrounded())
+        {
+            getGroundInputs();
+        }       
+    }   
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetButton("Submit"))
-        {           
-            StartCoroutine(ObjectActive());            
-        }           
+        if (isGrounded())
+        {
+            applyGroundInputs();
+        }
+        else if (isFlying())
+        {
+            GetComponentInChildren<Rigidbody>().drag = 0;
+        } 
     }
 
+    public bool isGrounded()
+    {
+        if (state == FlightState.Ground)
+            return true;
+        return false;
+    }
+
+    public bool isFlying()
+    {
+        if (state == FlightState.Flight)
+            return true;
+        return false;
+    }
+
+    void getGroundInputs()
+    {
+
+        _inputGroundForward = Input.GetAxis("Vertical");
+        _inputGroundTurning = Input.GetAxis("Horizontal");
+        _inputSubmit = Input.GetButton("Submit");
+        _inputTakeoff = _inputSubmit;
+        //anim.enabled = false;
+    }
+
+    void applyGroundInputs()
+    {
+        if (_inputSubmit)
+        {
+            Submit();
+        }
+
+        groundMove();
+        //launchIfAirborn(minHeightToLaunchIfAirborn);
+    }
+
+    void Submit()
+    {
+        state = FlightState.Flight;
+        StartCoroutine(ObjectActive());
+        anim.enabled = true;
+        
+    }
+
+    private void groundMove()
+    {
+        GetComponentInChildren<Rigidbody>().drag = 1.0f;
+        if (_inputGroundForward > 0f)
+        {           
+            GetComponentInChildren<Rigidbody>().AddRelativeForce(Vector3.forward * maxGroundForwardSpeed * _inputGroundForward * Time.deltaTime, ForceMode.VelocityChange);
+        }
+     
+        float turningSpeed = maxGroundTurningDegreesSecond * _inputGroundTurning * Time.deltaTime;
+        GetComponentInChildren<Rigidbody>().rotation *= Quaternion.AngleAxis(turningSpeed, Vector3.up);
+    }
+
+    private void launchIfAirborn(float minHeight)
+    {
+        if (!Physics.Raycast(transform.position, Vector3.down, minHeight))
+        {
+            takeoff();
+        }
+    }
+
+    protected void takeoff()
+    {
+        if (!isFlying())
+        {
+            state = FlightState.Flight;            
+            //GetComponent<Rigidbody>().isKinematic = false;            
+        }   
+    }
+
+
     IEnumerator ObjectActive()
-    {        
+    {
         anim.SetTrigger("LiftOff");
         isActive = true;
         yield return new WaitForSeconds(5.1f);
         anim.enabled = false;
-        isActive = false;       
+        isActive = false;
     }
+
 }
-
-
-
