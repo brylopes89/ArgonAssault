@@ -41,7 +41,7 @@ public class FlightAnim : MonoBehaviour
     //meters/second
     public float maxGroundForwardSpeed = 40;
     //degrees/second
-    public float groundDrag = 5;
+    public float groundDrag = 1;
     public float maxGroundTurningDegreesSecond = 40;
 
     void Awake()
@@ -122,7 +122,7 @@ public class FlightAnim : MonoBehaviour
 
     private void groundMove()
     {
-        GetComponent<Rigidbody>().drag = 1;
+        GetComponent<Rigidbody>().drag = 0;
         if (_inputGroundForward > 0f)
         {           
             GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * maxGroundForwardSpeed * _inputGroundForward * Time.deltaTime, ForceMode.VelocityChange);

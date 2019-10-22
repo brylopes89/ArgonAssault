@@ -62,7 +62,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AnimTransform.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\bullet.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\CameraFlightFollow.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\CustomPointer.cs" />
@@ -191,6 +190,7 @@
     <Compile Include="Assets\Asset Packs\Standard Assets\Vehicles\Car\Scripts\WheelEffects.cs" />
     <Compile Include="Assets\Asset Packs\StarNestSkybox\Scripts\CameraScroll.cs" />
     <Compile Include="Assets\Asset Packs\StarNestSkybox\Scripts\SkyboxSwitcher.cs" />
+    <Compile Include="Assets\MyScripts\AnimTransform.cs" />
     <Compile Include="Assets\MyScripts\BetterWaypointFollower.cs" />
     <Compile Include="Assets\MyScripts\CollisionHandler.cs" />
     <Compile Include="Assets\MyScripts\Enemy.cs" />
