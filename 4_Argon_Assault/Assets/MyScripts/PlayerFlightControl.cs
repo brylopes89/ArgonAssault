@@ -5,15 +5,11 @@ using System;
 [System.Serializable]
 public class PlayerFlightControl : MonoBehaviour
 {
-
     //"Objects", "For the main ship Game Object and weapons"));
     public GameObject actual_model; //"Ship GameObject", "Point this to the Game Object that actually contains the mesh for the ship. Generally, this is the first child of the empty container object this controller is placed in."
     public Transform weapon_hardpoint_1;
     public Transform weapon_hardpoint_2;//"Weapon Hardpoint", "Transform for the barrel of the weapon"
-    public GameObject bullet; //"Projectile GameObject", "Projectile that will be fired from the weapon hardpoint."
-
-    //public GameObject emission_right; //thruster emission
-
+    public GameObject bullet; //"Projectile GameObject", "Projectile that will be fired from the weapon hardpoint."   
 
     //"Core Movement", "Controls for the various speeds for different operations."
     public float speed = 20.0f; //"Base Speed", "Primary flight speed, without afterburners or brakes"
@@ -40,8 +36,6 @@ public class PlayerFlightControl : MonoBehaviour
     public bool afterburner_Active = false; //True if afterburners are on.
     [HideInInspector]
     public bool slow_Active = false; //True if brakes are on
-
-
 
     float distFromVertical; //Distance in pixels from the vertical center of the screen.
     float distFromHorizontal; //Distance in pixel from the horizontal center of the screen.

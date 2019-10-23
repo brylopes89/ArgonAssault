@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FlightAnim : MonoBehaviour
 {
-
     public enum FlightState { None, Ground, Flight };
     private FlightState _state = FlightState.Ground;   
 
@@ -14,8 +13,10 @@ public class FlightAnim : MonoBehaviour
         set { _state = value; }
     }
 
+    GameObject parent;
+    Rigidbody player;
     public Animator anim;
-    public bool isActive;
+    //public bool isActive;
 
     [Range(-1.0f, 1.0f)]
     protected float _inputGroundForward;
@@ -31,9 +32,10 @@ public class FlightAnim : MonoBehaviour
     public float InputGroundForward { get { return _inputGroundForward; } }
     public float InputGroundTurning { get { return _inputGroundTurning; } }
 
+    public bool enabledGround = true;
     public bool enabledTakeoff = true;
-    public AudioClip takeoffSoundClip;
-    private AudioSource takeoffSoundSource;
+    //public AudioClip takeoffSoundClip;
+    //private AudioSource takeoffSoundSource;
 
     public bool enabledLaunchIfAirborn = true;
     public float minHeightToLaunchIfAirborn = 2f;
@@ -44,9 +46,12 @@ public class FlightAnim : MonoBehaviour
     public float groundDrag = 1;
     public float maxGroundTurningDegreesSecond = 40;
 
+    public float speedFloat = 20.0f;
+    bool isActive;
+
     void Awake()
     {
-        setupSound(takeoffSoundClip, ref takeoffSoundSource);
+        //setupSound(takeoffSoundClip, ref takeoffSoundSource);
         //setupSound(landingSoundClip, ref landingSoundSource);
        
         //GetComponent<Rigidbody>().freezeRotation = true;
@@ -56,47 +61,24 @@ public class FlightAnim : MonoBehaviour
 
     void Start()
     {
+        parent = GameObject.FindGameObjectWithTag("Player");
+        player = parent.GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
     }
 
     void Update()
-    {
-        if (isGrounded())
-        {
-            getGroundInputs();
-        }       
+    {       
+        getGroundInputs();
     }   
 
     // Update is called once per frame
     void FixedUpdate()
-    {
-        if (isGrounded())
-        {
-            applyGroundInputs();
-        }
-        else if (isFlying())
-        {
-            GetComponent<Rigidbody>().drag = 0;
-        } 
-    }
-
-    public bool isGrounded()
-    {
-        if (state == FlightState.Ground)
-            return true;
-        return false;
-    }
-
-    public bool isFlying()
-    {
-        if (state == FlightState.Flight)
-            return true;
-        return false;
+    {        
+         applyGroundInputs();           
     }
 
     void getGroundInputs()
     {
-
         _inputGroundForward = Input.GetAxis("Vertical");
         _inputGroundTurning = Input.GetAxis("Horizontal");
         _inputSubmit = Input.GetButton("Submit");
@@ -105,34 +87,37 @@ public class FlightAnim : MonoBehaviour
 
     void applyGroundInputs()
     {
-        if (_inputSubmit)
-        {
-            Submit();
+        if (_inputTakeoff)
+        {           
+            //takeoff();
+            SendMessage("TriggerActive()");           
         }
-
         groundMove();
         //launchIfAirborn(minHeightToLaunchIfAirborn);
     }
 
-    void Submit()
-    {
-        StartCoroutine(ObjectActive());
-        state = FlightState.Flight;
-    }
-
     private void groundMove()
     {
-        GetComponent<Rigidbody>().drag = 0;
+        //GetComponent<Rigidbody>().drag = 0;
         if (_inputGroundForward > 0f)
-        {           
-            GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * maxGroundForwardSpeed * _inputGroundForward * Time.deltaTime, ForceMode.VelocityChange);
+        {
+            anim.SetBool("Movement", true);
+            player.AddRelativeForce(Vector3.forward * maxGroundForwardSpeed * _inputGroundForward * Time.deltaTime, ForceMode.VelocityChange);
         }
-     
+        else
+        {
+            anim.SetBool("Movement", false);
+        }
+
         float turningSpeed = maxGroundTurningDegreesSecond * _inputGroundTurning * Time.deltaTime;
-        GetComponent<Rigidbody>().rotation *= Quaternion.AngleAxis(turningSpeed, Vector3.up);
+        player.rotation *= Quaternion.AngleAxis(turningSpeed, Vector3.up);
+
+        //anim.SetFloat("ForwardSpeed", GetComponent<Rigidbody>().velocity.magnitude);
+        //anim.SetFloat("AngularSpeed", turningSpeed);
+       
     }
 
-    private void launchIfAirborn(float minHeight)
+    /*private void launchIfAirborn(float minHeight)
     {
         if (!Physics.Raycast(transform.position, Vector3.down, minHeight))
         {
@@ -145,13 +130,12 @@ public class FlightAnim : MonoBehaviour
         if (!isFlying())
         {
             state = FlightState.Flight;            
-            GetComponent<Rigidbody>().isKinematic = false;
-            playSound(takeoffSoundSource);
+           // GetComponent<Rigidbody>().isKinematic = false;
+            //playSound(takeoffSoundSource);
         }   
-    }
+    }*/
 
-
-    IEnumerator ObjectActive()
+    /*IEnumerator TriggerActive()
     {
         anim.SetTrigger("LiftOff");
         isActive = true;
@@ -160,7 +144,7 @@ public class FlightAnim : MonoBehaviour
         isActive = false;
     }
 
-    protected AudioSource setupSound(AudioClip sound, ref AudioSource source)
+    /*protected AudioSource setupSound(AudioClip sound, ref AudioSource source)
     {
 
         if (!sound && source)
@@ -190,6 +174,6 @@ public class FlightAnim : MonoBehaviour
             source.Play();
         }
 
-    }
+    }*/
 
 }

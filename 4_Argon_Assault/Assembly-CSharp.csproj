@@ -190,11 +190,13 @@
     <Compile Include="Assets\Asset Packs\Standard Assets\Vehicles\Car\Scripts\WheelEffects.cs" />
     <Compile Include="Assets\Asset Packs\StarNestSkybox\Scripts\CameraScroll.cs" />
     <Compile Include="Assets\Asset Packs\StarNestSkybox\Scripts\SkyboxSwitcher.cs" />
+    <Compile Include="Assets\GroundMove.cs" />
     <Compile Include="Assets\MyScripts\AnimTransform.cs" />
     <Compile Include="Assets\MyScripts\BetterWaypointFollower.cs" />
     <Compile Include="Assets\MyScripts\CollisionHandler.cs" />
     <Compile Include="Assets\MyScripts\Enemy.cs" />
     <Compile Include="Assets\MyScripts\FlightAnim.cs" />
+    <Compile Include="Assets\MyScripts\FlightTrigger.cs" />
     <Compile Include="Assets\MyScripts\MusicPlayer.cs" />
     <Compile Include="Assets\MyScripts\ParticleEmission.cs" />
     <Compile Include="Assets\MyScripts\PlayerController.cs" />
