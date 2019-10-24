@@ -90,30 +90,36 @@ public class FlightAnim : MonoBehaviour
         if (_inputTakeoff)
         {           
             //takeoff();
-            SendMessage("TriggerActive()");           
+           // SendMessage("TriggerActive()");           
         }
+        
         groundMove();
         //launchIfAirborn(minHeightToLaunchIfAirborn);
     }
 
     private void groundMove()
-    {
-        //GetComponent<Rigidbody>().drag = 0;
+    {        
+        player.drag = 5.0f;
+
         if (_inputGroundForward > 0f)
-        {
+        {               
+            anim.enabled = false;
             anim.SetBool("Movement", true);
-            player.AddRelativeForce(Vector3.forward * maxGroundForwardSpeed * _inputGroundForward * Time.deltaTime, ForceMode.VelocityChange);
+            player.AddRelativeForce(Vector3.forward * maxGroundForwardSpeed * _inputGroundForward * Time.deltaTime, ForceMode.VelocityChange);            
         }
         else
         {
-            anim.SetBool("Movement", false);
+            anim.enabled = true;
+            anim.SetBool("Movement", true);
         }
 
         float turningSpeed = maxGroundTurningDegreesSecond * _inputGroundTurning * Time.deltaTime;
         player.rotation *= Quaternion.AngleAxis(turningSpeed, Vector3.up);
 
-        //anim.SetFloat("ForwardSpeed", GetComponent<Rigidbody>().velocity.magnitude);
-        //anim.SetFloat("AngularSpeed", turningSpeed);
+        anim.SetFloat("ForwardSpeed", player.velocity.magnitude);
+        anim.SetFloat("AngularSpeed", turningSpeed);
+
+        anim.transform.position = player.transform.position;
        
     }
 
