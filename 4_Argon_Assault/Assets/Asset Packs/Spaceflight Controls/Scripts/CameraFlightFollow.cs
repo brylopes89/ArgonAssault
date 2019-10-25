@@ -61,8 +61,7 @@ public class CameraFlightFollow : MonoBehaviour {
                 Random.Range(-afterburner_Shake_Amount, afterburner_Shake_Amount),
                 Random.Range(-afterburner_Shake_Amount, afterburner_Shake_Amount),
                 Random.Range(-afterburner_Shake_Amount, afterburner_Shake_Amount)),
-                target.up);
-            
+                target.up);            
         }
         else
         {

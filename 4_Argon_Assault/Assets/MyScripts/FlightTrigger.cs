@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class FlightTrigger : MonoBehaviour
 {
-    public Animator anim;
-    GameObject parent;
-    Rigidbody player;
+    public Animator anim;   
+    GameObject child;
+    Rigidbody rb;
+    
 
     public enum FlightState { None, Ground, Flight };
-    private FlightState _state = FlightState.Ground;
-    public FlightState state
-    {
-        get { return _state; }
-        set { _state = value; }
-    }
+    public FlightState state { get; set; } = FlightState.Ground;
 
     [Range(-1.0f, 1.0f)]
     protected float _inputGroundForward;
@@ -39,20 +35,21 @@ public class FlightTrigger : MonoBehaviour
     public float groundDrag = 5;
     public float maxGroundTurningDegreesSecond = 40;
 
+    void Awake()
+    {       
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        parent = GameObject.FindGameObjectWithTag("Player");
-        player = parent.GetComponent<Rigidbody>();        
+        child = GameObject.FindGameObjectWithTag("Player");
+        rb = child.GetComponent<Rigidbody>();             
     }
 
     // Update is called once per frame
     void Update()
-    {
-        /* if (Input.GetButton("Submit"))
-         {
-             StartCoroutine(TriggerActive());
-         }*/
+    {      
         if (isGrounded())
         {
             getGroundInputs();
@@ -65,6 +62,11 @@ public class FlightTrigger : MonoBehaviour
         {
             applyGroundInputs();
         }
+    }
+
+    private void LateUpdate()
+    {
+        
     }
 
     public bool isGrounded()
@@ -98,13 +100,13 @@ public class FlightTrigger : MonoBehaviour
 
     private void groundMove()
     {
-        player.drag = 5.0f;
+        rb.drag = 5.0f;
 
         if (_inputGroundForward > 0f)
         {
             //anim.enabled = false;
             anim.SetBool("Movement", true);
-            player.AddRelativeForce(Vector3.forward * maxGroundForwardSpeed * _inputGroundForward * Time.deltaTime, ForceMode.VelocityChange);
+            rb.AddRelativeForce(Vector3.forward * maxGroundForwardSpeed * _inputGroundForward * Time.deltaTime, ForceMode.VelocityChange);
         }
         else
         {
@@ -113,9 +115,9 @@ public class FlightTrigger : MonoBehaviour
         }
 
         float turningSpeed = maxGroundTurningDegreesSecond * _inputGroundTurning * Time.deltaTime;
-        player.rotation *= Quaternion.AngleAxis(turningSpeed, Vector3.up);
+        rb.rotation *= Quaternion.AngleAxis(turningSpeed, Vector3.up);
 
-        anim.SetFloat("ForwardSpeed", player.velocity.magnitude);
+        anim.SetFloat("ForwardSpeed", rb.velocity.magnitude);
         anim.SetFloat("AngularSpeed", turningSpeed);
 
         //anim.transform.position = player.transform.position;
@@ -126,9 +128,9 @@ public class FlightTrigger : MonoBehaviour
     {
         if(triggerSet == true)
         {
-            state = FlightState.Flight;
-            player.drag = 0;
             StartCoroutine(TriggerActive());
+            state = FlightState.Flight;
+            rb.drag = 0;            
         }
     }
 
@@ -137,6 +139,8 @@ public class FlightTrigger : MonoBehaviour
         anim.SetTrigger("LiftOff");       
         yield return new WaitForSeconds(5.1f);
         anim.enabled = false;
-       
+        
+       // GetComponent<PlayerFlightControl>().enabled = true;
+        
     }
 }

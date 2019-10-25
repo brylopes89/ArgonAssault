@@ -62,6 +62,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Asset Packs\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Demo\Sample Scripts\ShakeByDistance.cs" />
+    <Compile Include="Assets\Asset Packs\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Demo\Sample Scripts\ShakeOnKeyPress.cs" />
+    <Compile Include="Assets\Asset Packs\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Demo\Sample Scripts\ShakeOnTrigger.cs" />
+    <Compile Include="Assets\Asset Packs\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Demo\ShakeDemo.cs" />
+    <Compile Include="Assets\Asset Packs\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Scripts\CameraShakeInstance.cs" />
+    <Compile Include="Assets\Asset Packs\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Scripts\CameraShakePresets.cs" />
+    <Compile Include="Assets\Asset Packs\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Scripts\CameraShaker.cs" />
+    <Compile Include="Assets\Asset Packs\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Scripts\Utilities\CameraUtilities.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\bullet.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\CameraFlightFollow.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\CustomPointer.cs" />
@@ -193,6 +201,7 @@
     <Compile Include="Assets\GroundMove.cs" />
     <Compile Include="Assets\MyScripts\AnimTransform.cs" />
     <Compile Include="Assets\MyScripts\BetterWaypointFollower.cs" />
+    <Compile Include="Assets\MyScripts\CamFollowBeta.cs" />
     <Compile Include="Assets\MyScripts\CollisionHandler.cs" />
     <Compile Include="Assets\MyScripts\Enemy.cs" />
     <Compile Include="Assets\MyScripts\FlightAnim.cs" />
@@ -215,6 +224,7 @@
     <None Include="Assets\Asset Packs\Standard Assets\Environment\Water (Basic)\DO_NOT_WORK_IN_VR.txt" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceRaytrace.cginc" />
     <None Include="Assets\MyShaders\Outline_Diffuse.shader" />
+    <None Include="Assets\Asset Packs\EZ-Camera-Shake-Unity-master\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\Asset Packs\StarNestSkybox\StarNestSkyboxReadme.txt" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\VignetteShader.shader" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularSmooth.shader" />
