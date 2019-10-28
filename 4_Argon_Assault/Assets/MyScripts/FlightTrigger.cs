@@ -138,9 +138,8 @@ public class FlightTrigger : MonoBehaviour
     {
         anim.SetTrigger("LiftOff");       
         yield return new WaitForSeconds(5.1f);
-        anim.enabled = false;
-        
-       // GetComponent<PlayerFlightControl>().enabled = true;
+        anim.enabled = false;        
+       
         
     }
 }

@@ -61,13 +61,13 @@ public class FlightCameraEditor : Editor
 	public override void OnInspectorGUI()
 	{
 		CameraFlightFollow cam = (CameraFlightFollow)target;
-	
-	
-		EditorGUILayout.Separator();
+
+        EditorGUILayout.Separator();
 		cam.control = (PlayerFlightControl) EditorGUILayout.ObjectField(new GUIContent("Flight Controller", "Drag the container object that has the Player Flight Controller here."), cam.control, typeof(PlayerFlightControl), true);
 		
 		cam.target = (Transform) EditorGUILayout.ObjectField(new GUIContent("Look Target", "The transform that the camera will focus on. Generally, this will be an empty game object in front of the ship a few units on the Z axis."), cam.target, typeof(Transform), true);
-		EditorGUILayout.Separator();
+       
+        EditorGUILayout.Separator();
 		
 		GUILayout.Label(new GUIContent("Parameters", ""));
 		cam.follow_distance = EditorGUILayout.FloatField(new GUIContent("Follow Distance", "Controls how far behind the targeter the camera will follow."), cam.follow_distance);			

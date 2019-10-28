@@ -199,9 +199,9 @@
     <Compile Include="Assets\Asset Packs\StarNestSkybox\Scripts\CameraScroll.cs" />
     <Compile Include="Assets\Asset Packs\StarNestSkybox\Scripts\SkyboxSwitcher.cs" />
     <Compile Include="Assets\GroundMove.cs" />
-    <Compile Include="Assets\MyScripts\AnimTransform.cs" />
     <Compile Include="Assets\MyScripts\BetterWaypointFollower.cs" />
     <Compile Include="Assets\MyScripts\CamFollowBeta.cs" />
+    <Compile Include="Assets\MyScripts\CamSwitch.cs" />
     <Compile Include="Assets\MyScripts\CollisionHandler.cs" />
     <Compile Include="Assets\MyScripts\Enemy.cs" />
     <Compile Include="Assets\MyScripts\FlightAnim.cs" />
@@ -214,6 +214,7 @@
     <Compile Include="Assets\MyScripts\SceneLoader.cs" />
     <Compile Include="Assets\MyScripts\ScoreBoard.cs" />
     <Compile Include="Assets\MyScripts\SelfDestructor.cs" />
+    <Compile Include="Assets\MyScripts\TextTrigger.cs" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />

@@ -9,7 +9,12 @@ public class ShakeOnKeyPress : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetAxis("Thrust")>0)
+        ThrustShake();
+    }
+
+    private void ThrustShake()
+    {
+        if (Input.GetAxis("Thrust") > 0)
             CameraShaker.Instance.ShakeOnce(Magnitude, Roughness, 0, FadeOutTime);
     }
 }
