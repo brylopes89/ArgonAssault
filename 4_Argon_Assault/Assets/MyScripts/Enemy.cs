@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    public enum EnemyState { Idle, Approach, Attack };
+    private EnemyState _state;
 
     [SerializeField] GameObject deathFX;
     [SerializeField] Transform parent;
@@ -16,16 +16,25 @@ public class Enemy : MonoBehaviour
     ScoreBoard scoreBoard;
     bool hasBeenHit = false;
 
+    Vector3 storeTarget;
+    Vector3 newTargetPos;
+
+    bool savePos;
+    bool overrideTarget;
+
     Transform target;
-    Transform[] children;
-
-    List<Transform> transforms = new List<Transform>();
-
-    //public NavMeshAgent enemyAgent;
+    Transform enemyTran;
+   // Transform[] children;
+    Transform obstacle;
 
     float f_RotSpeed = 3.0f;
-    public float f_MoveSpeed = 3.0f;
+    public float moveSpeed = 3.0f;
+    public float minDist;
+    public float maxDist;
+    public float fireDist;
 
+    List<Transform> transforms = new List<Transform>();
+    public List<Vector3> EscapeDirections = new List<Vector3>();
 
     // Start is called before the first frame update
     void Start()
@@ -33,16 +42,17 @@ public class Enemy : MonoBehaviour
         AddBoxCollider();
         scoreBoard = FindObjectOfType<ScoreBoard>();
         target = GameObject.FindWithTag("Player").transform;
-        children = GetComponentsInChildren<Transform>();
+        enemyTran = this.transform;
+        //children = GetComponentsInChildren<Transform>();
 
-        foreach (Transform child in children)
+        /*foreach (Transform child in children)
         {
-            var tran = GetComponent<Transform>();
+            var tran = child.GetComponent<Transform>();
             transforms.Add(tran);
-        }      
+        } */     
     }
 
-    private void Update()
+    void Update()
     {
         if (target == null)
         {
@@ -51,32 +61,41 @@ public class Enemy : MonoBehaviour
 
         followPlayer();
     }
-    private void AddBoxCollider()
-    {
-        Collider boxCollider = gameObject.AddComponent<BoxCollider>();
-        boxCollider.isTrigger = false;
-    }
 
     void followPlayer()
-    {
-       // foreach (Transform tran in transforms)
-       //{
-           
-            var lookPos = target.position - transform.position;
+    {       
+        var lookPos = target.position - enemyTran.position;
+        var rotation = Quaternion.LookRotation(lookPos);
 
-            var rotation = Quaternion.LookRotation(lookPos, Vector3.up);
+        //Find Distance to target
+        var distance = lookPos.magnitude;           
 
-            //Vector3 targetPosition = new Vector3(target.position.x, target.position.y, target.position.z);
+        var approachDis = IsPlayerWithinApproachRange();
 
-            transform.LookAt(target.position);
+        if (approachDis)
+        {
+            _state = EnemyState.Approach;
 
-            //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, f_RotSpeed * Time.deltaTime);
+            //Rotate Towards Player
+            enemyTran.rotation = Quaternion.Slerp(enemyTran.rotation, rotation, f_RotSpeed * Time.deltaTime);
 
             //Move towards Player
-            transform.position += transform.forward * f_MoveSpeed * Time.deltaTime;
+            enemyTran.position += enemyTran.forward * moveSpeed * Time.deltaTime;
+        }
 
-       // }                   
+       // ObstacleAvoidance(enemyTran.forward, 0);                         
+    }
 
+    bool IsPlayerWithinApproachRange()
+    {
+        var distance = (target.position - enemyTran.position).magnitude;
+        return distance < maxDist;
+    }
+    
+    bool IsPlayerWithinAttackRange()
+    {
+        var distance = (target.position - transform.position).magnitude;
+        return distance < fireDist;
     }
 
     void OnParticleCollision(GameObject other)
@@ -105,5 +124,11 @@ public class Enemy : MonoBehaviour
         fx.transform.parent = parent;
         Destroy(gameObject);       
         
+    }
+
+    private void AddBoxCollider()
+    {
+        Collider boxCollider = gameObject.AddComponent<BoxCollider>();
+        boxCollider.isTrigger = false;
     }
 }
