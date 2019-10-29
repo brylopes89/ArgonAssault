@@ -27,7 +27,6 @@ public class CamSwitch : MonoBehaviour
             cam2.SetActive(!toggle);                
         }
 
-
         if (Input.GetButton("Toggle"))
         {
             cam3.SetActive(true);
