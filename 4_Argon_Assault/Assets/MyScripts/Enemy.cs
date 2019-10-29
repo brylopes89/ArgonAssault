@@ -9,13 +9,18 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] GameObject deathFX;
     [SerializeField] Transform parent;
+
     [SerializeField] int scorePerHit = 10;
     [SerializeField] int health = 20;
 
     ScoreBoard scoreBoard;
     bool hasBeenHit = false;
 
-    GameObject target;
+    Transform target;
+    Transform[] children;
+
+    List<Transform> transforms = new List<Transform>();
+
     //public NavMeshAgent enemyAgent;
 
     float f_RotSpeed = 3.0f;
@@ -27,15 +32,21 @@ public class Enemy : MonoBehaviour
     {
         AddBoxCollider();
         scoreBoard = FindObjectOfType<ScoreBoard>();
-        target = GameObject.FindWithTag("Player");
-        
+        target = GameObject.FindWithTag("Player").transform;
+        children = GetComponentsInChildren<Transform>();
+
+        foreach (Transform child in children)
+        {
+            var tran = GetComponent<Transform>();
+            transforms.Add(tran);
+        }      
     }
 
     private void Update()
     {
         if (target == null)
         {
-            target = GameObject.FindWithTag("Player");
+            target = GameObject.FindWithTag("Player").transform;
         }
 
         followPlayer();
@@ -48,19 +59,23 @@ public class Enemy : MonoBehaviour
 
     void followPlayer()
     {
-        if (target != null)
-        {
-            //enemyAgent.SetDestination(target.transform.position);
+       // foreach (Transform tran in transforms)
+       //{
+           
+            var lookPos = target.position - transform.position;
 
-            // Look at Player
-            transform.rotation = Quaternion.Slerp(transform.rotation, 
-                Quaternion.LookRotation(target.transform.position - transform.position), 
-                f_RotSpeed * Time.deltaTime);
+            var rotation = Quaternion.LookRotation(lookPos, Vector3.up);
+
+            //Vector3 targetPosition = new Vector3(target.position.x, target.position.y, target.position.z);
+
+            transform.LookAt(target.position);
+
+            //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, f_RotSpeed * Time.deltaTime);
 
             //Move towards Player
             transform.position += transform.forward * f_MoveSpeed * Time.deltaTime;
-    
-        }
+
+       // }                   
 
     }
 
