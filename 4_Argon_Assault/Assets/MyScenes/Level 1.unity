@@ -368,7 +368,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &149606569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345052701}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 039587c051912eb4ead9e58344c5f3ce, type: 3}
   m_Name: 
@@ -5853,7 +5853,7 @@ GameObject:
   - component: {fileID: 1091327391}
   m_Layer: 2
   m_Name: Targeter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20260,7 +20260,7 @@ MonoBehaviour:
   pointer_returns_to_center: 1
   instant_snapping: 0
   center_speed: 5
-  center_lock: 1
+  center_lock: 0
   invert_y_axis: 1
   deadzone_radius: 10
   thumbstick_speed_modifier: 10
@@ -20602,7 +20602,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450847351}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 039587c051912eb4ead9e58344c5f3ce, type: 3}
   m_Name: 
@@ -39813,7 +39813,7 @@ GameObject:
   - component: {fileID: 2028172056}
   m_Layer: 0
   m_Name: Platform Anim
-  m_TagString: Ignore
+  m_TagString: Friendly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39865,7 +39865,7 @@ GameObject:
   - component: {fileID: 2098488553}
   m_Layer: 2
   m_Name: Flight
-  m_TagString: Untagged
+  m_TagString: Parent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40850,7 +40850,7 @@ GameObject:
   - component: {fileID: 1956700609887809013}
   m_Layer: 2
   m_Name: Player Death FX
-  m_TagString: Untagged
+  m_TagString: Friendly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50322,7 +50322,7 @@ GameObject:
   - component: {fileID: 3126163024745628618}
   m_Layer: 2
   m_Name: Hardpoint_1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50367,7 +50367,7 @@ GameObject:
   - component: {fileID: 3126163025836922974}
   m_Layer: 2
   m_Name: Hardpoint_2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50693,7 +50693,7 @@ GameObject:
   - component: {fileID: 688999231}
   m_Layer: 2
   m_Name: Core Ship
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50710,7 +50710,7 @@ GameObject:
   - component: {fileID: 6033646678494106340}
   m_Layer: 2
   m_Name: Engine
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50920,6 +50920,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6964405417106195406, guid: 94e06182a63624947b2bfe8a1c90ed3f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 6964405417106195403, guid: 94e06182a63624947b2bfe8a1c90ed3f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -50975,6 +50980,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6964405417106195404, guid: 94e06182a63624947b2bfe8a1c90ed3f,
+        type: 3}
+      propertyPath: m_DetailObjectDistance
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6964405417106195404, guid: 94e06182a63624947b2bfe8a1c90ed3f,
+        type: 3}
+      propertyPath: m_TreeDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6964405417106195404, guid: 94e06182a63624947b2bfe8a1c90ed3f,
+        type: 3}
+      propertyPath: m_TreeBillboardDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6964405417106195405, guid: 94e06182a63624947b2bfe8a1c90ed3f,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: e52fb17f9b1e7fd48b8955f1391d3688,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94e06182a63624947b2bfe8a1c90ed3f, type: 3}
 --- !u!198 &7170626244286094721
@@ -55735,7 +55761,7 @@ GameObject:
   - component: {fileID: 8708146500324082322}
   m_Layer: 2
   m_Name: Engine2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55887,7 +55913,7 @@ PrefabInstance:
     - target: {fileID: 7867339912771293928, guid: 0dab0ec8563423e4d8eeba0179905c60,
         type: 3}
       propertyPath: m_TagString
-      value: Ignore
+      value: Friendly
       objectReference: {fileID: 0}
     - target: {fileID: 8378787774415272110, guid: 0dab0ec8563423e4d8eeba0179905c60,
         type: 3}

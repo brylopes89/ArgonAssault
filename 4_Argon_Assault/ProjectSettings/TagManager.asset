@@ -9,6 +9,7 @@ TagManager:
   - Anim
   - Parent
   - Friendly
+  - Terrain
   layers:
   - Default
   - TransparentFX

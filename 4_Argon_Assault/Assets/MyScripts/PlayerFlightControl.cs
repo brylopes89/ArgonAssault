@@ -286,8 +286,8 @@ public class PlayerFlightControl : MonoBehaviour
         }
         else
         {
-            shot1.GetComponent<Rigidbody>().AddForce((vRay.direction) * 9000f);
-            shot2.GetComponent<Rigidbody>().AddForce((vRay.direction) * 9000f);
+            shot1.GetComponent<Rigidbody>().AddForce(vRay.direction * 9000f);
+            shot2.GetComponent<Rigidbody>().AddForce(vRay.direction * 9000f);
         }
     }
 
