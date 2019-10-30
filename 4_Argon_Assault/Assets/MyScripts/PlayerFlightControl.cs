@@ -296,6 +296,8 @@ public class PlayerFlightControl : MonoBehaviour
         isControlEnabled = false;
         thrust_exists = false;
         brake_exists = false;
-        roll_exists = false;        
+        roll_exists = false;
+        this.GetComponent<Rigidbody>().useGravity = true;
+        this.GetComponent<Rigidbody>().mass = 100;
     }
 }
