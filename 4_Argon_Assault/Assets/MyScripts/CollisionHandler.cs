@@ -10,10 +10,14 @@ public class CollisionHandler : MonoBehaviour
     [Tooltip("FX pefab on player")][SerializeField] GameObject deathFX;    
 
     void OnCollisionEnter(Collision other)
-    {       
-        StartDeathSequence();
-        deathFX.SetActive(true);
-        Invoke("ReloadScene", levelLoadDelay);           
+    {
+        if (other.collider.tag != "Friendly")
+        {
+            StartDeathSequence();
+            deathFX.SetActive(true);
+            Invoke("ReloadScene", levelLoadDelay);
+        }
+                      
     }
 
     void StartDeathSequence()

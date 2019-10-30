@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
     {
         AddBoxCollider();
         scoreBoard = FindObjectOfType<ScoreBoard>();
+
         target = GameObject.FindWithTag("Player").transform;
         enemyTran = this.transform;
         //children = GetComponentsInChildren<Transform>();
@@ -99,10 +100,9 @@ public class Enemy : MonoBehaviour
     }
 
     void OnParticleCollision(GameObject other)
-    {
-        
+    {        
         hasBeenHit = true;
-        health -= GameObject.FindObjectOfType<PlayerController>().CalculateWeaponDamage();
+        health -= GameObject.FindObjectOfType<Damage>().CalculateWeaponDamage();
         ProcessHit();
 
         if (health <= 0)

@@ -113,6 +113,11 @@ public class PlayerFlightControl : MonoBehaviour
                 updateBanking(); //Calculate banking.
             }
         }
+
+        if (Input.GetButton("Fire1"))//Please remove this and replace it with a shooting system that works for your game, if you need one.    
+        {
+            fireShot();
+        }
     }
 
     private void RigidBodyValues()
@@ -229,10 +234,7 @@ public class PlayerFlightControl : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire1"))//Please remove this and replace it with a shooting system that works for your game, if you need one.    
-        {
-            fireShot();
-        }
+        
     }
 
     public void fireShot()
@@ -280,14 +282,13 @@ public class PlayerFlightControl : MonoBehaviour
             shot2.transform.LookAt(hit.point);
             shot2.GetComponent<Rigidbody>().AddForce((shot2.transform.forward) * 9000f);
 
-            //Otherwise, since the ray didn't hit anything, we're just going to guess and shoot the projectile in the general direction.
+           // Otherwise, since the ray didn't hit anything, we're just going to guess and shoot the projectile in the general direction.
         }
         else
         {
             shot1.GetComponent<Rigidbody>().AddForce((vRay.direction) * 9000f);
             shot2.GetComponent<Rigidbody>().AddForce((vRay.direction) * 9000f);
         }
-
     }
 
     void OnPlayerDeath() // called by string reference

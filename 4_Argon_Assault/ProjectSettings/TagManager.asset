@@ -8,6 +8,7 @@ TagManager:
   - Ignore
   - Anim
   - Parent
+  - Friendly
   layers:
   - Default
   - TransparentFX

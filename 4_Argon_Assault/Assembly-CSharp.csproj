@@ -72,7 +72,6 @@
     <Compile Include="Assets\Asset Packs\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Scripts\Utilities\CameraUtilities.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\bullet.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\CameraFlightFollow.cs" />
-    <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\CustomPointer.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\DemoUI.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\PSDestroy.cs" />
     <Compile Include="Assets\Asset Packs\Standard Assets\2D\Scripts\Camera2DFollow.cs" />
@@ -203,6 +202,8 @@
     <Compile Include="Assets\MyScripts\CamFollowBeta.cs" />
     <Compile Include="Assets\MyScripts\CamSwitch.cs" />
     <Compile Include="Assets\MyScripts\CollisionHandler.cs" />
+    <Compile Include="Assets\MyScripts\CustomPointer.cs" />
+    <Compile Include="Assets\MyScripts\Damage.cs" />
     <Compile Include="Assets\MyScripts\Enemy.cs" />
     <Compile Include="Assets\MyScripts\FlightAnim.cs" />
     <Compile Include="Assets\MyScripts\FlightTrigger.cs" />
