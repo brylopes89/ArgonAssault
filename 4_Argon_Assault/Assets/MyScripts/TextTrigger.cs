@@ -1,23 +1,49 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextTrigger : MonoBehaviour
-{
-    Animator anim;
+{   
+    [SerializeField] private List<Animator> anims = new List<Animator>();
 
-    // Start is called before the first frame update
+    bool setBool;
+
     void Start()
     {
-        anim = GetComponent<Animator>();
+        
     }
-
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Submit"))
+        if (setBool)
         {
-            anim.SetTrigger("KeyPress");
+            if (Input.GetButtonDown("Submit"))
+            {
+                anims[0].SetTrigger("StateTrigger");
+                anims[1].SetTrigger("KeyPress");
+            }
         }
-    }   
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            anims[0].SetBool("Initiate", true);
+            anims[1].SetBool("PlayText", true);
+            setBool = true;
+        }
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            anims[0].SetBool("Initiate", false);
+            anims[1].SetBool("PlayText", false);
+            setBool = false;
+        }
+    }
+
 }

@@ -10,6 +10,7 @@ TagManager:
   - Parent
   - Friendly
   - Terrain
+  - Land
   layers:
   - Default
   - TransparentFX

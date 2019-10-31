@@ -4961,7 +4961,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
 --- !u!114 &149606569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4991,7 +4991,7 @@ MonoBehaviour:
   weapon_hardpoint_1: {fileID: 3126163024745628618}
   weapon_hardpoint_2: {fileID: 3126163025836922974}
   bullet: {fileID: 2391567169016377180, guid: 6d0b2cdc66ca8104cbe11eaadce694fe, type: 3}
-  speed: 50
+  speed: 20
   afterburner_speed: 100
   slow_speed: 1
   thrust_transition_speed: 5
@@ -5160,7 +5160,6 @@ GameObject:
   - component: {fileID: 204373728}
   - component: {fileID: 204373727}
   - component: {fileID: 204373725}
-  - component: {fileID: 204373726}
   m_Layer: 5
   m_Name: PressPrompt
   m_TagString: Untagged
@@ -5206,18 +5205,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &204373726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 204373723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f5786e0edeea0f49a2b9614e4c8cf91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &204373727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9861,9 +9848,9 @@ MonoBehaviour:
   parent: {fileID: 74051485}
   scorePerHit: 10
   health: 20
-  moveSpeed: 1
+  moveSpeed: 40
   minDist: 0
-  maxDist: 270
+  maxDist: 50
   fireDist: 0
   EscapeDirections: []
 --- !u!1 &464953404
@@ -9995,9 +9982,9 @@ MonoBehaviour:
   parent: {fileID: 74051485}
   scorePerHit: 10
   health: 20
-  moveSpeed: 1
+  moveSpeed: 40
   minDist: 0
-  maxDist: 270
+  maxDist: 50
   fireDist: 0
   EscapeDirections: []
 --- !u!114 &629463112
@@ -10409,9 +10396,9 @@ MonoBehaviour:
   parent: {fileID: 74051485}
   scorePerHit: 10
   health: 20
-  moveSpeed: 1
+  moveSpeed: 40
   minDist: 0
-  maxDist: 270
+  maxDist: 50
   fireDist: 0
   EscapeDirections: []
 --- !u!114 &1045303369
@@ -34519,9 +34506,9 @@ MonoBehaviour:
   parent: {fileID: 74051485}
   scorePerHit: 10
   health: 20
-  moveSpeed: 1
+  moveSpeed: 40
   minDist: 0
-  maxDist: 270
+  maxDist: 50
   fireDist: 0
   EscapeDirections: []
 --- !u!1 &1602914677
@@ -49141,7 +49128,7 @@ GameObject:
   - component: {fileID: 2028172056}
   m_Layer: 0
   m_Name: Platform Anim
-  m_TagString: Friendly
+  m_TagString: Land
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49249,7 +49236,7 @@ MonoBehaviour:
   enabledGround: 1
   enabledTakeoff: 1
   maxGroundForwardSpeed: 40
-  groundDrag: 5
+  groundDrag: 0
   maxGroundTurningDegreesSecond: 40
 --- !u!1 &2129222298
 GameObject:
@@ -65244,7 +65231,7 @@ PrefabInstance:
     - target: {fileID: 7867339912771293928, guid: 0dab0ec8563423e4d8eeba0179905c60,
         type: 3}
       propertyPath: m_TagString
-      value: Friendly
+      value: Land
       objectReference: {fileID: 0}
     - target: {fileID: 8378787774415272110, guid: 0dab0ec8563423e4d8eeba0179905c60,
         type: 3}
@@ -65363,6 +65350,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8933647039463290797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8933647039463290792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5786e0edeea0f49a2b9614e4c8cf91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anims:
+  - {fileID: 2098488551}
+  - {fileID: 204373725}
 --- !u!4 &8933647039463290798 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8378787774415272110, guid: 0dab0ec8563423e4d8eeba0179905c60,

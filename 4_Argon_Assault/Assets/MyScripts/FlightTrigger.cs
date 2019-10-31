@@ -6,8 +6,7 @@ public class FlightTrigger : MonoBehaviour
 {
     public Animator anim;   
     GameObject child;
-    Rigidbody rb;
-    
+    Rigidbody rb;    
 
     public enum FlightState { None, Ground, Flight };
     public FlightState state { get; set; } = FlightState.Ground;
@@ -32,7 +31,7 @@ public class FlightTrigger : MonoBehaviour
     //meters/second
     public float maxGroundForwardSpeed = 40;
     //degrees/second
-    public float groundDrag = 5;
+    public float groundDrag = 0;
     public float maxGroundTurningDegreesSecond = 40;
 
     void Awake()
@@ -54,6 +53,10 @@ public class FlightTrigger : MonoBehaviour
         {
             getGroundInputs();
         }
+        else if (isFlying())
+        {
+            getGroundInputs();
+        }
     }
 
     void FixedUpdate()
@@ -62,16 +65,22 @@ public class FlightTrigger : MonoBehaviour
         {
             applyGroundInputs();
         }
-    }
-
-    private void LateUpdate()
-    {
-        
+        if (isFlying())
+        {
+            applyFlightInputs();
+        }
     }
 
     public bool isGrounded()
     {
         if (state == FlightState.Ground)
+            return true;
+        return false;
+    }
+
+    public bool isFlying()
+    {
+        if (state == FlightState.Flight)
             return true;
         return false;
     }
@@ -84,6 +93,12 @@ public class FlightTrigger : MonoBehaviour
         _inputTakeoff = _inputSubmit;
     }
 
+    void getFlightInputs()
+    {        
+        _inputSubmit = Input.GetButton("Submit");
+        _inputTakeoff = _inputSubmit;
+    }
+
     void applyGroundInputs()
     {
         if (enabledGround)
@@ -91,17 +106,19 @@ public class FlightTrigger : MonoBehaviour
             groundMove();
         }
 
-
         if (enabledTakeoff)
         {
-            TakeOff(_inputTakeoff);
+            StateChange(_inputTakeoff);
         }                
+    }
+
+    void applyFlightInputs()
+    {       
+        StateChange(_inputTakeoff);        
     }
 
     private void groundMove()
     {
-        rb.drag = 5.0f;
-
         if (_inputGroundForward > 0f)
         {
             //anim.enabled = false;
@@ -121,25 +138,39 @@ public class FlightTrigger : MonoBehaviour
         anim.SetFloat("AngularSpeed", turningSpeed);
 
         //anim.transform.position = player.transform.position;
-
     }
 
-    void TakeOff(bool triggerSet)
+    void StateChange(bool triggerSet)
     {
         if(triggerSet == true)
         {
-            StartCoroutine(TriggerActive());
-            state = FlightState.Flight;
-            rb.drag = 0;            
-        }
+            if (!isFlying())
+            {
+                StartCoroutine(TakeOff());
+            }
+
+            if (isFlying())
+            {
+                StartCoroutine(Land());
+            }
+        }        
     }
 
-    IEnumerator TriggerActive()
+    IEnumerator TakeOff()
     {
-        anim.SetTrigger("LiftOff");       
+        anim.SetBool("IsFlying", true);
+        state = FlightState.Flight;
+        yield return new WaitForSeconds(5.1f);      
+        anim.enabled = false;       
+    }
+
+    IEnumerator Land()
+    {
+        anim.SetBool("IsFlying", false);
+        anim.enabled = true;
+        state = FlightState.Ground;
         yield return new WaitForSeconds(5.1f);
-        anim.enabled = false;        
-       
         
+
     }
 }
