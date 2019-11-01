@@ -12,17 +12,16 @@ public class PlayerFlightControl : MonoBehaviour
     public GameObject bullet; //"Projectile GameObject", "Projectile that will be fired from the weapon hardpoint."   
 
     //"Core Movement", "Controls for the various speeds for different operations."
-    public float speed = 20.0f; //"Base Speed", "Primary flight speed, without afterburners or brakes"
+    public float speed = 20; //"Base Speed", "Primary flight speed, without afterburners or brakes"
     public float afterburner_speed = 40f; //Afterburner Speed", "Speed when the button for positive thrust is being held down"
     public float slow_speed = 4f; //"Brake Speed", "Speed when the button for negative thrust is being held down"    
     public float thrust_transition_speed = 5f; //Thrust Transition Speed", "How quickly afterburners/brakes will reach their maximum effect"
     public float brake_transition_speed = 5f; //Thrust Transition Speed", "How quickly afterburners/brakes will reach their maximum effect"
     public float turnspeed = 15.0f; //"Turn/Roll Speed", "How fast turns and rolls will be executed "
     public float rollSpeedModifier = 7; //"Roll Speed", "Multiplier for roll speed. Base roll is determined by turn speed"
-    public float pitchYaw_strength = 0.5f; //"Pitch/Yaw Multiplier", "Controls the intensity of pitch and yaw inputs"
+    public float pitchYaw_strength = 0.5f; //"Pitch/Yaw Multiplier", "Controls the intensity of pitch and yaw inputs"    
 
     //"Banking", "Visuals only--has no effect on actual movement"
-
     public bool use_banking = true; //Will bank during turns. Disable for first-person mode, otherwise should generally be kept on because it looks cool. Your call, though.
     public float bank_angle_clamp = 360; //"Bank Angle Clamp", "Maximum angle the spacecraft can rotate along the Z axis."
     public float bank_rotation_speed = 3f; //"Bank Rotation Speed", "Rotation speed along the Z axis when yaw is applied. Higher values will result in snappier banking."
@@ -44,11 +43,13 @@ public class PlayerFlightControl : MonoBehaviour
 
     float DZ = 0; //Deadzone, taken from CustomPointer.
     float currentMag = 0f; //Current speed/magnitude   
+    public float targetSpeed;
 
     bool thrust_exists = true;
     bool brake_exists = true;
     bool roll_exists = true;
     bool isControlEnabled = true;
+    bool onTrigger = false;    
 
     //---------------------------------------------------------------------------------
 
@@ -99,7 +100,9 @@ public class PlayerFlightControl : MonoBehaviour
             return;
         }
 
-        currentMag = GetComponent<Rigidbody>().velocity.magnitude; //Getting the current speed. 
+        currentMag = GetComponent<Rigidbody>().velocity.magnitude; //Getting the current speed.       
+        currentMag = Mathf.SmoothStep(currentMag, targetSpeed, 1.0f * Time.deltaTime);
+        
        
         if (isControlEnabled)
         {
@@ -166,10 +169,19 @@ public class PlayerFlightControl : MonoBehaviour
     }
 
     void DecreaseThrust()
-    {        
+    {
         afterburner_Active = false;
-        currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);
         //print(currentMag);
+
+        if (onTrigger)
+        {
+            currentMag = Mathf.SmoothStep(currentMag, targetSpeed, brake_transition_speed * Time.deltaTime);
+        }
+
+        else
+        {           
+            currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);
+        }        
     }
 
     void ApplyBrake()
@@ -178,6 +190,24 @@ public class PlayerFlightControl : MonoBehaviour
         afterburner_Active = false;
         currentMag = Mathf.Lerp(currentMag, slow_speed, brake_transition_speed * Time.deltaTime);
         //print(currentMag);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Land"))
+        {
+            onTrigger = true;
+            targetSpeed = 6.0f;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Land"))
+        {
+            onTrigger = false;
+            targetSpeed = speed;
+        }
     }
 
     void updateCursorPosition()

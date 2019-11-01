@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class FlightTrigger : MonoBehaviour
 {
-    public Animator anim;   
-    GameObject child;
-    Rigidbody rb;    
+    public Animator anim;
+    public GameObject actual_Model;
+    GameObject player_Rig;
+
+    Rigidbody rb;
+    Transform player_Trans;
+    Transform core_Trans;
+   
 
     public enum FlightState { None, Ground, Flight };
     public FlightState state { get; set; } = FlightState.Ground;
@@ -29,21 +34,34 @@ public class FlightTrigger : MonoBehaviour
     public bool enabledTakeoff = true;
 
     //meters/second
-    public float maxGroundForwardSpeed = 40;
+    public float maxGroundForwardSpeed = 100;
     //degrees/second
     public float groundDrag = 0;
     public float maxGroundTurningDegreesSecond = 40;
 
+    public float standUpSpeed = 2.0f;
+    float magSpeed;
+
     void Awake()
-    {       
+    {
         
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        child = GameObject.FindGameObjectWithTag("Player");
-        rb = child.GetComponent<Rigidbody>();             
+        player_Rig = GameObject.FindGameObjectWithTag("Player");
+        rb = player_Rig.GetComponent<Rigidbody>();
+
+        player_Trans = player_Rig.GetComponent<Transform>();
+        core_Trans = actual_Model.GetComponent<Transform>();
+        magSpeed = player_Rig.GetComponent<PlayerFlightControl>().speed;
+
+        rb.freezeRotation = true;
+        rb.isKinematic = false;
+
+        anim.enabled = true;
+
     }
 
     // Update is called once per frame
@@ -121,37 +139,39 @@ public class FlightTrigger : MonoBehaviour
     {
         if (_inputGroundForward > 0f)
         {
+           
             //anim.enabled = false;
             anim.SetBool("Movement", true);
-            rb.AddRelativeForce(Vector3.forward * maxGroundForwardSpeed * _inputGroundForward * Time.deltaTime, ForceMode.VelocityChange);
+            rb.AddForce(Vector3.forward * maxGroundForwardSpeed * _inputGroundForward * Time.deltaTime, ForceMode.VelocityChange);           
         }
         else
         {
-           // anim.enabled = true;
+           
+            // anim.enabled = true;
             anim.SetBool("Movement", false);
         }
 
         float turningSpeed = maxGroundTurningDegreesSecond * _inputGroundTurning * Time.deltaTime;
-        rb.rotation *= Quaternion.AngleAxis(turningSpeed, Vector3.up);
+        //rb.rotation *= Quaternion.AngleAxis(turningSpeed, Vector3.up);
 
         anim.SetFloat("ForwardSpeed", rb.velocity.magnitude);
         anim.SetFloat("AngularSpeed", turningSpeed);
-
-        //anim.transform.position = player.transform.position;
+        
     }
 
     void StateChange(bool triggerSet)
     {
         if(triggerSet == true)
         {
-            if (!isFlying())
+            if (isGrounded())
             {
                 StartCoroutine(TakeOff());
+                
             }
 
-            if (isFlying())
+            else if (isFlying())
             {
-                StartCoroutine(Land());
+                StartCoroutine(Land());                
             }
         }        
     }
@@ -160,17 +180,31 @@ public class FlightTrigger : MonoBehaviour
     {
         anim.SetBool("IsFlying", true);
         state = FlightState.Flight;
-        yield return new WaitForSeconds(5.1f);      
-        anim.enabled = false;       
+        player_Rig.GetComponent<PlayerFlightControl>().targetSpeed = magSpeed;
+
+        yield return new WaitForSeconds(5.1f);
+        anim.enabled = false;
+        rb.freezeRotation = false;   
+        
     }
 
     IEnumerator Land()
-    {
-        anim.SetBool("IsFlying", false);
-        anim.enabled = true;
+    {        
         state = FlightState.Ground;
-        yield return new WaitForSeconds(5.1f);
-        
+        anim.SetBool("IsFlying", false);
+        rb.isKinematic = true;
+
+        Quaternion desiredRotation = Quaternion.identity;
+
+        desiredRotation.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+
+        actual_Model.GetComponent<Transform>().localRotation = desiredRotation;       
+
+        player_Trans.rotation = desiredRotation;
+
+        yield return new WaitForFixedUpdate();
+
+        anim.enabled = true;
 
     }
 }
