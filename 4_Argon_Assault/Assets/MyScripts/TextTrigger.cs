@@ -20,7 +20,7 @@ public class TextTrigger : MonoBehaviour
         {
             if (Input.GetButtonDown("Submit"))
             {
-                anims[0].SetTrigger("StateTrigger");
+                anims[0].SetTrigger("SubmitTrigger");
                 anims[1].SetTrigger("KeyPress");
             }
         }
@@ -30,7 +30,7 @@ public class TextTrigger : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            anims[0].SetBool("Initiate", true);
+            anims[0].SetBool("isNearLandingPad", true);
             anims[1].SetBool("PlayText", true);
             setBool = true;
         }
@@ -40,10 +40,9 @@ public class TextTrigger : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            anims[0].SetBool("Initiate", false);
+            anims[0].SetBool("isNearLandingPad", false);
             anims[1].SetBool("PlayText", false);
             setBool = false;
         }
     }
-
 }

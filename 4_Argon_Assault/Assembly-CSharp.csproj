@@ -211,7 +211,6 @@
     <Compile Include="Assets\MyScripts\ParticleEmission.cs" />
     <Compile Include="Assets\MyScripts\PlayerController.cs" />
     <Compile Include="Assets\MyScripts\PlayerFlightControl.cs" />
-    <Compile Include="Assets\MyScripts\RedScript.cs" />
     <Compile Include="Assets\MyScripts\SceneLoader.cs" />
     <Compile Include="Assets\MyScripts\ScoreBoard.cs" />
     <Compile Include="Assets\MyScripts\SelfDestructor.cs" />

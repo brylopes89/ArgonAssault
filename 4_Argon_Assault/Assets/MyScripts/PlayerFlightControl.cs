@@ -42,14 +42,14 @@ public class PlayerFlightControl : MonoBehaviour
     Vector2 mousePos = new Vector2(0, 0); //Pointer position from CustomPointer
 
     float DZ = 0; //Deadzone, taken from CustomPointer.
-    float currentMag = 0f; //Current speed/magnitude   
-    public float targetSpeed;
+    float currentMag = 0f; //Current speed/magnitude       
 
     bool thrust_exists = true;
     bool brake_exists = true;
     bool roll_exists = true;
     bool isControlEnabled = true;
-    bool onTrigger = false;    
+    bool onTrigger = false;
+    public float targetSpeed;
 
     //---------------------------------------------------------------------------------
 
@@ -100,9 +100,7 @@ public class PlayerFlightControl : MonoBehaviour
             return;
         }
 
-        currentMag = GetComponent<Rigidbody>().velocity.magnitude; //Getting the current speed.       
-        currentMag = Mathf.SmoothStep(currentMag, targetSpeed, 1.0f * Time.deltaTime);
-        
+        currentMag = GetComponent<Rigidbody>().velocity.magnitude; //Getting the current speed.               
        
         if (isControlEnabled)
         {
@@ -171,17 +169,11 @@ public class PlayerFlightControl : MonoBehaviour
     void DecreaseThrust()
     {
         afterburner_Active = false;
-        //print(currentMag);
+        //print(currentMag);        
 
-        if (onTrigger)
-        {
-            currentMag = Mathf.SmoothStep(currentMag, targetSpeed, brake_transition_speed * Time.deltaTime);
-        }
-
-        else
-        {           
+       
             currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);
-        }        
+              
     }
 
     void ApplyBrake()
@@ -198,6 +190,17 @@ public class PlayerFlightControl : MonoBehaviour
         {
             onTrigger = true;
             targetSpeed = 6.0f;
+
+            Quaternion playerRo = Quaternion.identity;
+            Quaternion coreRo = Quaternion.identity;
+
+            playerRo.eulerAngles = new Vector3(0.0f, transform.rotation.eulerAngles.y, 0.0f);
+            coreRo.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+
+            actual_model.transform.localRotation = coreRo;
+            
+            transform.rotation = Quaternion.Slerp(transform.rotation, playerRo, thrust_transition_speed * Time.deltaTime);
+            
         }
     }
 
