@@ -42,14 +42,14 @@ public class PlayerFlightControl : MonoBehaviour
     Vector2 mousePos = new Vector2(0, 0); //Pointer position from CustomPointer
 
     float DZ = 0; //Deadzone, taken from CustomPointer.
-    float currentMag = 0f; //Current speed/magnitude       
+    public float currentMag = 0f; //Current speed/magnitude       
 
     bool thrust_exists = true;
     bool brake_exists = true;
     bool roll_exists = true;
     bool isControlEnabled = true;
-    bool onTrigger = false;
-    public float targetSpeed;
+    //bool onTrigger = false;
+    //public float targetSpeed;
 
     //---------------------------------------------------------------------------------
 
@@ -166,14 +166,12 @@ public class PlayerFlightControl : MonoBehaviour
         //print(currentMag);
     }
 
-    void DecreaseThrust()
+    public void DecreaseThrust()
     {
         afterburner_Active = false;
-        //print(currentMag);        
-
-       
-            currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);
-              
+        //print(currentMag);   
+        
+        currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);              
     }
 
     void ApplyBrake()
@@ -184,7 +182,7 @@ public class PlayerFlightControl : MonoBehaviour
         //print(currentMag);
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Land"))
         {
@@ -211,7 +209,7 @@ public class PlayerFlightControl : MonoBehaviour
             onTrigger = false;
             targetSpeed = speed;
         }
-    }
+    }*/
 
     void updateCursorPosition()
     {

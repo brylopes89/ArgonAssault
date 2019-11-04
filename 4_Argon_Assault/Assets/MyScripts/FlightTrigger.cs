@@ -43,7 +43,6 @@ public class FlightTrigger : MonoBehaviour
 
     public float landingTime = 5.0f;
     private float timer = 0.0f;
-    float magSpeed;
 
     bool isTransitioning = false;
 
@@ -59,8 +58,7 @@ public class FlightTrigger : MonoBehaviour
         rb = player_Rig.GetComponent<Rigidbody>();
 
         player_Trans = player_Rig.GetComponent<Transform>();
-        core_Trans = actual_Model.GetComponent<Transform>();
-        magSpeed = player_Rig.GetComponent<PlayerFlightControl>().speed;
+        core_Trans = actual_Model.GetComponent<Transform>();      
 
         groundPos = player_Rig.transform.position;            
         groundRot = player_Rig.transform.rotation;
@@ -174,7 +172,7 @@ public class FlightTrigger : MonoBehaviour
             {
                 StartCoroutine(TakeOff());                
             }
-            else if(isFlying() && anim.GetBool("isNearLandingPad") == true)
+            else if(isFlying() && anim.GetBool("IsNearLandingPad") == true)
             {
                 StartCoroutine(Land());
             }
@@ -188,20 +186,20 @@ public class FlightTrigger : MonoBehaviour
             yield break;
         }
 
-        Debug.Log("takeoff");
-        anim.SetBool("IsFlying", true);
+        Debug.Log("takeoff");        
         state = FlightState.Flight;
+        anim.SetBool("IsFlying", true);
+        anim.SetBool("IsLiftOff", true);
 
         isTransitioning = true;        
-        anim.SetTrigger("TakeOffTrigger");
+        anim.SetTrigger("TakeOffTrigger");         
 
-        //player_Rig.GetComponent<PlayerFlightControl>().targetSpeed = magSpeed;       
-
-        yield return new WaitForSeconds(5.1f);
+        yield return new WaitForSeconds(5.0f);
         anim.enabled = false;
         rb.freezeRotation = false;
         isTransitioning = false;
-        
+        anim.SetBool("IsLiftOff", false);
+
     }
 
     IEnumerator Land()
@@ -216,7 +214,7 @@ public class FlightTrigger : MonoBehaviour
         state = FlightState.Ground;
         isTransitioning = true;
 
-        anim.SetTrigger("LandTrigger");
+        anim.SetTrigger("LandTrigger");        
         anim.enabled = true;
 
         //rb.isKinematic = true;       

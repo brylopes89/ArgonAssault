@@ -5009,7 +5009,6 @@ MonoBehaviour:
   pitch: 0
   afterburner_Active: 0
   slow_Active: 0
-  targetSpeed: 0
 --- !u!4 &149606571
 Transform:
   m_ObjectHideFlags: 0
@@ -5043,7 +5042,6 @@ MonoBehaviour:
   anims:
   - {fileID: 2098488551}
   - {fileID: 204373725}
-  targetSpeed: 0
 --- !u!1 &151501410
 GameObject:
   m_ObjectHideFlags: 0
@@ -65375,12 +65373,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8933647039463290792}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f5786e0edeea0f49a2b9614e4c8cf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anims: []
+  anims:
+  - {fileID: 2098488551}
+  - {fileID: 204373725}
 --- !u!4 &8933647039463290798 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8378787774415272110, guid: 0dab0ec8563423e4d8eeba0179905c60,
