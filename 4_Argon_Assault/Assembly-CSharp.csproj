@@ -205,8 +205,7 @@
     <Compile Include="Assets\MyScripts\CustomPointer.cs" />
     <Compile Include="Assets\MyScripts\Damage.cs" />
     <Compile Include="Assets\MyScripts\Enemy.cs" />
-    <Compile Include="Assets\MyScripts\FlightAnim.cs" />
-    <Compile Include="Assets\MyScripts\FlightTrigger.cs" />
+    <Compile Include="Assets\MyScripts\FlightStates.cs" />
     <Compile Include="Assets\MyScripts\MusicPlayer.cs" />
     <Compile Include="Assets\MyScripts\ParticleEmission.cs" />
     <Compile Include="Assets\MyScripts\PlayerController.cs" />
@@ -214,7 +213,6 @@
     <Compile Include="Assets\MyScripts\SceneLoader.cs" />
     <Compile Include="Assets\MyScripts\ScoreBoard.cs" />
     <Compile Include="Assets\MyScripts\SelfDestructor.cs" />
-    <Compile Include="Assets\MyScripts\TextTrigger.cs" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />

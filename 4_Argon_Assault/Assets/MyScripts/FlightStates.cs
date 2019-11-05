@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlightTrigger : MonoBehaviour
+public class FlightStates : MonoBehaviour
 {
     public Animator anim;
     public GameObject actual_Model;
@@ -157,7 +157,7 @@ public class FlightTrigger : MonoBehaviour
         }
 
         float turningSpeed = maxGroundTurningDegreesSecond * _inputGroundTurning * Time.deltaTime;
-        //rb.rotation *= Quaternion.AngleAxis(turningSpeed, Vector3.up);
+        rb.rotation *= Quaternion.AngleAxis(turningSpeed, Vector3.up);
 
         anim.SetFloat("ForwardSpeed", rb.velocity.magnitude);
         anim.SetFloat("AngularSpeed", turningSpeed);
@@ -245,11 +245,8 @@ public class FlightTrigger : MonoBehaviour
             player_Rig.transform.rotation = Quaternion.Slerp(currentRot, groundRot, ratio);
 
             player_Rig.transform.position = Vector3.Lerp(currentPos, groundPos, ratio);
-        }
-
-        //yield return new WaitForFixedUpdate();        
+        }                  
        
-        //Vector3 newPos = new Vector3(0.0f, 0.0f, 0.0f);
         desiredRotation.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 
         actual_Model.GetComponent<Transform>().localRotation = desiredRotation;
@@ -258,8 +255,7 @@ public class FlightTrigger : MonoBehaviour
         player_Rig.transform.position = groundPos;
         
 
-        //yield return new WaitForSeconds(3.0f);
-        yield return new WaitForFixedUpdate();
+        yield return new WaitForFixedUpdate();        
 
         isTransitioning = false;
         anim.SetBool("IsFlying", false);      

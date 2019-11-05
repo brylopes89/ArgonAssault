@@ -20,9 +20,7 @@ public class CamFollowBeta : MonoBehaviour
     public bool shake_on_afterburn = true; //The camera will shake when afterburners are active.
     public float shake_Mag = 0.7f; //How much the camera will shake when afterburners are active.                                          
     public float shakeDuration = 0f;
-    public float decreaseFactor = 1f;
-
-    public FlightAnim flightAnim;
+    public float decreaseFactor = 1f;   
 
     [SerializeField]
     private Vector3 offsetPosition;

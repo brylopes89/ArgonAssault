@@ -48,8 +48,6 @@ public class PlayerFlightControl : MonoBehaviour
     bool brake_exists = true;
     bool roll_exists = true;
     bool isControlEnabled = true;
-    //bool onTrigger = false;
-    //public float targetSpeed;
 
     //---------------------------------------------------------------------------------
 
@@ -181,35 +179,6 @@ public class PlayerFlightControl : MonoBehaviour
         currentMag = Mathf.Lerp(currentMag, slow_speed, brake_transition_speed * Time.deltaTime);
         //print(currentMag);
     }
-
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Land"))
-        {
-            onTrigger = true;
-            targetSpeed = 6.0f;
-
-            Quaternion playerRo = Quaternion.identity;
-            Quaternion coreRo = Quaternion.identity;
-
-            playerRo.eulerAngles = new Vector3(0.0f, transform.rotation.eulerAngles.y, 0.0f);
-            coreRo.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-
-            actual_model.transform.localRotation = coreRo;
-            
-            transform.rotation = Quaternion.Slerp(transform.rotation, playerRo, thrust_transition_speed * Time.deltaTime);
-            
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Land"))
-        {
-            onTrigger = false;
-            targetSpeed = speed;
-        }
-    }*/
 
     void updateCursorPosition()
     {
