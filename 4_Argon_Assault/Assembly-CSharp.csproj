@@ -70,7 +70,6 @@
     <Compile Include="Assets\Asset Packs\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Scripts\CameraShakePresets.cs" />
     <Compile Include="Assets\Asset Packs\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Scripts\CameraShaker.cs" />
     <Compile Include="Assets\Asset Packs\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Scripts\Utilities\CameraUtilities.cs" />
-    <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\bullet.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\CameraFlightFollow.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\DemoUI.cs" />
     <Compile Include="Assets\Asset Packs\Spaceflight Controls\Scripts\PSDestroy.cs" />
@@ -199,6 +198,7 @@
     <Compile Include="Assets\Asset Packs\StarNestSkybox\Scripts\SkyboxSwitcher.cs" />
     <Compile Include="Assets\GroundMove.cs" />
     <Compile Include="Assets\MyScripts\BetterWaypointFollower.cs" />
+    <Compile Include="Assets\MyScripts\bullet.cs" />
     <Compile Include="Assets\MyScripts\CamFollowBeta.cs" />
     <Compile Include="Assets\MyScripts\CamSwitch.cs" />
     <Compile Include="Assets\MyScripts\CollisionHandler.cs" />
@@ -210,9 +210,11 @@
     <Compile Include="Assets\MyScripts\ParticleEmission.cs" />
     <Compile Include="Assets\MyScripts\PlayerController.cs" />
     <Compile Include="Assets\MyScripts\PlayerFlightControl.cs" />
+    <Compile Include="Assets\MyScripts\PointerShoot.cs" />
     <Compile Include="Assets\MyScripts\SceneLoader.cs" />
     <Compile Include="Assets\MyScripts\ScoreBoard.cs" />
     <Compile Include="Assets\MyScripts\SelfDestructor.cs" />
+    <Compile Include="Assets\MyScripts\SpawnProjectiles.cs" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />

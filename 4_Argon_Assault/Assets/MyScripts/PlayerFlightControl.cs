@@ -113,10 +113,10 @@ public class PlayerFlightControl : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Fire1"))//Please remove this and replace it with a shooting system that works for your game, if you need one.    
+        /*if (Input.GetButton("Fire1"))//Please remove this and replace it with a shooting system that works for your game, if you need one.    
         {
             //fireShot();
-        }
+        }*/
     }
 
     private void RigidBodyValues()

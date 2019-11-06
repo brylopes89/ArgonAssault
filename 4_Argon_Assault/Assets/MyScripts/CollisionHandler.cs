@@ -124,7 +124,7 @@ public class CollisionHandler : MonoBehaviour
         }
 
         yield return new WaitForSeconds(5.0f);        
-
+        //yield return new WaitForEndOfFrame();
         GetComponent<PlayerFlightControl>().speed = initSpeed;
     }
 
