@@ -18,9 +18,10 @@ public class CollisionHandler : MonoBehaviour
     private float initSpeed;
     private float timer;
     private float currentSpeed;
+    //private float ratio;
 
-    public float slowTransition = 0.5f;
-
+    public float triggerEnterSpeed = 0.5f;
+    public float triggerLeaveSpeed = 1.0f;
 
     Transform core_Trans;
 
@@ -29,7 +30,7 @@ public class CollisionHandler : MonoBehaviour
     private void Start()
     {
         core_Trans = GetComponent<PlayerFlightControl>().actual_model.transform;
-        initSpeed = GetComponent<PlayerFlightControl>().speed;
+        initSpeed = GetComponent<PlayerFlightControl>().speed;        
     }
 
     void FixedUpdate()
@@ -37,20 +38,9 @@ public class CollisionHandler : MonoBehaviour
         if (setBool)
         {
             if (Input.GetButtonDown("Submit"))
-            {
-                anims[0].SetTrigger("SubmitTrigger");                
-                anims[1].SetTrigger("KeyPress");
-                anims[1].SetBool("IsKeyPressed", true);
-            }
-            else
-            {
-                anims[1].SetBool("IsKeyPressed", false);
-            }
-
-            if(anims[0].GetBool("IsLiftOff") == true)
-            {
-                GetComponent<PlayerFlightControl>().speed = initSpeed;
-            }
+            {                              
+                anims[1].SetTrigger("KeyPress");                
+            }            
         }        
     }
 
@@ -81,18 +71,12 @@ public class CollisionHandler : MonoBehaviour
         {
             anims[0].SetBool("IsNearLandingPad", true);
             anims[1].SetBool("PlayText", true);
-            setBool = true;            
+            setBool = true;
 
-            Quaternion playerRo = Quaternion.identity;
-            Quaternion coreRo = Quaternion.identity;
-
-            playerRo.eulerAngles = new Vector3(0.0f, transform.rotation.eulerAngles.y, 0.0f);
-            coreRo.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-
-            core_Trans.localRotation = coreRo;
-            transform.rotation = Quaternion.Slerp(transform.rotation, playerRo, targetSpeed * Time.deltaTime);
-
-            StartCoroutine(SlowSpeedApproach());            
+            if (anims[0].GetBool("IsFlying") == true)
+            {
+                StartCoroutine(SlowSpeedApproach());
+            }         
         }
     }
 
@@ -104,7 +88,9 @@ public class CollisionHandler : MonoBehaviour
             anims[1].SetBool("PlayText", false);
             setBool = false;
 
-            GetComponent<PlayerFlightControl>().speed = initSpeed;
+            StartCoroutine(SlowSpeedLeave());
+
+           // GetComponent<PlayerFlightControl>().speed = initSpeed;
         }
     }
 
@@ -112,25 +98,62 @@ public class CollisionHandler : MonoBehaviour
     {
         timer = 0.0f;
 
-        currentSpeed = GetComponent<PlayerFlightControl>().currentMag;
+        currentSpeed = GetComponent<PlayerFlightControl>().speed;
 
-        while (timer < slowTransition)
+        Quaternion currentPlayerRo = transform.rotation;
+        Quaternion currentCoreRo = core_Trans.localRotation;
+
+        Quaternion targetPlayerRo = Quaternion.identity;
+        Quaternion targetCoreRo = Quaternion.identity;
+
+        targetPlayerRo.eulerAngles = new Vector3(0.0f, transform.rotation.eulerAngles.y, 0.0f);
+        targetCoreRo.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+
+         
+        while (timer < triggerEnterSpeed)
         {
             yield return new WaitForFixedUpdate();
 
             timer += Time.fixedDeltaTime;
-            float ratio = timer / slowTransition;
+            float ratio = timer / triggerEnterSpeed;
 
-            if (ratio > 1.0f)
+            if (ratio > 1.0f)//reaches %100
             {
                 break;
             }
 
             GetComponent<PlayerFlightControl>().speed = Mathf.SmoothStep(currentSpeed, targetSpeed, ratio);
+            core_Trans.localRotation = Quaternion.Slerp(currentCoreRo, targetCoreRo, ratio);
+            transform.rotation = Quaternion.Slerp(currentPlayerRo, targetPlayerRo, ratio);
         }
 
-        GetComponent<PlayerFlightControl>().speed = targetSpeed;
+        yield return new WaitForSeconds(5.0f);        
 
-        yield return null;
+        GetComponent<PlayerFlightControl>().speed = initSpeed;
+    }
+
+    IEnumerator SlowSpeedLeave()
+    {
+        currentSpeed = GetComponent<PlayerFlightControl>().speed;
+
+        timer = 0.0f;
+
+        while (timer < triggerLeaveSpeed)
+        {
+            yield return new WaitForFixedUpdate();
+
+            timer += Time.fixedDeltaTime;
+            float ratio = timer / triggerLeaveSpeed;
+
+            if (ratio > 1.0f)//reaches %100
+            {
+                break;
+            }
+            GetComponent<PlayerFlightControl>().speed = Mathf.SmoothStep(currentSpeed, initSpeed, ratio);           
+        }       
+
+       yield return new WaitForEndOfFrame();
+
+        //GetComponent<PlayerFlightControl>().speed = initSpeed;
     }
 }

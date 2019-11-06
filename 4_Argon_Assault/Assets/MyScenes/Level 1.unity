@@ -5000,7 +5000,7 @@ MonoBehaviour:
   rollSpeedModifier: 10
   pitchYaw_strength: 2
   use_banking: 1
-  bank_angle_clamp: 50
+  bank_angle_clamp: 40
   bank_rotation_speed: 1
   bank_rotation_multiplier: 2
   screen_clamp: 180
@@ -5043,7 +5043,8 @@ MonoBehaviour:
   anims:
   - {fileID: 2098488551}
   - {fileID: 204373725}
-  slowTransition: 1
+  triggerEnterSpeed: 1
+  triggerLeaveSpeed: 1
 --- !u!1 &151501410
 GameObject:
   m_ObjectHideFlags: 0

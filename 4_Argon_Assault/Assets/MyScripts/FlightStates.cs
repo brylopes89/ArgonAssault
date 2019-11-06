@@ -221,10 +221,11 @@ public class FlightStates : MonoBehaviour
 
         Vector3 currentPos = player_Rig.transform.position;
         Quaternion currentRot = player_Rig.transform.rotation;
+        Vector3 newPos = new Vector3(0.0f, 0.0f, 0.0f);
 
-        Quaternion desiredRotation = Quaternion.identity;
-        //Vector3 newPos = new Vector3(0.0f, 0.0f, 0.0f);
-        desiredRotation.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+        //Quaternion desiredRotation = Quaternion.identity;
+
+        //desiredRotation.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 
         timer = 0.0f;
 
@@ -240,20 +241,19 @@ public class FlightStates : MonoBehaviour
                 break;
             }            
 
-            actual_Model.GetComponent<Transform>().localRotation = desiredRotation;
+            //actual_Model.GetComponent<Transform>().localRotation = desiredRotation;
 
             player_Rig.transform.rotation = Quaternion.Slerp(currentRot, groundRot, ratio);
 
             player_Rig.transform.position = Vector3.Lerp(currentPos, groundPos, ratio);
         }                  
        
-        desiredRotation.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+        //desiredRotation.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 
-        actual_Model.GetComponent<Transform>().localRotation = desiredRotation;
+        //actual_Model.GetComponent<Transform>().localRotation = desiredRotation;
 
         player_Rig.transform.rotation = groundRot;
-        player_Rig.transform.position = groundPos;
-        
+        player_Rig.transform.position = groundPos;        
 
         yield return new WaitForFixedUpdate();        
 

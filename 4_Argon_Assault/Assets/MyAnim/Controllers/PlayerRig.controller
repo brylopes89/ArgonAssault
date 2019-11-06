@@ -440,9 +440,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: AngularSpeed
     m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: SubmitTrigger
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1430920515092136683}
   m_Solo: 0
