@@ -185,21 +185,24 @@ public class FlightStates : MonoBehaviour
         {
             yield break;
         }
-
-        Debug.Log("takeoff");        
         state = FlightState.Flight;
-        anim.SetBool("IsFlying", true);
-        anim.SetBool("IsLiftOff", true);
 
-        isTransitioning = true;        
-        anim.SetTrigger("TakeOffTrigger");         
+        rb.freezeRotation = true;
+        isTransitioning = true;
+        Debug.Log("takeoff");                
+        
+        anim.SetBool("IsLiftOff", true);        
+        anim.SetTrigger("TakeOffTrigger");
+        anim.SetBool("IsFlying", true);
+
 
         yield return new WaitForSeconds(5.0f);
-        anim.enabled = false;
-        rb.freezeRotation = false;
-        isTransitioning = false;
-        anim.SetBool("IsLiftOff", false);
 
+        anim.SetBool("IsLiftOff", false);      
+        
+        rb.freezeRotation = false;
+        isTransitioning = false;        
+        anim.enabled = false;
     }
 
     IEnumerator Land()
@@ -211,7 +214,7 @@ public class FlightStates : MonoBehaviour
 
         Debug.Log("land");
         
-        state = FlightState.Ground;
+        
         isTransitioning = true;
 
         anim.SetTrigger("LandTrigger");        
@@ -223,9 +226,9 @@ public class FlightStates : MonoBehaviour
         Quaternion currentRot = player_Rig.transform.rotation;
         Vector3 newPos = new Vector3(0.0f, 0.0f, 0.0f);
 
-        //Quaternion desiredRotation = Quaternion.identity;
+        Quaternion desiredRotation = Quaternion.identity;
 
-        //desiredRotation.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+        desiredRotation.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 
         timer = 0.0f;
 
@@ -241,23 +244,21 @@ public class FlightStates : MonoBehaviour
                 break;
             }            
 
-            //actual_Model.GetComponent<Transform>().localRotation = desiredRotation;
+            actual_Model.GetComponent<Transform>().localRotation = desiredRotation;
 
             player_Rig.transform.rotation = Quaternion.Slerp(currentRot, groundRot, ratio);
 
             player_Rig.transform.position = Vector3.Lerp(currentPos, groundPos, ratio);
-        }                  
-       
-        //desiredRotation.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+        }                               
 
-        //actual_Model.GetComponent<Transform>().localRotation = desiredRotation;
+       // actual_Model.GetComponent<Transform>().localRotation = desiredRotation;
 
         player_Rig.transform.rotation = groundRot;
-        player_Rig.transform.position = groundPos;        
+        player_Rig.transform.position = groundPos;      
 
-        yield return new WaitForFixedUpdate();        
-
+        yield return new WaitForFixedUpdate();
         isTransitioning = false;
-        anim.SetBool("IsFlying", false);      
+        anim.SetBool("IsFlying", false);
+        state = FlightState.Ground;
     }
 }

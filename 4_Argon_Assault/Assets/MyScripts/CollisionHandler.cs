@@ -10,10 +10,7 @@ public class CollisionHandler : MonoBehaviour
     [Tooltip("FX pefab on player")] [SerializeField] GameObject deathFX;
 
     [SerializeField] private List<Animator> anims = new List<Animator>();
-
-    const string animBaseLayer = "Base Layer";
-    int liftAnimHash = Animator.StringToHash(animBaseLayer + ".LiftOff");
-
+  
     private float targetSpeed = 6.0f;
     private float initSpeed;
     private float timer;
@@ -73,7 +70,7 @@ public class CollisionHandler : MonoBehaviour
             anims[1].SetBool("PlayText", true);
             setBool = true;
 
-            if (anims[0].GetBool("IsFlying") == true)
+            if (anims[0].GetBool("IsFlying") == true && anims[0].GetBool("IsLiftOff") == false)
             {
                 StartCoroutine(SlowSpeedApproach());
             }         
@@ -89,8 +86,7 @@ public class CollisionHandler : MonoBehaviour
             setBool = false;
 
             StartCoroutine(SlowSpeedLeave());
-
-           // GetComponent<PlayerFlightControl>().speed = initSpeed;
+            //GetComponent<PlayerFlightControl>().speed = initSpeed;
         }
     }
 
