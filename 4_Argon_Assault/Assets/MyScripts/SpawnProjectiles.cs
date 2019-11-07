@@ -35,8 +35,7 @@ public class SpawnProjectiles : MonoBehaviour
 
         if (firePoint != null)
         {
-            vfx1 = Instantiate(effectToSpawn, firePoint[0].transform.position, Quaternion.identity);
-            vfx2 = Instantiate(effectToSpawn, firePoint[1].transform.position, Quaternion.identity);
+            vfx1 = Instantiate(effectToSpawn, firePoint[0].transform.position, Quaternion.identity);            
         }
 
         else
@@ -44,7 +43,7 @@ public class SpawnProjectiles : MonoBehaviour
             Debug.Log("No Fire Point");
         }
 
-        if (!CustomPointer.instance.center_lock)
+        /*if (!CustomPointer.instance.center_lock)
             vRay = Camera.main.ScreenPointToRay(CustomPointer.pointerPosition);
         else
             vRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
@@ -52,16 +51,8 @@ public class SpawnProjectiles : MonoBehaviour
         if (Physics.Raycast(vRay, out hit))
         {
             vfx1.transform.LookAt(hit.point);
-            //shot1.GetComponent<Rigidbody>().AddForce((shot1.transform.forward) * 9000f);
-
-            vfx2.transform.LookAt(hit.point);
+            //shot1.GetComponent<Rigidbody>().AddForce((shot1.transform.forward) * 9000f);            
             //shot2.GetComponent<Rigidbody>().AddForce((shot2.transform.forward) * 9000f);
-        }
-
-        else
-        {
-            vfx1.transform.LookAt(vRay.direction);
-            vfx2.transform.LookAt(vRay.direction);
-        }
+        }*/
     }
 }
