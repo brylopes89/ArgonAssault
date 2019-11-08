@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 43783656}
   - component: {fileID: 43783655}
   - component: {fileID: 43783654}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: UnderSteam_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4723,6 +4723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 74051485}
+  - component: {fileID: 74051486}
   m_Layer: 0
   m_Name: Spawned at Runtime
   m_TagString: Untagged
@@ -4738,12 +4739,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74051484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11249.074, y: -201.47833, z: 227.07304}
+  m_LocalPosition: {x: 614.6, y: 44.046387, z: 54.28221}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327830922}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &74051486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74051484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87b3dd717a33b6a4cbc0818a0255aca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnDelay: 1
+  minSpawnTime: 5
+  maxSpawnTime: 10
+  maxEnemies: 5
+  stopSpawn: 0
 --- !u!1 &146055824
 GameObject:
   m_ObjectHideFlags: 0
@@ -4756,7 +4774,7 @@ GameObject:
   - component: {fileID: 146055829}
   - component: {fileID: 146055828}
   - component: {fileID: 146055827}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: FrontCam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -4870,7 +4888,7 @@ GameObject:
   - component: {fileID: 149606570}
   - component: {fileID: 149606573}
   - component: {fileID: 149606569}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Player Rig
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5222,7 +5240,7 @@ GameObject:
   - component: {fileID: 364852957}
   - component: {fileID: 339567613}
   - component: {fileID: 339567615}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Steam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9886,9 +9904,9 @@ MonoBehaviour:
   parent: {fileID: 74051485}
   scorePerHit: 10
   health: 20
-  moveSpeed: 70
+  moveSpeed: 35
   minDist: 0
-  maxDist: 200
+  maxDist: 2000
   fireDist: 0
   EscapeDirections: []
 --- !u!114 &629463112
@@ -10300,9 +10318,9 @@ MonoBehaviour:
   parent: {fileID: 74051485}
   scorePerHit: 10
   health: 20
-  moveSpeed: 70
+  moveSpeed: 35
   minDist: 0
-  maxDist: 200
+  maxDist: 2000
   fireDist: 0
   EscapeDirections: []
 --- !u!114 &1045303369
@@ -10335,7 +10353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1091327391}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Targeter
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -24566,7 +24584,7 @@ GameObject:
   - component: {fileID: 1191529945}
   - component: {fileID: 1177372831}
   - component: {fileID: 1177350463}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24584,7 +24602,7 @@ GameObject:
   - component: {fileID: 1191529947}
   - component: {fileID: 1177372825}
   - component: {fileID: 1177350457}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: FlareMobile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24602,7 +24620,7 @@ GameObject:
   - component: {fileID: 1191529949}
   - component: {fileID: 1177372829}
   - component: {fileID: 1177350461}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24666,7 +24684,7 @@ GameObject:
   - component: {fileID: 1203325533}
   - component: {fileID: 1203325536}
   - component: {fileID: 1203325537}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TPCam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -24802,7 +24820,7 @@ GameObject:
   - component: {fileID: 1225275451}
   - component: {fileID: 1225275454}
   - component: {fileID: 1225275450}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: FPCam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -24947,7 +24965,7 @@ GameObject:
   - component: {fileID: 1235061671}
   - component: {fileID: 1235061670}
   - component: {fileID: 1235061669}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: UnderSteam_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29548,12 +29566,54 @@ MonoBehaviour:
   maxDist: 0
   fireDist: 0
   EscapeDirections: []
---- !u!4 &1327830922 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9048060012946630595, guid: dc7cc2ce739a80b44bab97175e1e9b75,
-    type: 3}
-  m_PrefabInstance: {fileID: 1871892274}
+--- !u!1 &1320846502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1320846504}
+  - component: {fileID: 1320846503}
+  m_Layer: 0
+  m_Name: Spawned at Runtime (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1320846503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320846502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87b3dd717a33b6a4cbc0818a0255aca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnDelay: 1
+  minSpawnTime: 5
+  maxSpawnTime: 10
+  maxEnemies: 5
+  stopSpawn: 0
+--- !u!4 &1320846504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320846502}
+  m_LocalRotation: {x: -0.046528533, y: 0.6383432, z: -0.037392218, w: -0.76743394}
+  m_LocalPosition: {x: 735.26044, y: 52.199024, z: 385.71182}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1328569252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29738,7 +29798,7 @@ GameObject:
   - component: {fileID: 1465126071}
   - component: {fileID: 1456888215}
   - component: {fileID: 1456888213}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Steam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34416,9 +34476,9 @@ MonoBehaviour:
   parent: {fileID: 74051485}
   scorePerHit: 10
   health: 20
-  moveSpeed: 70
+  moveSpeed: 35
   minDist: 0
-  maxDist: 200
+  maxDist: 2000
   fireDist: 0
   EscapeDirections: []
 --- !u!1 &1602914677
@@ -34596,6 +34656,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.55323696
@@ -34639,6 +34703,42 @@ PrefabInstance:
     - target: {fileID: 400010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 031d08f52af1daa4f929b85221519426, type: 3}
@@ -34687,6 +34787,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1829629485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1829629487}
+  - component: {fileID: 1829629486}
+  m_Layer: 0
+  m_Name: Spawned at Runtime (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1829629486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829629485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87b3dd717a33b6a4cbc0818a0255aca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnDelay: 2
+  minSpawnTime: 1
+  maxSpawnTime: 2
+  maxEnemies: 5
+  stopSpawn: 0
+--- !u!4 &1829629487
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829629485}
+  m_LocalRotation: {x: 0.0068524387, y: 0.98935246, z: -0.057788137, w: 0.1333992}
+  m_LocalPosition: {x: 94.285645, y: 30.569593, z: 508.63687}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1853439408
 Transform:
@@ -34743,7 +34891,7 @@ GameObject:
   - component: {fileID: 1853439408}
   - component: {fileID: 1867593970}
   - component: {fileID: 1867546962}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: FlareMobile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34761,7 +34909,7 @@ GameObject:
   - component: {fileID: 1853439410}
   - component: {fileID: 1867593972}
   - component: {fileID: 1867546964}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34779,7 +34927,7 @@ GameObject:
   - component: {fileID: 1853439414}
   - component: {fileID: 1867593974}
   - component: {fileID: 1867546966}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49136,7 +49284,7 @@ GameObject:
   - component: {fileID: 2098488550}
   - component: {fileID: 2098488551}
   - component: {fileID: 2098488553}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Flight
   m_TagString: Parent
   m_Icon: {fileID: 0}
@@ -50130,7 +50278,7 @@ GameObject:
   - component: {fileID: 7170626244286094721}
   - component: {fileID: 3452649986124984138}
   - component: {fileID: 1956700609887809013}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Player Death FX
   m_TagString: Friendly
   m_Icon: {fileID: 0}
@@ -59602,7 +59750,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3126163024745628618}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Hardpoint_1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -59647,7 +59795,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3126163025836922974}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Hardpoint_2
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -59665,7 +59813,7 @@ GameObject:
   - component: {fileID: 3130653448876530101}
   - component: {fileID: 2999512683607235913}
   - component: {fileID: 2999762037808583681}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Jet Particles Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59683,7 +59831,7 @@ GameObject:
   - component: {fileID: 3130653450450873311}
   - component: {fileID: 2999512683082592035}
   - component: {fileID: 2999762039407306347}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Jet Particles Blue2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59796,37 +59944,37 @@ PrefabInstance:
     - target: {fileID: 4502672127001442605, guid: 41e5924ef3a937e4aa1d9a4f24af8055,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.548774
+      value: -12.846528
       objectReference: {fileID: 0}
     - target: {fileID: 4502672127001442605, guid: 41e5924ef3a937e4aa1d9a4f24af8055,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.4810426
+      value: -1.0161834
       objectReference: {fileID: 0}
     - target: {fileID: 4502672127001442605, guid: 41e5924ef3a937e4aa1d9a4f24af8055,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.6754808
+      value: 3.166842
       objectReference: {fileID: 0}
     - target: {fileID: 4502672127001442605, guid: 41e5924ef3a937e4aa1d9a4f24af8055,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.005828129
+      value: 0.24469475
       objectReference: {fileID: 0}
     - target: {fileID: 4502672127001442605, guid: 41e5924ef3a937e4aa1d9a4f24af8055,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.3991686
+      value: -0.014092839
       objectReference: {fileID: 0}
     - target: {fileID: 4502672127001442605, guid: 41e5924ef3a937e4aa1d9a4f24af8055,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0016936167
+      value: 0.0027063438
       objectReference: {fileID: 0}
     - target: {fileID: 4502672127001442605, guid: 41e5924ef3a937e4aa1d9a4f24af8055,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.91685754
+      value: 0.96949404
       objectReference: {fileID: 0}
     - target: {fileID: 4502672127001442605, guid: 41e5924ef3a937e4aa1d9a4f24af8055,
         type: 3}
@@ -59856,12 +60004,12 @@ PrefabInstance:
     - target: {fileID: 4500000866744264828, guid: 41e5924ef3a937e4aa1d9a4f24af8055,
         type: 3}
       propertyPath: moveSpeed
-      value: 70
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 4500000866744264828, guid: 41e5924ef3a937e4aa1d9a4f24af8055,
         type: 3}
       propertyPath: maxDist
-      value: 150
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 4500000866744264828, guid: 41e5924ef3a937e4aa1d9a4f24af8055,
         type: 3}
@@ -60082,7 +60230,7 @@ GameObject:
   - component: {fileID: 6033646678486693510}
   - component: {fileID: 3126163025349485394}
   - component: {fileID: 688999231}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Core Ship
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -60099,7 +60247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6033646678484923506}
   - component: {fileID: 6033646678494106340}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Engine
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -65152,7 +65300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8708146500316996612}
   - component: {fileID: 8708146500324082322}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Engine2
   m_TagString: Player
   m_Icon: {fileID: 0}

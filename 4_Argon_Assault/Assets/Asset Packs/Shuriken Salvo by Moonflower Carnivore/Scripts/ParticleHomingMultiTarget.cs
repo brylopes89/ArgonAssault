@@ -80,11 +80,13 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 						index = -1;
 						foreach (float num in dist) {
 							minindex++;                            
-							if (num <= minValue) {
+							if (num < minValue) {
 								minValue = num;
 								index = minindex;
-							}
-						}
+                               // print(minValue);                               
+							}                           
+                            
+                        }
 						break;
 				}
 				//Debug.Log(index);
@@ -104,7 +106,7 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
                 }
                 else
                 {
-                    _ps_particles[i].velocity = Vector3.ClampMagnitude(Vector3.Slerp(_ps_particles[i].velocity, _ps_particles[i].velocity * speed * 0.01f * f, t), maxSpeed);
+                    _ps_particles[i].velocity = Vector3.ClampMagnitude(Vector3.Slerp(_ps_particles[i].velocity, transform.forward * speed, t), maxSpeed);
                 }
                 
 				/*

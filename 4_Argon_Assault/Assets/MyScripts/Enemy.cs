@@ -116,7 +116,7 @@ public class Enemy : MonoBehaviour
     public void ProcessHit()
     {        
         scoreBoard.ScoreHit(scorePerHit);        
-        print(health);
+        //print(health);
     }
 
     private void KillEnemy()

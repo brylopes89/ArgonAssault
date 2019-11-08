@@ -79,6 +79,11 @@
     <Compile Include="Assets\Asset Packs\Standard Assets\Effects\Common\Editor\EditorGUIHelper.cs" />
     <Compile Include="Assets\Asset Packs\Standard Assets\Effects\Common\Editor\FieldFinder.cs" />
     <Compile Include="Assets\Asset Packs\Standard Assets\Effects\Common\Editor\MinDrawer.cs" />
+    <Compile Include="Assets\NavMeshComponents\Editor\NavMeshComponentsGUIUtility.cs" />
+    <Compile Include="Assets\NavMeshComponents\Editor\NavMeshLinkEditor.cs" />
+    <Compile Include="Assets\NavMeshComponents\Editor\NavMeshModifierEditor.cs" />
+    <Compile Include="Assets\NavMeshComponents\Editor\NavMeshModifierVolumeEditor.cs" />
+    <Compile Include="Assets\NavMeshComponents\Editor\NavMeshSurfaceEditor.cs" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>D:/src/ArgonAssault/4_Argon_Assault/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>

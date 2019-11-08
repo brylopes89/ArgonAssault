@@ -236,6 +236,7 @@
     <Compile Include="Assets\MyScripts\CustomPointer.cs" />
     <Compile Include="Assets\MyScripts\Damage.cs" />
     <Compile Include="Assets\MyScripts\Enemy.cs" />
+    <Compile Include="Assets\MyScripts\EnemySpawn.cs" />
     <Compile Include="Assets\MyScripts\FlightStates.cs" />
     <Compile Include="Assets\MyScripts\MusicPlayer.cs" />
     <Compile Include="Assets\MyScripts\ParticleEmission.cs" />
@@ -246,6 +247,10 @@
     <Compile Include="Assets\MyScripts\ScoreBoard.cs" />
     <Compile Include="Assets\MyScripts\SelfDestructor.cs" />
     <Compile Include="Assets\MyScripts\SpawnProjectiles.cs" />
+    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshLink.cs" />
+    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifier.cs" />
+    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
+    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshSurface.cs" />
     <None Include="Assets\Asset Packs\Shuriken Salvo by Moonflower Carnivore\Shaders\Particle Alpha Blended Amb Dir Lit.shader" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Asset Packs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
