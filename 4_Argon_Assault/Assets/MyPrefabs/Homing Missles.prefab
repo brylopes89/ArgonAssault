@@ -23741,7 +23741,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 8.564725e-39}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -50281,7 +50281,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
     type: 1
     collisionMode: 0
@@ -50459,11 +50459,11 @@ ParticleSystem:
     radiusScale: 2
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4
+      m_Bits: 1
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 1
   TriggerModule:
@@ -50495,27 +50495,27 @@ ParticleSystem:
       emitProbability: 1
     - serializedVersion: 3
       emitter: {fileID: 9171599767566578984}
-      type: 3
+      type: 1
       properties: 2
       emitProbability: 1
     - serializedVersion: 3
       emitter: {fileID: 9166382456992975426}
-      type: 3
+      type: 1
       properties: 2
       emitProbability: 1
     - serializedVersion: 3
       emitter: {fileID: 9172240571120314328}
-      type: 3
+      type: 1
       properties: 2
       emitProbability: 1
     - serializedVersion: 3
       emitter: {fileID: 9172499426305476374}
-      type: 3
+      type: 1
       properties: 2
       emitProbability: 1
     - serializedVersion: 3
       emitter: {fileID: 9171769790930125626}
-      type: 3
+      type: 1
       properties: 2
       emitProbability: 1
   LightsModule:

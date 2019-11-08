@@ -103,7 +103,9 @@ public class Enemy : MonoBehaviour
     {        
         hasBeenHit = true;
         health -= GameObject.FindObjectOfType<Damage>().CalculateWeaponDamage();
+        Debug.Log("Particle Collision");
         ProcessHit();
+       
 
         if (health <= 0)
         {
@@ -111,7 +113,7 @@ public class Enemy : MonoBehaviour
         }       
     }
 
-    private void ProcessHit()
+    public void ProcessHit()
     {        
         scoreBoard.ScoreHit(scorePerHit);        
         print(health);

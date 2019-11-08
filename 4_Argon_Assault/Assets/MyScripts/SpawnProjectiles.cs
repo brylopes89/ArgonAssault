@@ -35,7 +35,8 @@ public class SpawnProjectiles : MonoBehaviour
 
         if (firePoint != null)
         {
-            vfx1 = Instantiate(effectToSpawn, firePoint[0].transform.position, Quaternion.identity);            
+            vfx1 = Instantiate(effectToSpawn, firePoint[0].transform.position, Quaternion.identity);
+            vfx2 = Instantiate(effectToSpawn, firePoint[1].transform.position, Quaternion.identity);
         }
 
         else

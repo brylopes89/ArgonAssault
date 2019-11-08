@@ -25,6 +25,8 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 
         private List<Transform> enemyTrans = new List<Transform>();
 
+        bool isAlive;
+
         void OnEnable() {
 
             targets = GameObject.FindGameObjectsWithTag("Enemy");
@@ -47,18 +49,25 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 		void LateUpdate() {
 			if (enemyTrans[0] == null)
 				return;
+            
 			
-			//If you are not changing target during runtime, skip this:
+			//If you are not changing target during runtime, skip this:            
 			for (int i = 0; i < enemyTrans.Count; i++) {
-				_ps_trigger.SetCollider(i, enemyTrans[i].GetComponent<Collider>());
-			}
+                if(enemyTrans[i] != null)
+                {              
+                    _ps_trigger.SetCollider(i, enemyTrans[i].GetComponent<Collider>());
+                }
+                
+            }
 			
 			_ps_particles = new ParticleSystem.Particle[_ps_system.main.maxParticles];
 			int numParticlesAlive = _ps_system.GetParticles(_ps_particles);
 			for (int i = 0; i < numParticlesAlive; i++) {
+                
 				float[] dist = new float[enemyTrans.Count];
 				switch (targetSelection) {
 					case TSOP.random:
+
 						index = Mathf.Abs((int) _ps_particles[i].randomSeed) % enemyTrans.Count;
 						break;
 						
