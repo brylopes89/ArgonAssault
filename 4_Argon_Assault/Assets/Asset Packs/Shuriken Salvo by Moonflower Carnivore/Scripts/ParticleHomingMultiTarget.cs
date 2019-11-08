@@ -24,8 +24,9 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 		private int index;        
 
         private List<Transform> enemyTrans = new List<Transform>();
-
-        bool isAlive;
+       
+        public float minDist;
+        public float maxDist = 1000;
 
         void OnEnable() {
 
@@ -48,23 +49,21 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 		
 		void LateUpdate() {
 			if (enemyTrans[0] == null)
-				return;
-            
+				return;            
 			
 			//If you are not changing target during runtime, skip this:            
-			for (int i = 0; i < enemyTrans.Count; i++) {
-                if(enemyTrans[i] != null)
-                {              
-                    _ps_trigger.SetCollider(i, enemyTrans[i].GetComponent<Collider>());
-                }
-                
+			for (int i = 0; i < enemyTrans.Count; i++)
+            {                          
+                _ps_trigger.SetCollider(i, enemyTrans[i].GetComponent<Collider>());                               
             }
 			
 			_ps_particles = new ParticleSystem.Particle[_ps_system.main.maxParticles];
 			int numParticlesAlive = _ps_system.GetParticles(_ps_particles);
-			for (int i = 0; i < numParticlesAlive; i++) {
-                
+
+			for (int i = 0; i < numParticlesAlive; i++)
+            {                
 				float[] dist = new float[enemyTrans.Count];
+
 				switch (targetSelection) {
 					case TSOP.random:
 
@@ -73,14 +72,14 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 						
 					case TSOP.closest:
 						for (int j = 0; j < enemyTrans.Count; j++) {
-							dist[j] = Vector3.Distance(_ps_particles[i].position, enemyTrans[j].position);
+							dist[j] = Vector3.Distance(_ps_particles[i].position, enemyTrans[j].position);                            
 						}
 						//index = System.Array.IndexOf(dist, dist.Min());// slower than comparing in foreach.
 						float minValue = float.MaxValue;
 						int minindex = -1;
 						index = -1;
 						foreach (float num in dist) {
-							minindex++;
+							minindex++;                            
 							if (num <= minValue) {
 								minValue = num;
 								index = minindex;
@@ -96,8 +95,18 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 				float f = Mathf.Abs((ted - diffsqrm)/ted) * ted * (face + 1.001f);
 				//_ps_particles[i].velocity = Vector3.ClampMagnitude(_ps_particles[i].velocity + diff * speed * 0.01f * f, maxSpeed);
 				float t=0;
-				t += Time.deltaTime / (homingDelay * 0.01f + 0.0001f);
-				_ps_particles[i].velocity = Vector3.ClampMagnitude(Vector3.Slerp(_ps_particles[i].velocity, _ps_particles[i].velocity + diff * speed * 0.01f * f, t), maxSpeed);
+                t += Time.deltaTime / (homingDelay * 0.01f + 0.0001f);
+
+                if (diff.magnitude < maxDist)
+                {
+                    
+                    _ps_particles[i].velocity = Vector3.ClampMagnitude(Vector3.Slerp(_ps_particles[i].velocity, _ps_particles[i].velocity + diff * speed * 0.01f * f, t), maxSpeed);
+                }
+                else
+                {
+                    _ps_particles[i].velocity = Vector3.ClampMagnitude(Vector3.Slerp(_ps_particles[i].velocity, _ps_particles[i].velocity * speed * 0.01f * f, t), maxSpeed);
+                }
+                
 				/*
 				if (Vector3.Distance(_ps_particles[i].position, target[index].position) < dyingRange) {
 					//_ps_particles[i].lifetime = 0f;// Before Unity 5.5
@@ -106,9 +115,9 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 				*/
 			}
 			_ps_system.SetParticles(_ps_particles, numParticlesAlive);
-		}
-		
-		/*
+		}   
+
+        /*
 		void OnDrawGizmosSelected() {
 			Gizmos.color = Color.yellow;
 			foreach (Transform i in target) {
@@ -116,5 +125,5 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 			}
 		}
 		*/
-	}
+    }
 }

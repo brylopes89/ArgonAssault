@@ -46720,7 +46720,6 @@ GameObject:
   - component: {fileID: 9044758899404047002}
   - component: {fileID: 9172339390866148132}
   - component: {fileID: 9173643791626117440}
-  - component: {fileID: 8943197111658258038}
   - component: {fileID: 7326632025097098174}
   m_Layer: 0
   m_Name: particle master
@@ -51510,21 +51509,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &8943197111658258038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9047670808839261896}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a1471924dbd0f84b9fb0007aaba5018, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 30
-  maxSpeed: 100
-  homingDelay: 3
 --- !u!114 &7326632025097098174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51541,3 +51525,5 @@ MonoBehaviour:
   maxSpeed: 50
   homingDelay: 1
   targetSelection: 1
+  minDist: 0
+  maxDist: 400

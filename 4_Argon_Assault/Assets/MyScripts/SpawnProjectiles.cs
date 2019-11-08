@@ -44,7 +44,7 @@ public class SpawnProjectiles : MonoBehaviour
             Debug.Log("No Fire Point");
         }
 
-        /*if (!CustomPointer.instance.center_lock)
+        if (!CustomPointer.instance.center_lock)
             vRay = Camera.main.ScreenPointToRay(CustomPointer.pointerPosition);
         else
             vRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
@@ -54,6 +54,6 @@ public class SpawnProjectiles : MonoBehaviour
             vfx1.transform.LookAt(hit.point);
             //shot1.GetComponent<Rigidbody>().AddForce((shot1.transform.forward) * 9000f);            
             //shot2.GetComponent<Rigidbody>().AddForce((shot2.transform.forward) * 9000f);
-        }*/
+        }
     }
 }
