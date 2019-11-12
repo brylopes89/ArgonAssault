@@ -82,10 +82,8 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 							minindex++;                            
 							if (num < minValue) {
 								minValue = num;
-								index = minindex;
-                               // print(minValue);                               
-							}                           
-                            
+								index = minindex;                                
+							}                               
                         }
 						break;
 				}

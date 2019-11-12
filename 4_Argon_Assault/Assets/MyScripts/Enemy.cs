@@ -124,7 +124,7 @@ public class Enemy : MonoBehaviour
         hasBeenHit = false;
         GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
         fx.transform.parent = parent;
-        this.gameObject.SetActive(false);     
+        this.gameObject.SetActive(false);          
         
     }
 
