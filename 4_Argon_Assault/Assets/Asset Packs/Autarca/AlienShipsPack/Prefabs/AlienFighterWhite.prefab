@@ -95,6 +95,8 @@ MonoBehaviour:
   parent: {fileID: 0}
   scorePerHit: 10
   health: 20
+  HitSfxClip: {fileID: 8300000, guid: 6405bd9e90f17ea4db0fc35202991c2a, type: 3}
+  HitSoundDelay: 0.5
   moveSpeed: 35
   minDist: 0
   maxDist: 3000

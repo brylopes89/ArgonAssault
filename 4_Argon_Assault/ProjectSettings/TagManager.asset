@@ -12,6 +12,7 @@ TagManager:
   - Terrain
   - Land
   - Trigger
+  - SpawnManager
   layers:
   - Default
   - TransparentFX

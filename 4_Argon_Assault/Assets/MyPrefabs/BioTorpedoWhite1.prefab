@@ -91,7 +91,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.43
+  m_Radius: 0.2
   m_Center: {x: 0.00000035576522, y: 0, z: -0.06688101}
 --- !u!114 &4500000866744264828
 MonoBehaviour:
@@ -100,17 +100,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4500882467601419503}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd8eeb2f993850f4f8b5974276c1d4c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   deathFX: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
   parent: {fileID: 0}
-  scorePerHit: 10
-  health: 20
-  moveSpeed: 250
+  scorePerHit: 5
+  health: 40
+  HitSfxClip: {fileID: 8300000, guid: 6405bd9e90f17ea4db0fc35202991c2a, type: 3}
+  HitSoundDelay: 0.5
+  moveSpeed: 35
   minDist: 0
-  maxDist: 200
+  maxDist: 3000
   fireDist: 0
   EscapeDirections: []

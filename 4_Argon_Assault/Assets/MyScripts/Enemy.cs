@@ -13,14 +13,21 @@ public class Enemy : MonoBehaviour
     [SerializeField] int scorePerHit = 10;
     [SerializeField] int health = 20;
 
+    public AudioClip HitSfxClip;
+    public float HitSoundDelay = 0.5f;
+
+    private AudioSource _audioSource;
+    private float _hitTime;
+
     ScoreBoard scoreBoard;
-    bool hasBeenHit = false;
+    SpawnManager _spawnManager;
 
     Vector3 storeTarget;
-    Vector3 newTargetPos;
+    Vector3 newTargetPos;    
 
     bool savePos;
     bool overrideTarget;
+    bool hasBeenHit = false;
 
     Transform target;
     Transform enemyTran;
@@ -39,22 +46,21 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AddBoxCollider();
+        //AddBoxCollider();
         scoreBoard = FindObjectOfType<ScoreBoard>();
 
-        target = GameObject.FindWithTag("Player").transform;
-        enemyTran = this.transform;
-        //children = GetComponentsInChildren<Transform>();
+        _hitTime = 0f;
+        SetupSound();
 
-        /*foreach (Transform child in children)
-        {
-            var tran = child.GetComponent<Transform>();
-            transforms.Add(tran);
-        } */     
+        _spawnManager = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
+        target = GameObject.FindWithTag("Player").transform;
+        enemyTran = this.transform;      
     }
 
     void Update()
     {
+        _hitTime += Time.deltaTime;
+
         if (target == null)
         {
             target = GameObject.FindWithTag("Player").transform;
@@ -102,10 +108,14 @@ public class Enemy : MonoBehaviour
     void OnParticleCollision(GameObject other)
     {        
         hasBeenHit = true;
-        health -= GameObject.FindObjectOfType<Damage>().CalculateWeaponDamage();
-        Debug.Log("Particle Collision");
-        ProcessHit();
-       
+        health -= GameObject.FindObjectOfType<PlayerShootControl>().CalculateWeaponDamage();
+        //Debug.Log("Particle Collision");
+        scoreBoard.ScoreHit(scorePerHit);
+
+        if(_hitTime > HitSoundDelay)
+        {
+            PlayRandomHit();
+        }              
 
         if (health <= 0)
         {
@@ -113,10 +123,11 @@ public class Enemy : MonoBehaviour
         }       
     }
 
-    public void ProcessHit()
-    {        
-        scoreBoard.ScoreHit(scorePerHit);        
-        //print(health);
+    public void PlayRandomHit()
+    {
+        //int index = Random.Range(0, HitSfxClips.Length);
+        _audioSource.clip = HitSfxClip;
+        _audioSource.Play();
     }
 
     private void KillEnemy()
@@ -124,7 +135,8 @@ public class Enemy : MonoBehaviour
         hasBeenHit = false;
         GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
         fx.transform.parent = parent;
-        this.gameObject.SetActive(false);          
+        _spawnManager.EnemyDefeated();
+        this.gameObject.SetActive(false);        
         
     }
 
@@ -132,5 +144,11 @@ public class Enemy : MonoBehaviour
     {
         Collider boxCollider = gameObject.AddComponent<BoxCollider>();
         boxCollider.isTrigger = false;
+    }
+
+    void SetupSound()
+    {
+        _audioSource = gameObject.AddComponent<AudioSource>();
+        _audioSource.volume = 0.2f;
     }
 }

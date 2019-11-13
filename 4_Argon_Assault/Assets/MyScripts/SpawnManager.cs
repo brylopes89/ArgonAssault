@@ -11,7 +11,8 @@ public class Wave
 
 public class SpawnManager : MonoBehaviour
 {
-    public Wave[] Waves;
+    public Wave[] Waves; // class to hold information per wave
+
     public Transform[] spawnPoints;
     public float TimeBetweenEnemies = 2f;
 
@@ -27,8 +28,8 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _currentWave = -1;
-        _totalWaves = Waves.Length - 1;
+        _currentWave = -1; // avoid off by 1
+        _totalWaves = Waves.Length - 1; // adjust, because we're using 0 index
 
         StartNextWave();
     }
@@ -61,19 +62,19 @@ public class SpawnManager : MonoBehaviour
 
             int spawnPointIndex = Random.Range(0, spawnPoints.Length);
 
+            // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
             Instantiate(enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
             yield return new WaitForSeconds(TimeBetweenEnemies);
         }
-
         yield return null;
-
     }
 
-    public void EnemyDefeated()
+    public void EnemyDefeated() // called by an enemy when they're defeated
     {
         _enemiesInWaveLeft--;
 
-        if(_enemiesInWaveLeft == 0 && _spawnedEnemies == _totalEnemiesInCurrentWave)
+        // We start the next wave once we have spawned and defeated them all
+        if (_enemiesInWaveLeft == 0 && _spawnedEnemies == _totalEnemiesInCurrentWave)
         {
             StartNextWave();
         }

@@ -111,12 +111,7 @@ public class PlayerFlightControl : MonoBehaviour
             {
                 updateBanking(); //Calculate banking.
             }
-        }
-
-        /*if (Input.GetButton("Fire1"))//Please remove this and replace it with a shooting system that works for your game, if you need one.    
-        {
-            //fireShot();
-        }*/
+        }     
     }
 
     private void RigidBodyValues()
@@ -166,9 +161,7 @@ public class PlayerFlightControl : MonoBehaviour
 
     public void DecreaseThrust()
     {
-        afterburner_Active = false;
-        //print(currentMag);   
-        
+        afterburner_Active = false;       
         currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);              
     }
 
@@ -176,13 +169,11 @@ public class PlayerFlightControl : MonoBehaviour
     {        
         slow_Active = true;
         afterburner_Active = false;
-        currentMag = Mathf.Lerp(currentMag, slow_speed, brake_transition_speed * Time.deltaTime);
-        //print(currentMag);
+        currentMag = Mathf.Lerp(currentMag, slow_speed, brake_transition_speed * Time.deltaTime);        
     }
 
     void updateCursorPosition()
     {
-
         mousePos = CustomPointer.pointerPosition;
 
         //Calculate distances from the center of the screen.
@@ -216,6 +207,7 @@ public class PlayerFlightControl : MonoBehaviour
             distFromVertical *= -1;
         }
     }
+
     void updateBanking()
     {
 
@@ -232,12 +224,7 @@ public class PlayerFlightControl : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        
-    }
-
-    public void fireShot()
+    /*public void fireShot()
     {
 
         if (weapon_hardpoint_1 == null || weapon_hardpoint_2 == null)
@@ -289,7 +276,7 @@ public class PlayerFlightControl : MonoBehaviour
             shot1.GetComponent<Rigidbody>().AddForce(vRay.direction * 9000f);
             shot2.GetComponent<Rigidbody>().AddForce(vRay.direction * 9000f);
         }
-    }
+    }*/
 
     void OnPlayerDeath() // called by string reference
     {
