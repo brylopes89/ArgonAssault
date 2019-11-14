@@ -3,7 +3,10 @@ guid: dd8eeb2f993850f4f8b5974276c1d4c7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - deathFX: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+  - parent: {instanceID: 0}
+  - _missileImpactSFX: {fileID: 8300000, guid: 6405bd9e90f17ea4db0fc35202991c2a, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -238,7 +238,6 @@
     <Compile Include="Assets\MyScripts\Damage.cs" />
     <Compile Include="Assets\MyScripts\Enemy.cs" />
     <Compile Include="Assets\MyScripts\EnemyHealth.cs" />
-    <Compile Include="Assets\MyScripts\EnemySpawn.cs" />
     <Compile Include="Assets\MyScripts\FlightStates.cs" />
     <Compile Include="Assets\MyScripts\MusicPlayer.cs" />
     <Compile Include="Assets\MyScripts\ParticleEmission.cs" />

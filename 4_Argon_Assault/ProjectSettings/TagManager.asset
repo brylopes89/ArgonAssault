@@ -13,6 +13,7 @@ TagManager:
   - Land
   - Trigger
   - SpawnManager
+  - Missiles
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - 
   - 
   - Player
-  - 
-  - 
+  - Shootable
+  - Terrain
   - 
   - 
   - 

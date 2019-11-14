@@ -16,8 +16,8 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 		public enum TSOP{random=0,closest=1};
 		[Tooltip("How each particle selects the target.")]
 		public TSOP targetSelection = TSOP.random;
-		//[Tooltip("Distance from target position which kills the particle. This has the similar effect of using sphere collider for the target combing with world collision or trigger in Particle System.")]
-		//public float dyingRange = 0f;
+		[Tooltip("Distance from target position which kills the particle. This has the similar effect of using sphere collider for the target combing with world collision or trigger in Particle System.")]
+		public float dyingRange = 0f;
 		private ParticleSystem _ps_system;
 		private ParticleSystem.TriggerModule _ps_trigger;
 		private ParticleSystem.Particle[] _ps_particles;
@@ -26,7 +26,7 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
         private List<Transform> enemyTrans = new List<Transform>();
        
         public float minDist;
-        public float maxDist = 1000;
+        public float maxDist = 250;
 
         void OnEnable() {
 
@@ -104,15 +104,15 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
                 }
                 else
                 {
-                    _ps_particles[i].velocity = Vector3.ClampMagnitude(Vector3.Slerp(_ps_particles[i].velocity, transform.forward * speed, t), maxSpeed);
+                    //_ps_particles[i].velocity = Vector3.ClampMagnitude(Vector3.Slerp(_ps_particles[i].velocity, transform.forward * speed, t), maxSpeed);
                 }
                 
-				/*
-				if (Vector3.Distance(_ps_particles[i].position, target[index].position) < dyingRange) {
+				
+				/*if (Vector3.Distance(_ps_particles[i].position, enemyTrans[index].position) < dyingRange) {
 					//_ps_particles[i].lifetime = 0f;// Before Unity 5.5
 					_ps_particles[i].remainingLifetime = 0f;// Since Unity 5.5
-				}
-				*/
+				}*/
+				
 			}
 			_ps_system.SetParticles(_ps_particles, numParticlesAlive);
 		}   

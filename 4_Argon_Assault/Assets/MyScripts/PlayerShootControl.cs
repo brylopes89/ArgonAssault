@@ -10,16 +10,17 @@ public class PlayerShootControl : MonoBehaviour
     public List<GameObject> firePoint = new List<GameObject>();
     public List<GameObject> vfx = new List<GameObject>();
     public List<GameObject> _cameras = new List<GameObject>();
+    public GameObject targeter;
 
     private GameObject vfx1;
     private GameObject vfx2;
     private Transform _player;
-
     private GameObject effectToSpawn;    
-    private AudioSource _audioSource;
 
+    private AudioSource _audioSource;    
     public AudioClip MissileLaunchSfx;
-    public float Range = 100;
+
+    public float Range = 400;
     public float MaxAmmo = 10f;
     public float ShootingDelay = 0.1f;   
 
@@ -38,7 +39,7 @@ public class PlayerShootControl : MonoBehaviour
     {        
         effectToSpawn = vfx[0];
         _currentAmmo = MaxAmmo;
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _player = GameObject.FindGameObjectWithTag("Player").transform;        
 
         SetupSound();
     }
@@ -51,11 +52,7 @@ public class PlayerShootControl : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && _timer >= ShootingDelay && !_isReloading)
         {
             Fire();
-        }
-        /*else if (!Input.GetButtonDown("Fire1"))
-        {
-            _audioSource.Stop();
-        }*/
+        }       
       
         if (Input.GetButtonDown("Reload"))
         {
@@ -82,30 +79,24 @@ public class PlayerShootControl : MonoBehaviour
         }
 
         _timer = 0;     
-        _audioSource.Play();
+        _audioSource.Play();        
 
-
-        Debug.DrawLine(_player.position, hit.point, Color.green);
-
-        // if (!CustomPointer.instance.center_lock)
-        vRay = Camera.main.ScreenPointToRay(CustomPointer.pointerPosition);
-       // else
-           // vRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
+        if (!CustomPointer.instance.center_lock)
+            vRay = Camera.main.ScreenPointToRay(CustomPointer.pointerPosition);
+        else
+            vRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
 
         if (Physics.Raycast(vRay, out hit))
-        {           
-            print("hit " + hit.collider.gameObject);
-            //vfx1.transform.LookAt(vRay.direction);
-            //vfx2.transform.LookAt(vRay.direction);   
-            Debug.DrawLine(_player.position, hit.point, Color.green);
+        {                       
+            vfx1.transform.LookAt(hit.point);
+            vfx2.transform.LookAt(hit.point);            
         }
+
         else
         {
-            Vector3 direction = (vRay.GetPoint(100000.0f) - vfx1.transform.position).normalized;
-            vfx1.transform.LookAt(vRay.direction);
-            vfx2.transform.LookAt(vRay.direction);
-            
-        }       
+            vfx1.transform.LookAt(targeter.transform.position);
+            vfx2.transform.LookAt(targeter.transform.position);
+        }
     }  
 
     public int CalculateWeaponDamage()

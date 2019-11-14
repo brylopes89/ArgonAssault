@@ -19,14 +19,14 @@ public class CollisionHandler : MonoBehaviour
 
     public float triggerEnterSpeed = 0.5f;
     public float triggerLeaveSpeed = 1.0f;
-
+    
     Transform core_Trans;
 
     bool setBool;
 
     private void Start()
     {
-        core_Trans = GetComponent<PlayerFlightControl>().actual_model.transform;
+        core_Trans = GetComponent<PlayerFlightControl>().actual_model.transform;        
         initSpeed = GetComponent<PlayerFlightControl>().speed;        
     }
 
@@ -145,7 +145,7 @@ public class CollisionHandler : MonoBehaviour
             {
                 break;
             }
-            GetComponent<PlayerFlightControl>().speed = Mathf.SmoothStep(currentSpeed, initSpeed, ratio);           
+           GetComponent<PlayerFlightControl>().speed = Mathf.SmoothStep(currentSpeed, initSpeed, ratio);           
         }       
 
        yield return new WaitForEndOfFrame();
