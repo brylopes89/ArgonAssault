@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 //[ExecuteInEditMode]
 
 namespace MoonflowerCarnivore.ShurikenSalvo {
@@ -26,7 +27,7 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
         private List<Transform> enemyTrans = new List<Transform>();
        
         public float minDist;
-        public float maxDist = 250;
+        public float maxDist = 250;      
 
         void OnEnable() {
 
@@ -42,12 +43,14 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 			_ps_trigger = _ps_system.trigger;
 			//_ps_particles = new ParticleSystem.Particle[_ps_system.maxParticles];// Before Unity 5.5
 			_ps_particles = new ParticleSystem.Particle[_ps_system.main.maxParticles];// Since Unity 5.5
+
 			for (int i = 0; i < enemyTrans.Count; i++) {
 				_ps_trigger.SetCollider(i, enemyTrans[i].GetComponent<Collider>());
 			}
-		}
-		
-		void LateUpdate() {
+		}   
+
+        void LateUpdate()
+        {
 			if (enemyTrans[0] == null)
 				return;            
 			
@@ -82,7 +85,7 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 							minindex++;                            
 							if (num < minValue) {
 								minValue = num;
-								index = minindex;                                
+								index = minindex;                            
 							}                               
                         }
 						break;
@@ -97,25 +100,18 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 				float t=0;
                 t += Time.deltaTime / (homingDelay * 0.01f + 0.0001f);
 
-                if (diff.magnitude < maxDist)
-                {
+                if (diff.magnitude < maxDist)                {
                     
                     _ps_particles[i].velocity = Vector3.ClampMagnitude(Vector3.Slerp(_ps_particles[i].velocity, _ps_particles[i].velocity + diff * speed * 0.01f * f, t), maxSpeed);
-                }
-                else
-                {
-                    //_ps_particles[i].velocity = Vector3.ClampMagnitude(Vector3.Slerp(_ps_particles[i].velocity, transform.forward * speed, t), maxSpeed);
-                }
-                
+                }                        
 				
 				/*if (Vector3.Distance(_ps_particles[i].position, enemyTrans[index].position) < dyingRange) {
 					//_ps_particles[i].lifetime = 0f;// Before Unity 5.5
 					_ps_particles[i].remainingLifetime = 0f;// Since Unity 5.5
-				}*/
-				
+				}*/				
 			}
 			_ps_system.SetParticles(_ps_particles, numParticlesAlive);
-		}   
+		}
 
         /*
 		void OnDrawGizmosSelected() {
@@ -125,5 +121,7 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 			}
 		}
 		*/
+
+        
     }
 }

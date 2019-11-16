@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 19800000}
   - component: {fileID: 19900000}
   - component: {fileID: 11400000}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Impact_Explo
-  m_TagString: Friendly
+  m_TagString: Missiles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

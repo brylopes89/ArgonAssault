@@ -4923,7 +4923,7 @@ MonoBehaviour:
   weapon_hardpoint_2: {fileID: 3126163025836922974}
   bullet: {fileID: 2391567169016377180, guid: 6d0b2cdc66ca8104cbe11eaadce694fe, type: 3}
   speed: 20
-  afterburner_speed: 500
+  afterburner_speed: 250
   slow_speed: 1
   thrust_transition_speed: 15
   brake_transition_speed: 5
@@ -49270,6 +49270,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1063745612873156673, guid: 5d6dea41ef6a62f42be0c9981ceda333,
         type: 3}
+      propertyPath: Missile_SFX.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063745612873156673, guid: 5d6dea41ef6a62f42be0c9981ceda333,
+        type: 3}
+      propertyPath: missileSFX.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063745612873156673, guid: 5d6dea41ef6a62f42be0c9981ceda333,
+        type: 3}
       propertyPath: firePoint.Array.data[0]
       value: 
       objectReference: {fileID: 3126163024745628619}
@@ -49298,6 +49308,21 @@ PrefabInstance:
       propertyPath: targeter
       value: 
       objectReference: {fileID: 1091327390}
+    - target: {fileID: 1063745612873156673, guid: 5d6dea41ef6a62f42be0c9981ceda333,
+        type: 3}
+      propertyPath: MissileLaunchSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 9250d0509cc881e4ba537353778d0e0f, type: 3}
+    - target: {fileID: 1063745612873156673, guid: 5d6dea41ef6a62f42be0c9981ceda333,
+        type: 3}
+      propertyPath: Missile_SFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9250d0509cc881e4ba537353778d0e0f, type: 3}
+    - target: {fileID: 1063745612873156673, guid: 5d6dea41ef6a62f42be0c9981ceda333,
+        type: 3}
+      propertyPath: missileSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9250d0509cc881e4ba537353778d0e0f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d6dea41ef6a62f42be0c9981ceda333, type: 3}
 --- !u!82 &1956700609887809013
@@ -59754,6 +59779,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6964405417106195406, guid: 94e06182a63624947b2bfe8a1c90ed3f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6964405417106195403, guid: 94e06182a63624947b2bfe8a1c90ed3f,
         type: 3}

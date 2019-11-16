@@ -18,7 +18,8 @@ public class PlayerShootControl : MonoBehaviour
     private GameObject effectToSpawn;    
 
     private AudioSource _audioSource;    
-    public AudioClip MissileLaunchSfx;
+    public AudioClip[] missileSFX;
+   // public AudioClip _missileImpactSFX;
 
     public float Range = 400;
     public float MaxAmmo = 10f;
@@ -41,7 +42,7 @@ public class PlayerShootControl : MonoBehaviour
         _currentAmmo = MaxAmmo;
         _player = GameObject.FindGameObjectWithTag("Player").transform;        
 
-        SetupSound();
+        //SetupSound();
     }
 
     // Update is called once per frame
@@ -76,10 +77,9 @@ public class PlayerShootControl : MonoBehaviour
         else
         {
             Debug.Log("No Fire Point");
-        }
-
-        _timer = 0;     
-        _audioSource.Play();        
+        }            
+        
+        //StartCoroutine(PlayAudio());
 
         if (!CustomPointer.instance.center_lock)
             vRay = Camera.main.ScreenPointToRay(CustomPointer.pointerPosition);
@@ -99,16 +99,18 @@ public class PlayerShootControl : MonoBehaviour
         }
     }  
 
+    /*IEnumerator PlayAudio()
+    {
+        _audioSource.PlayOneShot(missileSFX[0]);
+        yield return new WaitForSeconds(0.16f);
+        _audioSource.PlayOneShot(missileSFX[0]);
+        yield return null;
+
+    }*/
+
     public int CalculateWeaponDamage()
     {
         int damageDealt = weaponDamage;
         return damageDealt;
-    }
-
-    void SetupSound()
-    {
-        _audioSource = gameObject.AddComponent<AudioSource>();
-        _audioSource.volume = 1.0f;
-        _audioSource.clip = MissileLaunchSfx;
     }
 }

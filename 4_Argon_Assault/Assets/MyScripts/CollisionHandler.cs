@@ -43,8 +43,9 @@ public class CollisionHandler : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.collider.tag != "Friendly")
+        if (other.collider.tag != "Friendly" || other.collider.tag != "Missiles")
         {
+            Debug.Log("Hit by: " + other.gameObject);
             StartDeathSequence();
             deathFX.SetActive(true);
             Invoke("ReloadScene", levelLoadDelay);

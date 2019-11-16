@@ -11,10 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] Transform parent;
 
     [SerializeField] int scorePerHit = 10;
-    [SerializeField] int health = 20;
-
-    public AudioClip _missileImpactSFX;
-    private AudioSource _audioSource;
+    [SerializeField] int health = 20;   
 
     public float HitSoundDelay = 0.5f;    
     private float _hitTime;
@@ -46,13 +43,12 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AddBoxCollider();
+        AddBoxCollider();        
+
         scoreBoard = FindObjectOfType<ScoreBoard>();
         _spawnManager = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
         target = GameObject.FindWithTag("Player").transform;
-        enemyTran = this.transform;        
-
-        SetupSound();          
+        enemyTran = this.transform;                 
     }
 
     void Update()
@@ -60,7 +56,7 @@ public class Enemy : MonoBehaviour
         if (target == null)
         {
             target = GameObject.FindWithTag("Player").transform;
-        }
+        }      
 
         followPlayer();
     }
@@ -103,32 +99,25 @@ public class Enemy : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {        
-        hasBeenHit = true;
+        hasBeenHit = true;        
+
         health -= GameObject.FindObjectOfType<PlayerShootControl>().CalculateWeaponDamage();                
         scoreBoard.ScoreHit(scorePerHit);
+        Debug.Log("Particle Collision");
 
-        if (other.CompareTag("Missiles"))
-        {
-            PlayRandomHit();
-        }                 
+        //PlayRandomHit();
+                                   
 
         if (health <= 0)
         {
             KillEnemy();
         }       
-    }
-
-    public void PlayRandomHit()
-    {
-        //int index = Random.Range(0, HitSfxClips.Length);
-       
-        _audioSource.PlayOneShot(_audioSource.clip);        
-    }
+    }    
 
     private void KillEnemy()
     {
         hasBeenHit = false;
-        GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
+        //GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
         //fx.transform.parent = parent;
         _spawnManager.EnemyDefeated();
         this.gameObject.SetActive(false);                
@@ -139,12 +128,5 @@ public class Enemy : MonoBehaviour
         Collider boxCollider = gameObject.AddComponent<BoxCollider>();
         boxCollider.isTrigger = false;
     }
-
-    void SetupSound()
-    {
-        
-        _audioSource = GetComponent<AudioSource>();
-        _audioSource.volume = 0.2f;
-        //_audioSource.clip = HitSfxClip;
-    }
+    
 }
