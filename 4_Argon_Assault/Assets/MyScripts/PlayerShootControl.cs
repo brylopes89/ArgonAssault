@@ -88,8 +88,8 @@ public class PlayerShootControl : MonoBehaviour
 
         if (Physics.Raycast(vRay, out hit))
         {                       
-            vfx1.transform.LookAt(hit.point);
-            vfx2.transform.LookAt(hit.point);            
+           // vfx1.transform.LookAt(hit.point);
+            //vfx2.transform.LookAt(hit.point);            
         }
 
         else

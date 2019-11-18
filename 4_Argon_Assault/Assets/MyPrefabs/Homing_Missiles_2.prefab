@@ -14310,7 +14310,7 @@ MonoBehaviour:
   targetSelection: 1
   dyingRange: 1
   minDist: 0
-  maxDist: 200
+  maxDist: 100
 --- !u!114 &2299609417507893724
 MonoBehaviour:
   m_ObjectHideFlags: 0
