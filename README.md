@@ -29,6 +29,17 @@ A simple space free flight mechanic that portrays a sense of player freedom, but
 -	 **L Joystick** – switch to FPV
 -	 **Options (hold)** – rearview camera
 
+| | **PS4 Gamepad** | **Xbox Gamepad** | **Keyboard** |
+| --- | --- | --- | --- |
+| **Launch/Land** | **X** | **A** | **Space Bar** |
+| **Shoot** | **O** | **B** | **Left Mouse click** |
+| **Reload** | **▢** | **X** | **R** |
+| **Change Weapon** | **△** | **Y** | **Space Bar** |
+| **Thrust** | **R2** | **A** | **Space Bar** |
+| **Break** | **L2** | **A** | **Space Bar** |
+| **Switch to FPV** | **L Joystick** | **A** | **Space Bar** |
+| **Rearview Camera** | **Options (hold)** | **A** | **Space Bar** |
+
 ## Music/Sound: 
 
 **Song:** [_Satellites_ by: Ebb & Flod](https://www.epidemicsound.com/track/8aG0LvJzpf)
