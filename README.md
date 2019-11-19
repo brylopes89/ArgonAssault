@@ -8,9 +8,9 @@ Stylized 3D space shooter about a rogue pilot escaping from his imperial captors
 
 **_Story_:** A game which is primarily lead by it’s narrative. 
 
-**_Exploration_:** A game where the player has free roam control of his ship and access to a spacious map. 
+**_Exploration_:** The player has free roam capabilities and access to a spacious map. 
 
-**_Urgency_:** Player must be mindful of the time restrictions and complete the tasks set forth in order to escape this galactic oppression. 
+**_Urgency_:** Player must be mindful of the time restrictions and find their way to freedom before being destroyed by enemy patrol units. 
 
 ## Mechanics:
 
