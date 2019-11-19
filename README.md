@@ -18,27 +18,17 @@ A simple space free flight mechanic that portrays a sense of player freedom, but
 
 ## Controls: 
 
-**With PS4 Gamepad:**
-
--  **X** – launch/land
--  **O** – shoot
--  **▢** - reload
--  **△** – change weapon
--	 **R2** – thrust
--	 **L2** – break
--	 **L Joystick** – switch to FPV
--	 **Options (hold)** – rearview camera
-
 | | **PS4 Gamepad** | **Xbox Gamepad** | **Keyboard** |
 | --- | --- | --- | --- |
 | **Launch/Land** | **X** | **A** | **Space Bar** |
-| **Shoot** | **O** | **B** | **Left Mouse click** |
+| **Shoot** | **O** | **B** | **L Mouse click** |
 | **Reload** | **▢** | **X** | **R** |
-| **Change Weapon** | **△** | **Y** | **Space Bar** |
-| **Thrust** | **R2** | **A** | **Space Bar** |
-| **Break** | **L2** | **A** | **Space Bar** |
-| **Switch to FPV** | **L Joystick** | **A** | **Space Bar** |
-| **Rearview Camera** | **Options (hold)** | **A** | **Space Bar** |
+| **Change Weapon** | **△** | **Y** | **Num 1, Num 2** |
+| **Thrust** | **R2** | **R Trigger** | **L Shift** |
+| **Brake** | **L2** | **L Trigger** | **L Ctrl** |
+| **Roll** | **L1, R1** | **L Bumper, R Bumper** | **Q, E** |
+| **Switch to FPV** | **L Joystick** | **L Joystick** | **C** |
+| **Rearview Camera** | **Options (hold)** | **Menu (hold)** | **L Alt (hold)** |
 
 ## Music/Sound: 
 
