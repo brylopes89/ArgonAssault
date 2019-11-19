@@ -10,11 +10,11 @@ Stylized 3D space shooter about a rogue pilot escaping from his imperial captors
 
 **_Exploration_:** A game where the player has free roam control of his ship and access to a spacious map. 
 
-**_Urgency_:** Player is required to complete tasks within a certain time frame, or before they are destroyed by enemy patrol units, whichever comes first. 
+**_Urgency_:** Player must be mindful of the time restrictions and complete the tasks set forth in order to escape this galactic oppression. 
 
-## Story/Mechanics:
+## Mechanics:
 
-A simple space free flight mechanic that portrays a sense of player freedom, but a freedom that is fleeting while under enemy duress. This is meant to simulate the turmoil experienced by the main character. Argon Assault also utilizes sound design to convey the intensity of the story.
+Includes a free flight mechanic that allows the player to smoothly control their ship and explore their environment. This does not come without its restrictions, however, since the longer the player spends roaming the level the less time the player will have to complete their tasks. This provides a "fleeting freedom" perspective experienced by the main character, who is in constant pursuit of a freedom he never had, only ever receiving glimpses while escaping heavy enemy fire. The player ship includes an artillery range, ammo supply, thrust capabilities and a targeting system. 
 
 ## Controls: 
 
@@ -38,15 +38,15 @@ A simple space free flight mechanic that portrays a sense of player freedom, but
 
 ## Stretch Goals: 
 
-**1.**	Create several (3-4) immersive maps that the player can explore
+**1.**	Create several (3-4) immersive maps that the player can explore.
 
 **2.**  Implement fully interactive cockpit FPV.
 
-**3.**	Interactable NPC’s
+**3.**	Interactable NPC’s.
 
-**4.**	Player avatar for ground movement and interactivity 
+**4.**	Player avatar for ground movement and interactivity.
 
-**5.**	Include a ship transaction and repair system
+**5.**	Include a ship transaction and repair system.
 
 
 	
