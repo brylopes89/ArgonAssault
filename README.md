@@ -26,7 +26,7 @@ Includes a free flight mechanic that allows the player to smoothly control their
 | **Change Weapon** | **△** | **Y** | **Num 1, Num 2** |
 | **Thrust** | **R2** | **R Trigger** | **L Shift** |
 | **Brake** | **L2** | **L Trigger** | **L Ctrl** |
-| **Roll** | **L1, R1** | **L Bumper, R Bumper** | **Q, E** |
+| **Roll** | **L1, R1** | **LB, RB** | **Q, E** |
 | **Switch to FPV** | **L Joystick** | **L Joystick** | **C** |
 | **Rearview Camera** | **Options (hold)** | **Menu (hold)** | **L Alt (hold)** |
 
