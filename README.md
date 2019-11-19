@@ -48,7 +48,9 @@ Includes a free flight mechanic that allows the player to smoothly control their
 
 **5.**	Include a ship transaction and repair system.
 
-### Interested in Argon Assault updates? Check out my blog posts [here](http://bryanlopes.com/blog/)
+
+
+### Interested in Argon Assault updates? Check out my blog posts [here](http://bryanlopes.com/blog/).
 
 	
 
