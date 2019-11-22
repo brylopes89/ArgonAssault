@@ -134,12 +134,16 @@ public class PlayerFlightControl : MonoBehaviour
             else //Otherwise, hold normal speed.
             {
                 DecreaseThrust();
+                
             }
         }
-        if (brake_exists && Input.GetAxis("Brake") > 0) //If input on the thrust axis is negatve, activate brakes.
+        if (brake_exists && Input.GetAxis("Brake") > 0 || brake_exists && Input.GetButton("BrakeKey")) //If input on the thrust axis is negatve, activate brakes.
         {           
-            ApplyBrake();            
+            ApplyBrake();
+            
         }
+
+        print(currentMag);
     }
 
     private void RollInput()

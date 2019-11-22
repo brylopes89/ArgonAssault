@@ -19,7 +19,7 @@ public class CamSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire3"))
+        if (Input.GetButtonDown("CamSwitch"))
         {
             toggle = !toggle;
             
