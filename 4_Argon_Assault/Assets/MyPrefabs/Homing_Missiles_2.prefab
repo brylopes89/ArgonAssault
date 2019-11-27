@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5180665883637334729}
   - component: {fileID: 4987123399910445627}
   - component: {fileID: 4985774730231796419}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: particle sub collision glow spark
   m_TagString: Missiles
   m_Icon: {fileID: 0}
@@ -4695,7 +4695,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5186882724243417787}
   - component: {fileID: 5077193409059515777}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: particle point light
   m_TagString: Missiles
   m_Icon: {fileID: 0}
@@ -4787,7 +4787,7 @@ GameObject:
   - component: {fileID: 5186498531414077359}
   - component: {fileID: 4992842693287098537}
   - component: {fileID: 4985536088966924605}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: particle sub collision glow blast
   m_TagString: Missiles
   m_Icon: {fileID: 0}
@@ -9504,7 +9504,7 @@ GameObject:
   - component: {fileID: 6129808188336525896}
   - component: {fileID: 3655839196319315631}
   - component: {fileID: 8560809642512646480}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: particle master
   m_TagString: Missiles
   m_Icon: {fileID: 0}
@@ -10088,7 +10088,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 1.08
+    angle: 2.64
     length: 0.5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0
@@ -10174,7 +10174,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.5
+      value: 0.0001
       mode: 0
       spread: 0
       speed:
@@ -13069,7 +13069,7 @@ ParticleSystem:
     collisionMode: 0
     colliderForce: 10
     multiplyColliderForceByParticleSize: 0
-    multiplyColliderForceByParticleSpeed: 0
+    multiplyColliderForceByParticleSpeed: 1
     multiplyColliderForceByCollisionAngle: 1
     plane0: {fileID: 0}
     plane1: {fileID: 0}
@@ -14324,9 +14324,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explo: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
-  _missileSFX:
+  projectileSFX:
   - {fileID: 8300000, guid: 6405bd9e90f17ea4db0fc35202991c2a, type: 3}
   radius: 5
+  fireRate: 0
 --- !u!82 &6129808188336525896
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14463,7 +14464,7 @@ GameObject:
   - component: {fileID: 5180541792814165725}
   - component: {fileID: 4987070894111210427}
   - component: {fileID: 4987313832080346621}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: particle sub birth smoke trail
   m_TagString: Missiles
   m_Icon: {fileID: 0}
@@ -14507,7 +14508,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.06
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -18991,7 +18992,7 @@ GameObject:
   - component: {fileID: 5180517261945275169}
   - component: {fileID: 4986653552415096715}
   - component: {fileID: 4987289249893118759}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: particle sub birth glow jet
   m_TagString: Missiles
   m_Icon: {fileID: 0}
@@ -23861,7 +23862,7 @@ GameObject:
   - component: {fileID: 5186925884277534481}
   - component: {fileID: 4987679258168896071}
   - component: {fileID: 4985542088375803113}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: particle sub collision master debris
   m_TagString: Missiles
   m_Icon: {fileID: 0}
@@ -28457,7 +28458,7 @@ GameObject:
   - component: {fileID: 5180710788228706291}
   - component: {fileID: 4986904512902750633}
   - component: {fileID: 4985623829405043807}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: particle sub birth smoke sheet trail
   m_TagString: Missiles
   m_Icon: {fileID: 0}
@@ -32994,7 +32995,7 @@ GameObject:
   - component: {fileID: 5180681890614740959}
   - component: {fileID: 4987658341583498103}
   - component: {fileID: 4985530332627836981}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: particle sub birth smoke sheet trail
   m_TagString: Missiles
   m_Icon: {fileID: 0}
@@ -37567,7 +37568,7 @@ GameObject:
   - component: {fileID: 5180511836452941095}
   - component: {fileID: 4986970408133886359}
   - component: {fileID: 4986355454734047611}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: particle sub collision master glow
   m_TagString: Missiles
   m_Icon: {fileID: 0}
@@ -42181,7 +42182,7 @@ GameObject:
   - component: {fileID: 5186620144159061305}
   - component: {fileID: 4986776511459860857}
   - component: {fileID: 4986023855233404505}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: particle sub collision glow blast thin
   m_TagString: Missiles
   m_Icon: {fileID: 0}
@@ -46929,13 +46930,13 @@ GameObject:
   - component: {fileID: 5186482212206102913}
   - component: {fileID: 4987181178797210251}
   - component: {fileID: 4986698188568292973}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Homing_Missiles_2
   m_TagString: Missiles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5186482212206102913
 Transform:
   m_ObjectHideFlags: 0

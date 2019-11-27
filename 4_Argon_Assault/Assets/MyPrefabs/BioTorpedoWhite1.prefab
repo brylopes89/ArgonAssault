@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4476809243110823131}
   - component: {fileID: 4500000866744264829}
   - component: {fileID: 4500000866744264828}
+  - component: {fileID: 391852585}
+  - component: {fileID: 391852580}
   m_Layer: 0
   m_Name: BioTorpedoWhite1
   m_TagString: Enemy
@@ -105,14 +107,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8eeb2f993850f4f8b5974276c1d4c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathFX: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+  deathFX: {fileID: 0}
   parent: {fileID: 0}
-  scorePerHit: 5
+  scorePerHit: 10
   health: 20
-  _missileImpactSFX: {fileID: 8300000, guid: 6405bd9e90f17ea4db0fc35202991c2a, type: 3}
-  HitSoundDelay: 0.5
   moveSpeed: 25
   minDist: 0
   maxDist: 3000
   fireDist: 0
+--- !u!54 &391852585
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4500882467601419503}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &391852580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4500882467601419503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b89443818b4794e97f2f7c39900958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   EscapeDirections: []

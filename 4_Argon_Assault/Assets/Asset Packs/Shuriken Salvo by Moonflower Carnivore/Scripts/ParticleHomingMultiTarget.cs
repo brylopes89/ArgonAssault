@@ -101,10 +101,13 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
                 t += Time.deltaTime / (homingDelay * 0.01f + 0.0001f);
 
                 if (diff.magnitude < maxDist)
-                {
-                    
+                {                    
                     _ps_particles[i].velocity = Vector3.ClampMagnitude(Vector3.Slerp(_ps_particles[i].velocity, _ps_particles[i].velocity + diff * speed * 0.01f * f, t), maxSpeed);
-                }                        
+                }
+                else
+                {
+                    //_ps_particles[i].velocity = transform.forward * _ps_particles[i].velocity.magnitude;
+                }
 				
 				/*if (Vector3.Distance(_ps_particles[i].position, enemyTrans[index].position) < dyingRange) {
 					//_ps_particles[i].lifetime = 0f;// Before Unity 5.5

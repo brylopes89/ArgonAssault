@@ -143,7 +143,7 @@ public class PlayerFlightControl : MonoBehaviour
             
         }
 
-        print(currentMag);
+        //print(currentMag);
     }
 
     private void RollInput()

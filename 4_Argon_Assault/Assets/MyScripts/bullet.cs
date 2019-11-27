@@ -9,8 +9,10 @@ public class bullet : MonoBehaviour {
     public ParticleCollisionEvent[] collisionEvents;
 
     public GameObject explo;
-    public AudioClip[] _missileSFX;
-    public float radius = 5f;
+    public AudioClip[] projectileSFX;
+
+    public float radius = 5f;    
+    public float fireRate;
 
     private AudioSource _audioSource;
     private LayerMask _shootableMask;
@@ -58,7 +60,7 @@ public class bullet : MonoBehaviour {
             
             foreach (Collider hit in colliders)
             {
-                _audioSource.PlayOneShot(_missileSFX[0]);               
+                _audioSource.PlayOneShot(projectileSFX[0]);               
             }
         }
     }

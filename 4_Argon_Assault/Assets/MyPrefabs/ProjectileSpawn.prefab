@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   targeter: {fileID: 0}
-  MissileLaunchSfx: {fileID: 8300000, guid: 9250d0509cc881e4ba537353778d0e0f, type: 3}
-  Range: 100
+  missileSFX:
+  - {fileID: 8300000, guid: 9250d0509cc881e4ba537353778d0e0f, type: 3}
   MaxAmmo: 10
   ShootingDelay: 0.1
