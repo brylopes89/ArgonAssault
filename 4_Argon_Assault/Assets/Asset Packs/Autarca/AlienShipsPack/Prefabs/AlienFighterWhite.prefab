@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1213354791}
   - component: {fileID: 1788402881}
   - component: {fileID: 1788402877}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AlienFighterWhite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -94,12 +94,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathFX: {fileID: 0}
-  parent: {fileID: 0}
   scorePerHit: 10
   health: 20
   moveSpeed: 25
   minDist: 0
-  maxDist: 3000
+  maxDist: 100
   fireDist: 0
 --- !u!54 &1788402881
 Rigidbody:

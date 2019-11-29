@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4500000866744264828}
   - component: {fileID: 391852585}
   - component: {fileID: 391852580}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BioTorpedoWhite1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -108,12 +108,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathFX: {fileID: 0}
-  parent: {fileID: 0}
   scorePerHit: 10
   health: 20
   moveSpeed: 25
   minDist: 0
-  maxDist: 3000
+  maxDist: 100
   fireDist: 0
 --- !u!54 &391852585
 Rigidbody:

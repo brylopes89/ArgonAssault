@@ -16,6 +16,6 @@ public class ProjectileMove : MonoBehaviour
     void FixedUpdate()
     {
         //transform.position += transform.forward * (speed * Time.deltaTime);
-        GetComponent<Rigidbody>().AddForce(transform.forward * speed);
+        //GetComponent<Rigidbody>().AddForce(transform.forward * speed);
     }
 }

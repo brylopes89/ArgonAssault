@@ -6,37 +6,36 @@ public class PlayerShootControl : MonoBehaviour
 {
     [Header("Weapon Damage")]
     public int weaponDamage = 10;
+    public float speed = 50f;
+    public float _maxAmmo = 10f;
+    public float _maximumLength;
+    public float _switchDelay = 1.0f;
+    public float _impactForce = 30.0f;
+    public float _fireRate = 15.0f;
+
+    private int _index = 0;
+    private float _currentAmmo;
+    private float _nextTimeToFire = 0f;
 
     public List<GameObject> firePoint = new List<GameObject>();
-    public List<GameObject> weapons = new List<GameObject>();
-    public List<GameObject> _cameras = new List<GameObject>();
+    public List<GameObject> weapons = new List<GameObject>();   
     public GameObject targeter;
 
     private GameObject vfx1;
     private GameObject vfx2;
-    private Transform _player;
-    private GameObject effectToSpawn;    
-    
-    public float MaxAmmo = 10f;   
-    public float MaximumLength;
-    public float _switchDelay = 1.0f;      
-
-    private int index = 0;
-    private float _currentAmmo;
+    private Transform _player;     
 
     private bool _isSwitching;
     private bool _isShooting;
-    private bool _isReloading;
-    private LineRenderer _lineRenderer;    
+    private bool _isReloading;   
 
     Ray vRay;
     RaycastHit hit;
 
     // Start is called before the first frame update
     void Start()
-    {        
-        //effectToSpawn = weapons[0];
-        _currentAmmo = MaxAmmo;
+    {         
+        _currentAmmo = _maxAmmo;
         _player = GameObject.FindGameObjectWithTag("Player").transform;        
         InitializeWeapons();
     }
@@ -46,39 +45,45 @@ public class PlayerShootControl : MonoBehaviour
     {
         if(Input.GetAxis("Mouse ScrollWheel") > 0 && !_isSwitching)
         {
-            index++;
-            if(index >= weapons.Count - 1)
+            _index++;
+            if(_index >= weapons.Count - 1)
             {
-                index = 0;
+                _index = 0;
             }
-            StartCoroutine(SwitchAfterDelay(index));            
+            StartCoroutine(SwitchAfterDelay(_index));            
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0 && !_isSwitching)
         {
-            index--;
+            _index--;
 
-            if (index < 0)
+            if (_index < 0)
             {
-                index = weapons.Count - 1;
+                _index = weapons.Count - 1;
             }
-            StartCoroutine(SwitchAfterDelay(index));
+            StartCoroutine(SwitchAfterDelay(_index));
         }
 
         if (Input.GetButtonDown("WeaponChange") && !_isSwitching)
         {
-            index++;
-            if (index > weapons.Count -1)
+            _index++;
+            if (_index > weapons.Count -1)
             {
-                index = 0;
+                _index = 0;
             }
-            StartCoroutine(SwitchAfterDelay(index));
+            StartCoroutine(SwitchAfterDelay(_index));
         }
 
-        if (Input.GetButtonDown("Fire1") && !_isReloading)
+        if (Input.GetButton("Fire1") && !_isReloading && Time.time >= _nextTimeToFire && weapons[0])
+        {
+            _nextTimeToFire = Time.time + 1f / _fireRate;
+            Fire();
+        }    
+        
+        if (Input.GetButtonDown("Fire1") && !_isReloading && weapons[1])
         {
             Fire();
-        }       
+        }
       
         if (Input.GetButtonDown("Reload"))
         {
@@ -131,7 +136,7 @@ public class PlayerShootControl : MonoBehaviour
         {
             if (firePoint != null)
             {           
-                vfx1 = Instantiate(weapons[index], firePoint[i].transform.position, Quaternion.identity);
+                vfx1 = Instantiate(weapons[_index], firePoint[i].transform.position, Quaternion.identity);
             }
             else
             {
@@ -146,12 +151,29 @@ public class PlayerShootControl : MonoBehaviour
             if (Physics.Raycast(vRay, out hit, layerMask))
             {
                 vfx1.transform.LookAt(hit.point);
+                if(_index != 1)
+                {
+                    vfx1.GetComponent<Rigidbody>().AddForce((vfx1.transform.forward) * 9000f);
+                }
                 Debug.DrawRay(firePoint[i].transform.position, firePoint[i].transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);                
             }
             else
-            {                             
-                vfx1.transform.LookAt(targeter.transform.position);
-                Debug.DrawRay(firePoint[i].transform.position, firePoint[i].transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+            {
+                if (_index == 1)
+                {
+                    vfx1.transform.LookAt(targeter.transform.position);
+                }
+                else
+                {
+                    vfx1.GetComponentInChildren<Rigidbody>().AddForce((vRay.direction) * 9000f);
+                }            
+
+                //Debug.DrawRay(firePoint[i].transform.position, firePoint[i].transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+            }
+
+            if(hit.rigidbody != null)
+            {
+                hit.rigidbody.AddForce(-hit.normal * _impactForce);
             }
         }             
     } 

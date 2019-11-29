@@ -11,8 +11,7 @@ public class bullet : MonoBehaviour {
     public GameObject explo;
     public AudioClip[] projectileSFX;
 
-    public float radius = 5f;    
-    public float fireRate;
+    public float radius = 5f;       
 
     private AudioSource _audioSource;
     private LayerMask _shootableMask;
@@ -56,7 +55,7 @@ public class bullet : MonoBehaviour {
             //rb.AddForce(force);
            
             Instantiate(explo, pos, Quaternion.identity);
-            Debug.Log(eventCount);           
+            //Debug.Log(eventCount);           
             
             foreach (Collider hit in colliders)
             {

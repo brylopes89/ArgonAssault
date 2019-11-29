@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8102671948811237188}
   - component: {fileID: 4953861999004087803}
   m_Layer: 0
-  m_Name: Enemy Death FX
+  m_Name: Impact_Explo2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

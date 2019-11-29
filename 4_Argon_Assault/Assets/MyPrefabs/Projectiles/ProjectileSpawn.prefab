@@ -44,17 +44,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponDamage: 10
+  _maxAmmo: 10
+  _maximumLength: 0
+  _switchDelay: 0.2
+  _impactForce: 30
+  _fireRate: 15
   firePoint:
   - {fileID: 0}
   - {fileID: 0}
-  vfx:
+  weapons:
+  - {fileID: 2391567169016377180, guid: 6d0b2cdc66ca8104cbe11eaadce694fe, type: 3}
   - {fileID: 5185606259062714549, guid: ad7900c71262bba4086dbdacfe66178a, type: 3}
-  _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   targeter: {fileID: 0}
-  missileSFX:
-  - {fileID: 8300000, guid: 9250d0509cc881e4ba537353778d0e0f, type: 3}
-  MaxAmmo: 10
-  ShootingDelay: 0.1
