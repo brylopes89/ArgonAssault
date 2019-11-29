@@ -52,15 +52,16 @@ public class bullet : MonoBehaviour {
             Vector3 pos = collisionEvents[i].intersection;
             Collider[] colliders = Physics.OverlapSphere(pos, radius);
             //Vector3 force = collisionEvents[i].velocity * 10;
-            //rb.AddForce(force);
-           
-            Instantiate(explo, pos, Quaternion.identity);
+            //rb.AddForce(force);          
+            Instantiate(explo, pos, Quaternion.identity);           
             //Debug.Log(eventCount);           
             
             foreach (Collider hit in colliders)
             {
                 _audioSource.PlayOneShot(projectileSFX[0]);               
             }
+
+            Destroy(gameObject);
         }
     }
 

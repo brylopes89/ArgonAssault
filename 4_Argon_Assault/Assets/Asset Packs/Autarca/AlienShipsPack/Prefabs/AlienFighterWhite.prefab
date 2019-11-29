@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8eeb2f993850f4f8b5974276c1d4c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathFX: {fileID: 0}
+  deathFX: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
   scorePerHit: 10
   health: 20
   moveSpeed: 25
