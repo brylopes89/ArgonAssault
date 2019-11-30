@@ -74,13 +74,13 @@ public class PlayerShootControl : MonoBehaviour
             StartCoroutine(SwitchAfterDelay(_index));
         }
 
-        if (Input.GetButtonDown("Fire1") && !_isReloading && Time.time >= _nextTimeToFire && weapons[0])
+        if (Input.GetButtonDown("Fire1") && !_isReloading && Time.time >= _nextTimeToFire && weapons[1])
         {
             _nextTimeToFire = Time.time + 1f / _fireRate;
             Fire();
         }    
         
-        if (Input.GetButton("Fire1") && !_isReloading && weapons[1])
+        if (Input.GetButtonDown("Fire1") && !_isReloading && weapons[0])
         {
             Fire();
         }

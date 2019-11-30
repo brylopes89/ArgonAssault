@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4618902517328562}
   - component: {fileID: 33706035446471488}
   - component: {fileID: 23474694068558520}
-  - component: {fileID: 1213354791}
-  - component: {fileID: 1788402881}
   - component: {fileID: 1788402877}
+  - component: {fileID: 42849181}
+  - component: {fileID: 599006122}
   m_Layer: 9
   m_Name: AlienFighterWhite
   m_TagString: Enemy
@@ -81,7 +81,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1213354791
+--- !u!114 &1788402877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,17 +90,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1062015658370612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd8eeb2f993850f4f8b5974276c1d4c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 24b89443818b4794e97f2f7c39900958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathFX: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
-  scorePerHit: 10
-  health: 20
-  moveSpeed: 25
-  minDist: 0
-  maxDist: 100
-  fireDist: 0
---- !u!54 &1788402881
+  EscapeDirections: []
+--- !u!54 &42849181
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +110,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1788402877
+--- !u!114 &599006122
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,7 +119,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1062015658370612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24b89443818b4794e97f2f7c39900958, type: 3}
+  m_Script: {fileID: 11500000, guid: dd8eeb2f993850f4f8b5974276c1d4c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EscapeDirections: []
+  deathFX: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+  scorePerHit: 10
+  health: 20
+  rotationSpeed: 2
+  moveSpeed: 30
+  minDist: 0
+  maxDist: 150
+  fireDist: 30
+  waypoints: []
