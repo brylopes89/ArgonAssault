@@ -8,31 +8,18 @@ public class bullet : MonoBehaviour {
     //public List<ParticleCollisionEvent> CollisionEvents; 
     public ParticleCollisionEvent[] collisionEvents;
 
-    public GameObject explo;
-    public AudioClip[] projectileSFX;
+    public GameObject explo;   
 
     public float radius = 5f;       
 
-    private AudioSource _audioSource;
     private LayerMask _shootableMask;
 
     // Use this for initialization
     private void Start()
     {
-        SetupSound();
-
-        ps = GetComponent<ParticleSystem>();
-        //CollisionEvents = new List<ParticleCollisionEvent>();
+        ps = GetComponent<ParticleSystem>();       
         collisionEvents = new ParticleCollisionEvent[8];
     }
-
-    private void SetupSound()
-    {
-        _audioSource = GetComponent<AudioSource>();
-        _audioSource.volume = 0.2f;
-        _shootableMask = LayerMask.GetMask("Player");
-
-    } 
 
     public void OnParticleCollision(GameObject other)
     {
@@ -47,36 +34,13 @@ public class bullet : MonoBehaviour {
         {
             //TODO: Do your collision stuff here. 
             // You can access the CollisionEvent[i] to obtaion point of intersection, normals that kind of thing
-            // You can simply use "other" GameObject to access it's rigidbody to apply force, or check if it implements a class that takes damage or whatever
-            //Explosions(collisionEvents[i].intersection);
+            // You can simply use "other" GameObject to access it's rigidbody to apply force, or check if it implements a class that takes damage or whatever            
             Vector3 pos = collisionEvents[i].intersection;
-            Collider[] colliders = Physics.OverlapSphere(pos, radius);
-            //Vector3 force = collisionEvents[i].velocity * 10;
-            //rb.AddForce(force);          
-            Instantiate(explo, pos, Quaternion.identity);           
-            //Debug.Log(eventCount);           
-            
-            foreach (Collider hit in colliders)
-            {
-                _audioSource.PlayOneShot(projectileSFX[0]);               
-            }
+            Collider[] colliders = Physics.OverlapSphere(pos, radius);    
+                  
+            Instantiate(explo, pos, Quaternion.identity);          
 
             Destroy(gameObject);
         }
     }
-
-    /*void OnCollisionEnter(Collision col)
-    {
-        Physics.IgnoreLayerCollision(2, 8);
-
-        GameObject otherObj = col.gameObject;
-        Debug.Log("Collided with: " + otherObj);
-
-        ContactPoint contact = col.contacts[0];
-        Vector3 pos = contact.point;
-        
-        _audioSource.PlayOneShot(_missileSFX[0]);
-        explo = Instantiate(explo, transform.position, Quaternion.identity) as GameObject;     
-    }*/
-
 }

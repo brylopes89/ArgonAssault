@@ -11,11 +11,11 @@ public class PlayerShootControl : MonoBehaviour
     public float _maximumLength;
     public float _switchDelay = 1.0f;
     public float _impactForce = 30.0f;
-    public float _fireRate = 15.0f;
 
-    private int _index = 0;
-    private float _currentAmmo;
+    private float _fireRate;
     private float _nextTimeToFire = 0f;
+    private int _index = 0;
+    private float _currentAmmo;   
 
     public List<GameObject> firePoint = new List<GameObject>();
     public List<GameObject> weapons = new List<GameObject>();   
@@ -27,7 +27,7 @@ public class PlayerShootControl : MonoBehaviour
 
     private bool _isSwitching;
     private bool _isShooting;
-    private bool _isReloading;   
+    private bool _isReloading;    
 
     Ray vRay;
     RaycastHit hit;
@@ -42,7 +42,7 @@ public class PlayerShootControl : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {  
         if(Input.GetAxis("Mouse ScrollWheel") > 0 && !_isSwitching)
         {
             _index++;
@@ -72,18 +72,22 @@ public class PlayerShootControl : MonoBehaviour
                 _index = 0;
             }
             StartCoroutine(SwitchAfterDelay(_index));
-        }
-
-        if (Input.GetButtonDown("Fire1") && !_isReloading && Time.time >= _nextTimeToFire && weapons[1])
-        {
+            print(_index);
+        }      
+                
+        if (Input.GetButton("Fire1") && !_isReloading && Time.time >= _nextTimeToFire)
+        {            
+            if (_index == 0)
+            {
+                _fireRate = 5f;
+            }
+            else if (_index == 1)
+            {
+                _fireRate = 1f;
+            }
             _nextTimeToFire = Time.time + 1f / _fireRate;
             Fire();
-        }    
-        
-        if (Input.GetButtonDown("Fire1") && !_isReloading && weapons[0])
-        {
-            Fire();
-        }
+        }            
       
         if (Input.GetButtonDown("Reload"))
         {
@@ -131,6 +135,7 @@ public class PlayerShootControl : MonoBehaviour
         layerMask = ~layerMask;
 
         _isShooting = true;
+        
 
         for (int i = 0; i < firePoint.Count; i++)
         {
@@ -141,13 +146,13 @@ public class PlayerShootControl : MonoBehaviour
             else
             {
                 Debug.Log("No Fire Point");
-            }
+            }           
 
             if (!CustomPointer.instance.center_lock)
                 vRay = Camera.main.ScreenPointToRay(CustomPointer.pointerPosition);
             else
                 vRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
-
+            
             if (Physics.Raycast(vRay, out hit, layerMask))
             {
                 vfx1.transform.LookAt(hit.point);
@@ -161,15 +166,14 @@ public class PlayerShootControl : MonoBehaviour
             {
                 if (_index == 1)
                 {
-                    vfx1.transform.LookAt(targeter.transform.position);
+                    vfx1.transform.LookAt(targeter.transform.position);                   
                 }
                 else
                 {
                     vfx1.GetComponentInChildren<Rigidbody>().AddForce((vRay.direction) * 9000f);
                 }            
-
-                //Debug.DrawRay(firePoint[i].transform.position, firePoint[i].transform.TransformDirection(Vector3.forward) * 1000, Color.white);
             }
+            //Debug.DrawRay(firePoint[i].transform.position, firePoint[i].transform.TransformDirection(Vector3.forward) * 1000, Color.white);
 
             if(hit.rigidbody != null)
             {
