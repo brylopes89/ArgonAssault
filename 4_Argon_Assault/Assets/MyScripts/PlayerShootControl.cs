@@ -7,15 +7,14 @@ public class PlayerShootControl : MonoBehaviour
     [Header("Weapon Damage")]
     public int weaponDamage = 10;
     public float speed = 50f;
-    public float _maxAmmo = 10f;
-    public float _maximumLength;
+    public float _maxAmmo = 10f;   
     public float _switchDelay = 1.0f;
     public float _impactForce = 30.0f;
+    public float _currentAmmo;
 
     private float _fireRate;
     private float _nextTimeToFire = 0f;
-    private int _index = 0;
-    private float _currentAmmo;   
+    [HideInInspector] public int _index = 0;      
 
     public List<GameObject> firePoint = new List<GameObject>();
     public List<GameObject> weapons = new List<GameObject>();   
@@ -23,7 +22,8 @@ public class PlayerShootControl : MonoBehaviour
 
     private GameObject vfx1;
     private GameObject vfx2;
-    private Transform _player;     
+    private Transform _player;
+    private ScreenManager _screenManager;
 
     private bool _isSwitching;
     private bool _isShooting;
@@ -36,8 +36,11 @@ public class PlayerShootControl : MonoBehaviour
     void Start()
     {         
         _currentAmmo = _maxAmmo;
-        _player = GameObject.FindGameObjectWithTag("Player").transform;        
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _screenManager = GameObject.FindWithTag("ScreenManager").GetComponent<ScreenManager>();
         InitializeWeapons();
+        _isShooting = false;
+        _isReloading = false;
     }
 
     // Update is called once per frame
@@ -71,28 +74,43 @@ public class PlayerShootControl : MonoBehaviour
             {
                 _index = 0;
             }
-            StartCoroutine(SwitchAfterDelay(_index));
-            print(_index);
+            StartCoroutine(SwitchAfterDelay(_index));            
         }      
                 
-        if (Input.GetButton("Fire1") && !_isReloading && Time.time >= _nextTimeToFire)
+        if (Input.GetButton("Fire1") && !_isReloading && Time.time >= _nextTimeToFire && _currentAmmo > 0)
         {            
             if (_index == 0)
             {
-                _fireRate = 5f;
+                _fireRate = 4f;
             }
             else if (_index == 1)
             {
                 _fireRate = 1f;
+                _currentAmmo--;
+                _screenManager.UpdateAmmoText(_currentAmmo, _maxAmmo);
             }
             _nextTimeToFire = Time.time + 1f / _fireRate;
             Fire();
-        }            
-      
-        if (Input.GetButtonDown("Reload"))
-        {
-            StartReloading();
         }
+
+        if (Input.GetButtonDown("Reload") || Input.GetKeyDown(KeyCode.R))
+        {
+            if (_index == 1)
+                StartCoroutine(StartReloading());
+        }
+    }
+
+    IEnumerator StartReloading()
+    {
+        _isReloading = true;
+        _isShooting = false;
+
+        yield return new WaitForSeconds(4f);
+
+        _isReloading = false;
+        _currentAmmo = _maxAmmo;
+        _screenManager.UpdateAmmoText(_currentAmmo, _maxAmmo);
+
     }
 
     private IEnumerator SwitchAfterDelay(int newIndex)
@@ -105,7 +123,7 @@ public class PlayerShootControl : MonoBehaviour
         ChangeWeapon(newIndex);
     }
 
-    private void InitializeWeapons()
+    void InitializeWeapons()
     {
         for(int i = 0; i < weapons.Count; i++)
         {
@@ -123,19 +141,13 @@ public class PlayerShootControl : MonoBehaviour
         weapons[newIndex].SetActive(true);
     }   
 
-    void StartReloading()
-    {       
-        _isShooting = false;
-        _isReloading = true;
-    }
-
     void Fire()
     {
         int layerMask = 1 << 10;
         layerMask = ~layerMask;
 
         _isShooting = true;
-        
+       
 
         for (int i = 0; i < firePoint.Count; i++)
         {
@@ -177,7 +189,8 @@ public class PlayerShootControl : MonoBehaviour
 
             if(hit.rigidbody != null)
             {
-                hit.rigidbody.AddForce(-hit.normal * _impactForce);
+                if (_index == 0)
+                    hit.rigidbody.AddForce(-hit.normal * _impactForce);
             }
         }             
     } 
