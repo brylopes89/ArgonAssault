@@ -15,6 +15,7 @@ TagManager:
   - SpawnManager
   - Missiles
   - Explosion
+  - ScreenManager
   layers:
   - Default
   - TransparentFX
