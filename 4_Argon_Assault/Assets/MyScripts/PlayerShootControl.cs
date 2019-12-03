@@ -11,10 +11,13 @@ public class PlayerShootControl : MonoBehaviour
     public float _switchDelay = 1.0f;
     public float _impactForce = 30.0f;
     public float _currentAmmo;
+    public GameObject slider;
 
     private float _fireRate;
     private float _nextTimeToFire = 0f;
-    [HideInInspector] public int _index = 0;      
+
+    [HideInInspector] public int _index = 0;
+    [HideInInspector] public bool _isReloading;
 
     public List<GameObject> firePoint = new List<GameObject>();
     public List<GameObject> weapons = new List<GameObject>();   
@@ -26,8 +29,7 @@ public class PlayerShootControl : MonoBehaviour
     private ScreenManager _screenManager;
 
     private bool _isSwitching;
-    private bool _isShooting;
-    private bool _isReloading;    
+    private bool _isShooting;    
 
     Ray vRay;
     RaycastHit hit;
@@ -104,12 +106,14 @@ public class PlayerShootControl : MonoBehaviour
     {
         _isReloading = true;
         _isShooting = false;
+        slider.SetActive(true);
 
         yield return new WaitForSeconds(4f);
 
         _isReloading = false;
         _currentAmmo = _maxAmmo;
         _screenManager.UpdateAmmoText(_currentAmmo, _maxAmmo);
+        slider.SetActive(false);
 
     }
 

@@ -8,6 +8,7 @@ public class ButtonManager : MonoBehaviour
 {
     public GameObject loadingScreen;
     public Slider slider;
+    public Text progressText;
 
     public void NewGameButton(int sceneIndex)
     {
@@ -24,6 +25,7 @@ public class ButtonManager : MonoBehaviour
         {
             float progress = Mathf.Clamp01(operation.progress / .9f);
             slider.value = progress;
+            progressText.text = progress * 100f + "%";
 
             yield return null;
         }
