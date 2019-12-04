@@ -59,27 +59,20 @@ public class CollisionHandler : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.collider.tag != "Friendly" || other.collider.tag != "Missiles")
+        if (other.collider.tag != "Friendly" || other.collider.tag != "Enemy")
         {
             Debug.Log("Hit by: " + other.gameObject);           
             isHit = true;
-            Health -= GameObject.FindObjectOfType<Enemy>().EnemyWeaponDamage();
-            HealthBar.value = Health;            
-
-            if (Health <= 0)
-            {
-                Health = 0;         
-                
-                StartDeathSequence();
-                deathFX.SetActive(true);
-                Invoke("ReloadScene", levelLoadDelay);
-            }
+            Health -= 0;
+            HealthBar.value = Health;
+            StartDeathSequence();
+            GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
+            Invoke("ReloadScene", levelLoadDelay);            
         }
     }
 
-    /*private void OnParticleCollision(GameObject other)
-    {
-       
+    private void OnParticleCollision(GameObject other)
+    {       
         isHit = true;
         Health -= GameObject.FindObjectOfType<Enemy>().EnemyWeaponDamage();
         HealthBar.value = Health;
@@ -93,7 +86,7 @@ public class CollisionHandler : MonoBehaviour
             Invoke("ReloadScene", levelLoadDelay);
         }
         
-    }*/
+    }
 
     void StartDeathSequence()
     {

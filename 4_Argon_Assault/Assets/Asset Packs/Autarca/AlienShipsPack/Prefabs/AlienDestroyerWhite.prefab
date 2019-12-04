@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 863081781}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: DestroyerHardPoint
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 169859852}
   - component: {fileID: 1780641639}
   - component: {fileID: 1780641642}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: AlienDestroyerWhite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   hardpoint: {fileID: 863081781}
-  projectile: {fileID: 2391567169016377180, guid: 036bb825462c80249a5f3dc4be60ed72,
+  projectile: {fileID: 2391567169016377180, guid: 75d889066c595874cb921c2d3b24660f,
     type: 3}
   enemyDamage: 10
   rotationSpeed: 2

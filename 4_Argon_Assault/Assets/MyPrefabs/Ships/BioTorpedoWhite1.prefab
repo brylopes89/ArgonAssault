@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6598765587385084394}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: BioHardPoint
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 391852580}
   - component: {fileID: 1907277953}
   - component: {fileID: 899010296}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: BioTorpedoWhite1
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -14326,6 +14326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explo: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
   radius: 5
+  speed: 0
 --- !u!82 &6129808188336525896
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14433,7 +14434,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.03
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8560809642512646480
 Rigidbody:

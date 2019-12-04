@@ -114,10 +114,11 @@ public class Enemy : MonoBehaviour
             if (!attacking && attackDis)
             {                
                 Debug.Log("Within Attack Range");
-                StartCoroutine(Attack()); 
+                StartCoroutine(ApproachSpeed());
+                Fire();
             }
             else if (!attacking)
-            {
+            {               
                 // player is "out of sight"
                 MoveTowards(target.position);
             }
@@ -160,11 +161,22 @@ public class Enemy : MonoBehaviour
         enemyTran.position += enemyTran.forward * moveSpeed * Time.fixedDeltaTime;       
     }
 
-    IEnumerator Attack()
+    void Fire()
+    {
+        weapon = Instantiate(projectile, hardpoint.transform.position, Quaternion.identity);
+
+        weapon.transform.LookAt(target.position);
+
+        Rigidbody weaponRigid = weapon.GetComponentInChildren<Rigidbody>();
+
+        weaponRigid.AddForce((transform.forward) * 9000f);
+    }
+
+    IEnumerator ApproachSpeed()
     {
         // toggle attacking on
+
         attacking = true;
-        
         currentSpeed = moveSpeed;
         newSpeed = 1.0f;
         approachSpeed = 4.0f;
@@ -182,12 +194,7 @@ public class Enemy : MonoBehaviour
             }
 
             moveSpeed = Mathf.SmoothStep(currentSpeed, newSpeed, ratio);            
-        }
-
-        weapon = Instantiate(projectile, hardpoint.transform.position, Quaternion.identity);
-
-        weapon.transform.LookAt(target.position);
-        weapon.GetComponentInChildren<Rigidbody>().AddForce((weapon.transform.forward) * 9000f);
+        }             
 
         // odds of player being attacked successfully
         float odds = Random.Range(0.0f, 1.0f);
@@ -250,12 +257,6 @@ public class Enemy : MonoBehaviour
         //fx.transform.parent = parent;
         _spawnManager.EnemyDefeated();
         this.gameObject.SetActive(false);                
-    }
-
-    private void AddBoxCollider()
-    {
-        Collider boxCollider = gameObject.AddComponent<BoxCollider>();
-        boxCollider.isTrigger = false;
     }
 
     public int EnemyWeaponDamage()
