@@ -4,11 +4,10 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-    public enum EnemyState { Idle, Approach, Attack };
-    private EnemyState _state;
+    /*public enum EnemyState { Idle, Approach, Attack };
+    private EnemyState _state;*/
 
-    [SerializeField] GameObject deathFX;    
-
+    [SerializeField] GameObject deathFX;   
     [SerializeField] int scorePerHit = 10;
     [SerializeField] int health = 20;   
 
@@ -19,22 +18,26 @@ public class Enemy : MonoBehaviour
     bool attacking = false;
 
     Transform target;
-    Transform enemyTran; 
-    float f_RotSpeed = 3.0f;
-
+    Transform enemyTran;
+    GameObject weapon;
+  
+    public Transform[] waypoints;
+    public Transform hardpoint;
+    public GameObject projectile;
+    
     public int enemyDamage = 10;
     public int rotationSpeed = 5;
-    public float moveSpeed = 3.0f;    
+    public float moveSpeed = 3.0f;
     public float maxDist;
     public float fireDist = 30f;
-    public Transform[] waypoints;
-    public float newSpeed;    
 
-    private int waypointId = 0;
+    float newSpeed;
     float timer = 0.0f;
     float currentSpeed;
     float approachSpeed;
     float initSpeed;
+    float f_RotSpeed = 3.0f;
+    int waypointId = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +49,18 @@ public class Enemy : MonoBehaviour
         target = GameObject.FindWithTag("Player").transform;
         enemyTran = GetComponent<Transform>();
         initSpeed = moveSpeed;
+        Patrol();
+    }  
+
+    void FixedUpdate()
+    {        
+        if (target == null)
+        {
+            target = GameObject.FindWithTag("Player").transform;
+        }      
+
+        //followPlayer();
+        PatrolAndChase();
     }
 
     void Patrol()
@@ -67,22 +82,11 @@ public class Enemy : MonoBehaviour
             // if it is then set waypointId to 0 to head towards first waypoint again
             if (waypointId >= waypoints.Length) waypointId = 0;
         }
-     
+
         // move towards the current waypointId's position
         MoveTowards(waypoints[waypointId].position);
         attacking = false;
     }
-
-    void FixedUpdate()
-    {        
-        if (target == null)
-        {
-            target = GameObject.FindWithTag("Player").transform;
-        }      
-
-        //followPlayer();
-        PatrolAndChase();
-    }   
 
     void PatrolAndChase()
     {
@@ -179,13 +183,18 @@ public class Enemy : MonoBehaviour
 
             moveSpeed = Mathf.SmoothStep(currentSpeed, newSpeed, ratio);            
         }
-        
+
+        weapon = Instantiate(projectile, hardpoint.transform.position, Quaternion.identity);
+
+        weapon.transform.LookAt(target.position);
+        weapon.GetComponentInChildren<Rigidbody>().AddForce((weapon.transform.forward) * 9000f);
+
         // odds of player being attacked successfully
         float odds = Random.Range(0.0f, 1.0f);
 
         // was the player attacked?
         if (odds >= 0.0f)
-        {
+        {            
             Debug.Log("player has been attacked");            
         }
         // create delay before attacking again (else would be constant every frame = dead player)
@@ -195,7 +204,7 @@ public class Enemy : MonoBehaviour
         attacking = false;
     }
 
-    IEnumerator SlowSpeedLeave()
+    /*IEnumerator SlowSpeedLeave()
     {
         currentSpeed = moveSpeed;
         newSpeed = initSpeed;
@@ -219,7 +228,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         //GetComponent<PlayerFlightControl>().speed = initSpeed;
-    }
+    }*/
 
     void OnParticleCollision(GameObject other)
     {        
@@ -237,7 +246,7 @@ public class Enemy : MonoBehaviour
     private void KillEnemy()
     {
         hasBeenHit = false;
-        //GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
+        GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
         //fx.transform.parent = parent;
         _spawnManager.EnemyDefeated();
         this.gameObject.SetActive(false);                

@@ -19,7 +19,6 @@ public class PlayerHealth : MonoBehaviour
         _maxHealth = Health;
         if (HealthBar.fillRect != null)
             _targetBar = HealthBar.fillRect.GetComponent<Image>();
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -29,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
     }
     public void GetHit(float hitAmount)
     {
+        
         Health -= hitAmount;
         if (Health <= 0)
         {

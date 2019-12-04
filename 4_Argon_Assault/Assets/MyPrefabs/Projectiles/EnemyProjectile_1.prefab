@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1337395087664796859}
   - component: {fileID: 7891319330564325555}
   - component: {fileID: 3196623874963417450}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Beam PS
-  m_TagString: Missiles
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -222,8 +222,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.7843137, g: 0.75, b: 1, a: 1}
-      maxColor: {r: 0, g: 1, b: 0.88073397, a: 1}
+      minColor: {r: 0.9310001, g: 1, b: 0.023584902, a: 1}
+      maxColor: {r: 1, g: 0, b: 0.1253066, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.2971698, g: 1, b: 0.74980927, a: 0.015686275}
@@ -4765,9 +4765,9 @@ GameObject:
   - component: {fileID: 4333028039671622466}
   - component: {fileID: 1732129307681712250}
   - component: {fileID: 6030254976046203293}
-  m_Layer: 8
-  m_Name: ProjectileUV
-  m_TagString: Missiles
+  m_Layer: 12
+  m_Name: EnemyProjectile_1
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9518,9 +9518,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7264542611995513624}
   - component: {fileID: 7457826780593395762}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Trail
-  m_TagString: Missiles
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9534,7 +9534,7 @@ Transform:
   m_GameObject: {fileID: 2949749221182895626}
   m_LocalRotation: {x: -0.7071068, y: -0.000000014901161, z: -0.0000000018626451,
     w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.011000001, z: 0}
+  m_LocalPosition: {x: 0, y: -0.89, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5469115560928746467}
@@ -9579,7 +9579,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 1
+  m_Time: 0.46
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.2
@@ -9596,7 +9596,7 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
+        time: 0.46270752
         value: 0
         inSlope: -1.7974861
         outSlope: -1.7974861
@@ -9609,20 +9609,20 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.64557576, b: 1, a: 0.69411767}
-      key1: {r: 0.41176474, g: 0.892962, b: 1, a: 0}
-      key2: {r: 0.3915094, g: 1, b: 0.8716233, a: 0}
-      key3: {r: 0.5801887, g: 1, b: 0.9253669, a: 0}
+      key0: {r: 1, g: 0, b: 0.06779289, a: 0.75686276}
+      key1: {r: 1, g: 0.4828682, b: 0, a: 0.40392157}
+      key2: {r: 1, g: 0.8238035, b: 0, a: 0}
+      key3: {r: 1, g: 1, b: 1, a: 0}
       key4: {r: 0.11792451, g: 1, b: 0.8437283, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0.11792451, g: 1, b: 0.8437283, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 25058
-      ctime2: 40863
+      ctime1: 17540
+      ctime2: 35852
       ctime3: 65535
       ctime4: 65535
-      ctime5: 0
+      ctime5: 65535
       ctime6: 0
       ctime7: 0
       atime0: 0
@@ -9659,9 +9659,9 @@ GameObject:
   - component: {fileID: 7458610480186554852}
   - component: {fileID: 7471241364346817921}
   - component: {fileID: 4935764574315803249}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Projectile
-  m_TagString: Missiles
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9675,7 +9675,7 @@ Transform:
   m_GameObject: {fileID: 7224445476210405293}
   m_LocalRotation: {x: 0.7071068, y: 0.000000014901161, z: 0.0000000018626451, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.0712, y: 2.0712, z: 2.0712}
   m_Children:
   - {fileID: 1337395087664796859}
   - {fileID: 7264542611995513624}
@@ -9871,8 +9871,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.7843137, g: 0.75, b: 1, a: 1}
-      maxColor: {r: 0, g: 1, b: 0.88073397, a: 1}
+      minColor: {r: 1, g: 0.7094675, b: 0, a: 1}
+      maxColor: {r: 1, g: 0.276868, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.2971698, g: 1, b: 0.74980927, a: 0.015686275}
@@ -10515,7 +10515,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -13210,8 +13210,8 @@ ParticleSystem:
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
-    multiplyColliderForceByParticleSpeed: 1
-    multiplyColliderForceByCollisionAngle: 1
+    multiplyColliderForceByParticleSpeed: 0
+    multiplyColliderForceByCollisionAngle: 0
     plane0: {fileID: 0}
     plane1: {fileID: 0}
     plane2: {fileID: 0}
@@ -14418,7 +14418,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &7471241364346817921
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14444,5 +14444,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba0bbb5447110d42b2814461493adbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explo: {fileID: 100000, guid: 7315bd7efd619ac4e86bd4f5c3c5e44d, type: 3}
-  radius: 2
+  explo: {fileID: 4961193540616919223, guid: 8c9e94a75251c90499fa4469603f7c01, type: 3}
+  radius: 1

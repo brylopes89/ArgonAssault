@@ -38,9 +38,9 @@ public class bullet : MonoBehaviour {
             Vector3 pos = collisionEvents[i].intersection;
             Collider[] colliders = Physics.OverlapSphere(pos, radius);    
                   
-            Instantiate(explo, pos, Quaternion.identity);          
-
-            Destroy(gameObject);
+            Instantiate(explo, pos, Quaternion.identity);                   
         }
+
+        Destroy(gameObject);
     }
 }

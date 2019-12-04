@@ -172,10 +172,10 @@ public class PlayerShootControl : MonoBehaviour
             if (Physics.Raycast(vRay, out hit, layerMask))
             {
                 vfx1.transform.LookAt(hit.point);
-                if(_index != 1)
-                {
-                    vfx1.GetComponent<Rigidbody>().AddForce((vfx1.transform.forward) * 9000f);
-                }
+                //if(_index != 1)
+                //{
+                    vfx1.GetComponentInChildren<Rigidbody>().AddForce((vfx1.transform.forward) * 9000f);
+                //}
                 //Debug.DrawRay(firePoint[i].transform.position, firePoint[i].transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);                
             }
             else

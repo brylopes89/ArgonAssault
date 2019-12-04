@@ -77,6 +77,24 @@ public class CollisionHandler : MonoBehaviour
         }
     }
 
+    /*private void OnParticleCollision(GameObject other)
+    {
+       
+        isHit = true;
+        Health -= GameObject.FindObjectOfType<Enemy>().EnemyWeaponDamage();
+        HealthBar.value = Health;
+
+        if (Health <= 0)
+        {
+            Health = 0;
+
+            StartDeathSequence();
+            deathFX.SetActive(true);
+            Invoke("ReloadScene", levelLoadDelay);
+        }
+        
+    }*/
+
     void StartDeathSequence()
     {
         print("Wipe yourself off, you dead.");

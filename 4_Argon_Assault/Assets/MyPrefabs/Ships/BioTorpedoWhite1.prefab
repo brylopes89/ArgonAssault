@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3080724805987334163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6598765587385084394}
+  m_Layer: 12
+  m_Name: BioHardPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6598765587385084394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3080724805987334163}
+  m_LocalRotation: {x: -0.000000029802312, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0.146}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4502672127001442605}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4500882467601419503
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,7 +45,7 @@ GameObject:
   - component: {fileID: 391852580}
   - component: {fileID: 1907277953}
   - component: {fileID: 899010296}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: BioTorpedoWhite1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -32,7 +62,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.9996253, z: 0, w: 0.027372014}
   m_LocalPosition: {x: -9.881221, y: -0.690101, z: 3.608141}
   m_LocalScale: {x: 8.99057, y: 8.990568, z: 8.99057}
-  m_Children: []
+  m_Children:
+  - {fileID: 6598765587385084394}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 176.863, z: 0}
@@ -116,9 +147,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4500882467601419503}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 80
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -139,9 +170,22 @@ MonoBehaviour:
   deathFX: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
   scorePerHit: 10
   health: 20
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  hardpoint: {fileID: 6598765587385084394}
+  projectile: {fileID: 2391567169016377180, guid: 036bb825462c80249a5f3dc4be60ed72,
+    type: 3}
+  enemyDamage: 10
   rotationSpeed: 2
   moveSpeed: 30
-  minDist: 0
-  maxDist: 150
-  fireDist: 30
-  waypoints: []
+  maxDist: 250
+  fireDist: 180
