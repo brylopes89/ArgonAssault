@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerShootControl : MonoBehaviour
 {
     [Header("Weapon Damage")]
-    public int weaponDamage = 10;
+    public int weaponDamage;
     public float speed = 50f;
     public float _maxAmmo = 10f;   
     public float _switchDelay = 1.0f;
@@ -176,7 +176,7 @@ public class PlayerShootControl : MonoBehaviour
                 {
                     vfx1.GetComponent<Rigidbody>().AddForce((vfx1.transform.forward) * 9000f);
                 }
-                Debug.DrawRay(firePoint[i].transform.position, firePoint[i].transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);                
+                //Debug.DrawRay(firePoint[i].transform.position, firePoint[i].transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);                
             }
             else
             {
@@ -200,8 +200,12 @@ public class PlayerShootControl : MonoBehaviour
     } 
 
     public int CalculateWeaponDamage()
-    {
+    {        
         int damageDealt = weaponDamage;
+        if (_index == 0)
+            weaponDamage = 5;
+        else
+            weaponDamage = 10;
         return damageDealt;
     }
 }

@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     Transform enemyTran; 
     float f_RotSpeed = 3.0f;
 
+    public int enemyDamage = 10;
     public int rotationSpeed = 5;
     public float moveSpeed = 3.0f;    
     public float maxDist;
@@ -152,9 +153,7 @@ public class Enemy : MonoBehaviour
         // set the x and z axis of rotation to 0 so the agent stands upright (otherwise equals REALLY bad leaning)
        // enemyTran.eulerAngles = new Vector3(0, enemyTran.eulerAngles.y, 0);
 
-        enemyTran.position += enemyTran.forward * moveSpeed * Time.fixedDeltaTime;
-
-        print(targetPosition);
+        enemyTran.position += enemyTran.forward * moveSpeed * Time.fixedDeltaTime;       
     }
 
     IEnumerator Attack()
@@ -249,5 +248,12 @@ public class Enemy : MonoBehaviour
         Collider boxCollider = gameObject.AddComponent<BoxCollider>();
         boxCollider.isTrigger = false;
     }
-    
+
+    public int EnemyWeaponDamage()
+    {
+        int damageDealt = enemyDamage;       
+           
+        return damageDealt;
+    }
+
 }

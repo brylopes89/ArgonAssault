@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
@@ -15,19 +16,34 @@ public class CollisionHandler : MonoBehaviour
     private float initSpeed;
     private float timer;
     private float currentSpeed;
+    private float Health = 100f;
+    private float _maxHealth;
+    private Image _targetBar;
     //private float ratio;
 
     public float triggerEnterSpeed = 0.5f;
     public float triggerLeaveSpeed = 1.0f;
-    
+    public Slider HealthBar;
+
     Transform core_Trans;
 
     bool setBool;
+    bool isHit = false;
 
     private void Start()
     {
         core_Trans = GetComponent<PlayerFlightControl>().actual_model.transform;        
-        initSpeed = GetComponent<PlayerFlightControl>().speed;        
+        initSpeed = GetComponent<PlayerFlightControl>().speed;
+
+        HealthBar.maxValue = Health;
+        _maxHealth = Health;
+        if (HealthBar.fillRect != null)
+            _targetBar = HealthBar.fillRect.GetComponent<Image>();        
+    }
+    private void Update()
+    {
+        MatchAmount();
+        MatchHPbarColor();
     }
 
     void FixedUpdate()
@@ -45,10 +61,19 @@ public class CollisionHandler : MonoBehaviour
     {
         if (other.collider.tag != "Friendly" || other.collider.tag != "Missiles")
         {
-            Debug.Log("Hit by: " + other.gameObject);
-            StartDeathSequence();
-            deathFX.SetActive(true);
-            Invoke("ReloadScene", levelLoadDelay);
+            Debug.Log("Hit by: " + other.gameObject);           
+            isHit = true;
+            Health -= GameObject.FindObjectOfType<Enemy>().EnemyWeaponDamage();
+            HealthBar.value = Health;            
+
+            if (Health <= 0)
+            {
+                Health = 0;         
+                
+                StartDeathSequence();
+                deathFX.SetActive(true);
+                Invoke("ReloadScene", levelLoadDelay);
+            }
         }
     }
 
@@ -152,5 +177,28 @@ public class CollisionHandler : MonoBehaviour
        yield return new WaitForEndOfFrame();
 
         //GetComponent<PlayerFlightControl>().speed = initSpeed;
+    }
+
+    void MatchHPbarColor()
+    {
+        var currentHealthPercentage = (Health * 100) / _maxHealth;
+        if (currentHealthPercentage >= 75)
+        {
+            _targetBar.color = Color.green;
+        }
+        else if (currentHealthPercentage < 75 && currentHealthPercentage >= 25)
+        {
+            _targetBar.color = Color.yellow;
+        }
+        else if (currentHealthPercentage < 25)
+        {
+            _targetBar.color = Color.red;
+        }
+    }
+
+    void MatchAmount()
+    {
+        HealthBar.value = Health;
+        _targetBar.fillAmount = Health / _maxHealth;
     }
 }

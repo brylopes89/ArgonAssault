@@ -13,10 +13,12 @@ public class ScreenManager : MonoBehaviour
         UpdateAmmoText(shootingController._maxAmmo, shootingController._maxAmmo);
     }
 
-    private void Update()
+    void Update()
     {
         if (shootingController._index == 0)
             AmmoText.text = "∞/∞";       
+        else
+            UpdateAmmoText(shootingController._currentAmmo, shootingController._maxAmmo);
     }
     public void UpdateAmmoText(float currentAmmo, float maxAmmo)
     {
