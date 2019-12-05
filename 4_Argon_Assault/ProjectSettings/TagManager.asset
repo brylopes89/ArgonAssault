@@ -16,6 +16,8 @@ TagManager:
   - Missiles
   - Explosion
   - ScreenManager
+  - EnemyWeapon
+  - Waypoints
   layers:
   - Default
   - TransparentFX

@@ -59,7 +59,7 @@ public class CollisionHandler : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.collider.tag != "Friendly" || other.collider.tag != "Enemy")
+        if (other.collider.tag == "Terrain" )
         {
             Debug.Log("Hit by: " + other.gameObject);           
             isHit = true;
@@ -80,12 +80,10 @@ public class CollisionHandler : MonoBehaviour
         if (Health <= 0)
         {
             Health = 0;
-
             StartDeathSequence();
-            deathFX.SetActive(true);
+            GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
             Invoke("ReloadScene", levelLoadDelay);
-        }
-        
+        }        
     }
 
     void StartDeathSequence()
@@ -141,7 +139,6 @@ public class CollisionHandler : MonoBehaviour
 
         targetPlayerRo.eulerAngles = new Vector3(0.0f, transform.rotation.eulerAngles.y, 0.0f);
         targetCoreRo.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-
          
         while (timer < triggerEnterSpeed)
         {

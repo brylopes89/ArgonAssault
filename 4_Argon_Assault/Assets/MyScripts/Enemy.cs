@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class Enemy : MonoBehaviour
@@ -17,11 +18,13 @@ public class Enemy : MonoBehaviour
     bool hasBeenHit = false;
     bool attacking = false;
 
+    GameObject[] waypoints;
+    List<Transform> wayTrans = new List<Transform>();
+
     Transform target;
     Transform enemyTran;
-    GameObject weapon;
+    GameObject weapon; 
   
-    public Transform[] waypoints;
     public Transform hardpoint;
     public GameObject projectile;
     
@@ -35,20 +38,29 @@ public class Enemy : MonoBehaviour
     float timer = 0.0f;
     float currentSpeed;
     float approachSpeed;
-    float initSpeed;
-    float f_RotSpeed = 3.0f;
+    float initSpeed;   
     int waypointId = 0;
 
     // Start is called before the first frame update
     void Start()
-    {
-        //AddBoxCollider();        
+    {        
 
         scoreBoard = FindObjectOfType<ScoreBoard>();
+
         _spawnManager = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
-        target = GameObject.FindWithTag("Player").transform;
+        waypoints = GameObject.FindGameObjectsWithTag("Waypoints");
+
+        foreach (GameObject wayPointTarget in waypoints)
+           {                
+               Transform trans = wayPointTarget.transform;                
+               wayTrans.Add(trans);                
+           }
+
+        target = GameObject.FindWithTag("Player").transform;        
+        
         enemyTran = GetComponent<Transform>();
         initSpeed = moveSpeed;
+
         Patrol();
     }  
 
@@ -73,18 +85,18 @@ public class Enemy : MonoBehaviour
         }
 
         // if distance to waypoint is less than 2 metres then start heading toward next waypoint
-        if (Vector3.Distance(waypoints[waypointId].position, enemyTran.position) < 2)
+        if (Vector3.Distance(wayTrans[waypointId].position, enemyTran.position) < 2)
         {
             // increase waypoint id
             waypointId++;
 
             // make sure new waypointId isn't greater than number of waypoints
             // if it is then set waypointId to 0 to head towards first waypoint again
-            if (waypointId >= waypoints.Length) waypointId = 0;
+            if (waypointId >= wayTrans.Count) waypointId = 0;
         }
 
         // move towards the current waypointId's position
-        MoveTowards(waypoints[waypointId].position);
+        MoveTowards(wayTrans[waypointId].position);
         attacking = false;
     }
 
@@ -256,7 +268,7 @@ public class Enemy : MonoBehaviour
         GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
         //fx.transform.parent = parent;
         _spawnManager.EnemyDefeated();
-        this.gameObject.SetActive(false);                
+        gameObject.SetActive(false);                
     }
 
     public int EnemyWeaponDamage()
