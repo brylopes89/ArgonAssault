@@ -23,11 +23,6 @@ public class bullet : MonoBehaviour {
         collisionEvents = new ParticleCollisionEvent[8];*/
     }
 
-    private void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         ContactPoint contact = collision.contacts[0];

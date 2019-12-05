@@ -36,14 +36,12 @@ public class FlightControllerEditor : Editor
 
 		GUILayout.Label(new GUIContent("Banking", "Visuals only--has no effect on actual movement"));
 
-
 		flightCC.use_banking = EditorGUILayout.BeginToggleGroup(new GUIContent("Use Banking", "The ship will bank when doing turns."), flightCC.use_banking);			
 		
 		flightCC.bank_rotation_speed = EditorGUILayout.FloatField(new GUIContent("Bank Rotation Speed", "Rotation speed along the Z axis when yaw is applied. Higher values will result in snappier banking."), flightCC.bank_rotation_speed);			
 		flightCC.bank_rotation_multiplier = EditorGUILayout.FloatField(new GUIContent("Bank Rotation Multiplier", "Bank amount along the Z axis when yaw is applied."), flightCC.bank_rotation_multiplier);			
 		flightCC.bank_angle_clamp = EditorGUILayout.FloatField(new GUIContent("Bank Angle Clamp", "Maximum angle the spacecraft can rotate along the Z axis."), flightCC.bank_angle_clamp);			
-		EditorGUILayout.EndToggleGroup();
-		
+		EditorGUILayout.EndToggleGroup();		
 		
 		EditorGUILayout.Separator();
 		

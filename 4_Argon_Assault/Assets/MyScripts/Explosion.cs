@@ -5,7 +5,7 @@ using UnityEngine;
 public class Explosion : MonoBehaviour
 {
     private AudioSource _audioSource;
-    public AudioClip projectileSFX;
+    public AudioClip exploSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,7 @@ public class Explosion : MonoBehaviour
     {
         _audioSource = gameObject.AddComponent<AudioSource>();
         _audioSource.volume = 0.2f;
-        _audioSource.PlayOneShot(projectileSFX);
+        _audioSource.PlayOneShot(exploSFX);
     }
 
     // Update is called once per frame

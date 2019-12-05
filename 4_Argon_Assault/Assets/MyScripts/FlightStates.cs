@@ -46,6 +46,8 @@ public class FlightStates : MonoBehaviour
 
     bool isTransitioning = false;
 
+    AudioSource source;
+    
     void Awake()
     {
         
@@ -62,6 +64,8 @@ public class FlightStates : MonoBehaviour
 
         groundPos = player_Rig.transform.position;            
         groundRot = player_Rig.transform.rotation;
+
+        source = GetComponent<AudioSource>();
 
        // rb.freezeRotation = true;
         //rb.isKinematic = false;
@@ -195,10 +199,14 @@ public class FlightStates : MonoBehaviour
         anim.SetTrigger("TakeOffTrigger");
         anim.SetBool("IsFlying", true);
 
+        source.enabled = true;
+        source.loop = true;
 
         yield return new WaitForSeconds(5.0f);
 
-        anim.SetBool("IsLiftOff", false);      
+        anim.SetBool("IsLiftOff", false);
+        source.enabled = false;
+        source.loop = false;
         
         rb.freezeRotation = false;
         isTransitioning = false;        

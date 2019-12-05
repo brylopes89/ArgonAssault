@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
+using System.Collections;
 
-[System.Serializable]
+[Serializable]
 public class PlayerFlightControl : MonoBehaviour
 {
     //"Objects", "For the main ship Game Object and weapons"));
@@ -49,12 +49,15 @@ public class PlayerFlightControl : MonoBehaviour
     bool roll_exists = true;
     bool isControlEnabled = true;
 
+    //public AudioClip thrust;
+    AudioSource audioSource;
     //---------------------------------------------------------------------------------
 
     void Start()
     {       
         mousePos = new Vector2(0, 0);
-        DZ = CustomPointer.instance.deadzone_radius;        
+        DZ = CustomPointer.instance.deadzone_radius;
+        GetSound();
 
         roll = 0; //Setting this equal to 0 here as a failsafe in case the roll axis is not set up.
 
@@ -128,12 +131,16 @@ public class PlayerFlightControl : MonoBehaviour
 
             if (Input.GetAxis("Thrust") > 0)//If input on the thrust axis is positive, activate afterburners.
             {
-                IncreaseThrust();                
+                IncreaseThrust();
+                audioSource.enabled = true;
+                audioSource.loop = true;
             }
 
             else //Otherwise, hold normal speed.
             {
                 DecreaseThrust();
+                audioSource.enabled = false;
+                audioSource.loop = false;
                 
             }
         }
@@ -160,6 +167,7 @@ public class PlayerFlightControl : MonoBehaviour
     {
         afterburner_Active = true;       
         currentMag = Mathf.Lerp(currentMag, afterburner_speed, thrust_transition_speed * Time.deltaTime);
+        
         //print(currentMag);
     }
 
@@ -236,5 +244,13 @@ public class PlayerFlightControl : MonoBehaviour
         roll_exists = false;
         this.GetComponent<Rigidbody>().useGravity = true;
         this.GetComponent<Rigidbody>().mass = 100;
+    }
+
+    void GetSound()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.enabled = false;
+        audioSource.loop = false;
+        //audioSource.clip = thrust;
     }
 }
