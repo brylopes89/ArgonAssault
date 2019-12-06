@@ -18,6 +18,7 @@ TagManager:
   - ScreenManager
   - EnemyWeapon
   - Waypoints
+  - Second Camera
   layers:
   - Default
   - TransparentFX

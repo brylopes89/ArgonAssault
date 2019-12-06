@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2613851827084083901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9057224615078060220}
+  - component: {fileID: 5644631665198804554}
+  - component: {fileID: 7621345528527851805}
+  - component: {fileID: 8887567808880354169}
+  m_Layer: 0
+  m_Name: AudioListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9057224615078060220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2613851827084083901}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -147.08151, y: -11.267555, z: -264.7977}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5644631665198804554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2613851827084083901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3646bae60f87510448aa571117d1f677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  shipMix: {fileID: 24100000, guid: 33c9dcb757adb324980db7c727e5e9cf, type: 2}
+  enemyMix: {fileID: 24100000, guid: ba1e58827ee476a49bb7155f35f40c16, type: 2}
+  worldMix: {fileID: 24100000, guid: 535f2bdde2017de47bfe8a61e4cf8924, type: 2}
+  Enemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Engine:
+  - {fileID: 0}
+  - {fileID: 0}
+  projectiles: []
+  Thrusters: []
+  Score:
+  - {fileID: 8300000, guid: db72334ba3f7445408043d100fa2c277, type: 3}
+  - {fileID: 8300000, guid: 2e17b6caae4b26c4fbd943401f580cbd, type: 3}
+--- !u!81 &7621345528527851805
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2613851827084083901}
+  m_Enabled: 1
+--- !u!114 &8887567808880354169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2613851827084083901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61e0632ad86bd4f48bd1b57106473468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

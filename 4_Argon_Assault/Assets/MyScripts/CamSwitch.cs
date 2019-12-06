@@ -31,8 +31,8 @@ public class CamSwitch : MonoBehaviour
         {
             cam3.SetActive(true);
 
-            cam1.GetComponent<AudioListener>().enabled = false;
-            cam2.GetComponent<AudioListener>().enabled = false;
+            //cam1.GetComponent<AudioListener>().enabled = false;
+            //cam2.GetComponent<AudioListener>().enabled = false;
 
             cam1.GetComponent<Camera>().enabled = false;
             cam2.GetComponent<Camera>().enabled = false;
@@ -41,8 +41,8 @@ public class CamSwitch : MonoBehaviour
         {
             cam3.SetActive(false);
 
-            cam1.GetComponent<AudioListener>().enabled = true;
-            cam2.GetComponent<AudioListener>().enabled = true;
+            //cam1.GetComponent<AudioListener>().enabled = true;
+            //cam2.GetComponent<AudioListener>().enabled = true;
 
             cam1.GetComponent<Camera>().enabled = true;
             cam2.GetComponent<Camera>().enabled = true;

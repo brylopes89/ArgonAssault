@@ -3,18 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class bullet : MonoBehaviour {
-
-    private ParticleSystem ps;
-    //public List<ParticleCollisionEvent> CollisionEvents; 
-    public ParticleCollisionEvent[] collisionEvents;
-
+   
     public GameObject explo;   
-
-    public float radius = 1f;       
-
-    private LayerMask _shootableMask;
-
-    public float speed;
 
     // Use this for initialization
     private void Start()

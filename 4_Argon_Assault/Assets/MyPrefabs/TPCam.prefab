@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1394933679563340571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1394933679563340568}
+  - component: {fileID: 1394933679563340569}
+  - component: {fileID: 1394933679563340583}
+  - component: {fileID: 1394933679563340582}
+  - component: {fileID: 1394933679563340581}
+  m_Layer: 8
+  m_Name: TPCam
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1394933679563340568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394933679563340571}
+  m_LocalRotation: {x: -0.062343985, y: 0.015923439, z: -0.0014063157, w: -0.9979267}
+  m_LocalPosition: {x: 7.700018, y: 47.49002, z: -16.58001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1394933679563340569
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394933679563340571}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 30000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!114 &1394933679563340583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394933679563340571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ebfb170970604408291b4728c5244d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointerTexture: {fileID: 2800000, guid: 15ed754deb91fa04c94e9a55b18a2dba, type: 3}
+  use_mouse_input: 0
+  use_gamepad_input: 1
+  pointer_returns_to_center: 1
+  instant_snapping: 0
+  center_speed: 5
+  center_lock: 0
+  invert_y_axis: 1
+  deadzone_radius: 8
+  thumbstick_speed_modifier: 8
+  mouse_sensitivity_modifier: 15
+  deadzone_rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+--- !u!114 &1394933679563340582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394933679563340571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558f791b0ffe35843a4f202585a772ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  control: {fileID: 0}
+  follow_distance: 35
+  camera_elevation: 3
+  follow_tightness: 5
+  rotation_tightness: 13
+  afterburner_Shake_Amount: 2
+  yawMultiplier: 0.005
+  shake_on_afterburn: 1
+--- !u!114 &1394933679563340581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394933679563340571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3646bae60f87510448aa571117d1f677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  shipMix: {fileID: 24100000, guid: 33c9dcb757adb324980db7c727e5e9cf, type: 2}
+  enemyMix: {fileID: 24100000, guid: ba1e58827ee476a49bb7155f35f40c16, type: 2}
+  worldMix: {fileID: 24100000, guid: 535f2bdde2017de47bfe8a61e4cf8924, type: 2}
+  Enemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Engine:
+  - {fileID: 0}
+  - {fileID: 0}
+  projectiles: []
+  Thrusters: []
+  Score:
+  - {fileID: 8300000, guid: db72334ba3f7445408043d100fa2c277, type: 3}
+  - {fileID: 8300000, guid: 2e17b6caae4b26c4fbd943401f580cbd, type: 3}

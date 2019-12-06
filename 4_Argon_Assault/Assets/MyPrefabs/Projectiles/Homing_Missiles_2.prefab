@@ -13241,7 +13241,7 @@ ParticleSystem:
     radiusScale: 2
     collidesWith:
       serializedVersion: 2
-      m_Bits: 1587
+      m_Bits: 5683
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -14305,7 +14305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  maxSpeed: 100
+  maxSpeed: 200
   homingDelay: 1
   targetSelection: 1
   dyingRange: 1
@@ -14324,8 +14324,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explo: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
-  radius: 5
-  speed: 0
 --- !u!82 &6129808188336525896
 AudioSource:
   m_ObjectHideFlags: 0

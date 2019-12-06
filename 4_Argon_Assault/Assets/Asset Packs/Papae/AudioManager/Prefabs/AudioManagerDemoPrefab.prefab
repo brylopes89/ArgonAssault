@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9048060012946630593
+--- !u!1 &196566
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,55 +8,79 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9048060012946630595}
-  - component: {fileID: 9048060012946630592}
-  - component: {fileID: 9048060012946630594}
+  - component: {fileID: 458446}
+  - component: {fileID: 11400768}
+  - component: {fileID: 8206584}
   m_Layer: 0
-  m_Name: Music Player
+  m_Name: AudioManagerDemoPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9048060012946630595
+--- !u!4 &458446
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9048060012946630593}
+  m_GameObject: {fileID: 196566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11846.015, y: 245.52472, z: -172.79083}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &9048060012946630592
+--- !u!114 &11400768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 628916370, guid: 68135b2644f4fbc409ccc6450987c123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _musicOn: 1
+  _musicVolume: 1
+  _useMusicVolOnStart: 0
+  _musicMixerGroup: {fileID: 24349138, guid: 51baf33ee1b075e449123bf69dbe2b82, type: 2}
+  _volumeOfMusicMixer: BGMVol
+  _soundFxOn: 1
+  _soundFxVolume: 1
+  _useSfxVolOnStart: 0
+  _soundFxMixerGroup: {fileID: 24371536, guid: 51baf33ee1b075e449123bf69dbe2b82, type: 2}
+  _volumeOfSFXMixer: SFXVol
+  _playlist:
+  - {fileID: 8300000, guid: 848ab852a074d0f439ab7646110f1455, type: 3}
+  - {fileID: 8300000, guid: 2703c3060f1c05d43b37b8fbd6129227, type: 3}
+--- !u!82 &8206584
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9048060012946630593}
+  m_GameObject: {fileID: 196566}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 8217911944970264905, guid: 33c9dcb757adb324980db7c727e5e9cf,
-    type: 2}
-  m_audioClip: {fileID: 8300000, guid: db72334ba3f7445408043d100fa2c277, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.519
-  m_Pitch: 1
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 3
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 90
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -98,7 +122,7 @@ AudioSource:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -113,7 +137,7 @@ AudioSource:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -128,16 +152,4 @@ AudioSource:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &9048060012946630594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9048060012946630593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61e0632ad86bd4f48bd1b57106473468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+    m_RotationOrder: 0

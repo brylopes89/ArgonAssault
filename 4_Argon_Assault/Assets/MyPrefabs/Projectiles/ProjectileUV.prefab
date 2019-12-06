@@ -9820,8 +9820,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explo: {fileID: 100000, guid: 7315bd7efd619ac4e86bd4f5c3c5e44d, type: 3}
-  radius: 4.54
-  speed: 0
 --- !u!114 &102122808468140471
 MonoBehaviour:
   m_ObjectHideFlags: 0

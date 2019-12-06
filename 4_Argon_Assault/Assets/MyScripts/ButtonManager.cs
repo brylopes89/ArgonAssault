@@ -8,7 +8,12 @@ public class ButtonManager : MonoBehaviour
 {
     public GameObject loadingScreen;
     public Slider slider;
-    public Text progressText;
+    public Text progressText;   
+
+    private void Start()
+    {
+        //SoundManager.TrackSettings(0, PlayerSoundScript., "Score1", 0.5f, true);
+    }
 
     public void NewGameButton(int sceneIndex)
     {
@@ -18,7 +23,7 @@ public class ButtonManager : MonoBehaviour
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-
+        print(sceneIndex);
         loadingScreen.SetActive(true);
 
         while (!operation.isDone)
