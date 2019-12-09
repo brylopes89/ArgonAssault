@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour {
 
-    public AudioSource audioSource;
-    public AudioClip pickUpSound;
+    private AudioSource audioSource;    
     public ParticleSystem pickUpParticles;
 
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        
+    }
     private void OnTriggerEnter(Collider go) 
     {
         if (go.gameObject.tag == "Player")
         {
-            //audioSource = GetComponent<AudioSource>();            
 
-            audioSource.PlayOneShot(pickUpSound);
+            
+            audioSource.PlayOneShot(audioSource.clip);
 
             pickUpParticles.Play();
 
@@ -22,7 +27,7 @@ public class PickUp : MonoBehaviour {
 
             print("I have " + PlayerInventory.keyCount + " keys!");
 
-            Destroy(gameObject);
+            Destroy(gameObject, .1f);
         } 
     }
 

@@ -79,20 +79,21 @@ public class PlayerShootControl : MonoBehaviour
             StartCoroutine(SwitchAfterDelay(_index));            
         }      
                 
-        if (Input.GetButton("Fire1") && !_isReloading && Time.time >= _nextTimeToFire && _currentAmmo > 0)
+        if (Input.GetButton("Fire1") && !_isReloading && Time.time >= _nextTimeToFire)
         {            
             if (_index == 0)
             {
                 _fireRate = 4f;
+                Fire();
             }
-            else if (_index == 1)
+            else if(_index == 1 && _currentAmmo > 0)
             {
                 _fireRate = 1f;
                 _currentAmmo--;
                 _screenManager.UpdateAmmoText(_currentAmmo, _maxAmmo);
+                Fire();
             }
-            _nextTimeToFire = Time.time + 1f / _fireRate;
-            Fire();
+            _nextTimeToFire = Time.time + 1f / _fireRate;          
         }
 
         if (Input.GetButtonDown("Reload") || Input.GetKeyDown(KeyCode.R))
@@ -104,9 +105,10 @@ public class PlayerShootControl : MonoBehaviour
 
     IEnumerator StartReloading()
     {
+      
         _isReloading = true;
         _isShooting = false;
-        slider.SetActive(true);
+        slider.SetActive(true);              
 
         yield return new WaitForSeconds(4f);
 

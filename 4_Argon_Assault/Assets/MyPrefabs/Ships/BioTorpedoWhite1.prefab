@@ -175,10 +175,12 @@ MonoBehaviour:
   projectile: {fileID: 2391567169016377180, guid: 036bb825462c80249a5f3dc4be60ed72,
     type: 3}
   enemyDamage: 10
+  fireDist: 180
+  maxDist: 250
   rotationSpeed: 2
   moveSpeed: 30
-  maxDist: 250
-  fireDist: 180
+  itemDrop: {fileID: 1056057303131983127, guid: 939cdfc13e7a3a4478abfaec28208ff3,
+    type: 3}
 --- !u!114 &1832833344866226370
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -132,10 +132,12 @@ MonoBehaviour:
   projectile: {fileID: 2391567169016377180, guid: 75d889066c595874cb921c2d3b24660f,
     type: 3}
   enemyDamage: 10
+  fireDist: 200
+  maxDist: 500
   rotationSpeed: 2
   moveSpeed: 30
-  maxDist: 500
-  fireDist: 200
+  itemDrop: {fileID: 1056057303131983127, guid: 939cdfc13e7a3a4478abfaec28208ff3,
+    type: 3}
 --- !u!64 &8029652518563873126
 MeshCollider:
   m_ObjectHideFlags: 0

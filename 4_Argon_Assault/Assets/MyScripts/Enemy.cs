@@ -4,35 +4,36 @@ using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
-    /*public enum EnemyState { Idle, Approach, Attack };
-    private EnemyState _state;*/
-
     [SerializeField] GameObject deathFX;   
     [SerializeField] int scorePerHit = 10;
-    [SerializeField] int health = 20;   
+    [SerializeField] int health = 20;
+
+    [Space][Header("Enemy Weapons")]
+    public Transform hardpoint;
+    public GameObject projectile;
+    public int enemyDamage = 10;
+
+    [Space][Header("Enemy Position")]
+    public float fireDist = 30f;
+    public float maxDist;
+    public int rotationSpeed = 5;
+    public float moveSpeed = 3.0f;
+
+    [Space]
+    public GameObject itemDrop;
 
     ScoreBoard scoreBoard;
     EnemySpawnManager _spawnManager;
+    GameObject[] waypoints;
+    List<Transform> wayTrans = new List<Transform>();
+    Transform target;
+    Transform enemyTran;
+    GameObject weapon;
 
     bool hasBeenHit = false;
     bool attacking = false;
 
-    GameObject[] waypoints;
-    List<Transform> wayTrans = new List<Transform>();
-
-    Transform target;
-    Transform enemyTran;
-    GameObject weapon; 
-  
-    public Transform hardpoint;
-    public GameObject projectile;
-    
-    public int enemyDamage = 10;
-    public int rotationSpeed = 5;
-    public float moveSpeed = 3.0f;
-    public float maxDist;
-    public float fireDist = 30f;
-
+    const float m_dropChance = 1f / 12f;
     float newSpeed;
     float timer = 0.0f;
     float currentSpeed;
@@ -264,8 +265,13 @@ public class Enemy : MonoBehaviour
     private void KillEnemy()
     {
         hasBeenHit = false;
-        GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
-        //fx.transform.parent = parent;
+
+        if(Random.Range(0f,1f) <= m_dropChance)
+        {
+            Instantiate(itemDrop, transform.position, Quaternion.identity);
+        }        
+        Instantiate(deathFX, transform.position, Quaternion.identity);
+        
         _spawnManager.EnemyDefeated();
         gameObject.SetActive(false);                
     }
