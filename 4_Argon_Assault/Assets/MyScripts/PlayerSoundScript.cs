@@ -44,7 +44,7 @@ public class PlayerSoundScript : MonoBehaviour
             inSecondScene = true;
 
             //SoundManager.FadeOutCaller(0, 0.05f);
-            SoundManager.ChangeMusicCaller(1, 0.05f, Score[1]);
+           // SoundManager.ChangeMusicCaller(1, 0.05f, Score[1]);
         }
 
         

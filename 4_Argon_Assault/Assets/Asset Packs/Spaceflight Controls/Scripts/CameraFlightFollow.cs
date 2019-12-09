@@ -27,11 +27,6 @@ public class CameraFlightFollow : MonoBehaviour {
 	
 	}
 
-    void Start()
-    {
-        
-    }
-
     void FixedUpdate () {
 
 		if (target == null) {
@@ -54,11 +49,11 @@ public class CameraFlightFollow : MonoBehaviour {
 
         //Get the difference between the current location and the target's current location.
         Vector3 thirdDiff = target.position - transform.position;
+        
         //Move the camera towards the new position.
         transform.position = Vector3.Lerp(transform.position, thirdPos, Time.deltaTime * follow_tightness);        
 
-        Quaternion newRotation;
-        
+        Quaternion newRotation;        
         
         if (control.afterburner_Active && shake_on_afterburn)
         {
@@ -72,8 +67,7 @@ public class CameraFlightFollow : MonoBehaviour {
         else
         {
             //Look towards the targeter
-            newRotation = Quaternion.LookRotation(thirdDiff, target.up);
-          
+            newRotation = Quaternion.LookRotation(thirdDiff, target.up);          
         }
 
         transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rotation_tightness);

@@ -15,10 +15,10 @@ GameObject:
   - component: {fileID: 8029652519102690560}
   - component: {fileID: 8029652518563873131}
   - component: {fileID: 8029652518563873126}
-  - component: {fileID: 5286583223257313582}
+  - component: {fileID: 8171859638011259250}
   m_Layer: 9
   m_Name: AlienDestroyerWhite
-  m_TagString: Enemy
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +150,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 5c929a1e7e6053f499c799f0b76fc965, type: 3}
---- !u!114 &5286583223257313582
+--- !u!114 &8171859638011259250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,16 +159,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8028221343771684168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffb96d46c9faf604daaecc81b51d90ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 411060de4483b5e4c9847cd3cbc18554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_targetIconOnScreen: {fileID: 21300000, guid: df869c0fd588c2d4eac768f0b5993023,
-    type: 3}
-  m_targetIconOffScreen: {fileID: 21300000, guid: 89a22c6c59b438a48b5701a20edb12c9,
-    type: 3}
-  m_edgeBuffer: 0
-  m_targetIconScale: {x: 1, y: 1, z: 1}
-  ShowDebugLines: 0
+  targetColor: {r: 0.40210342, g: 0.9150943, b: 0.056114297, a: 1}
+  needBoxIndicator: 1
+  needArrowIndicator: 1
+  needDistanceText: 1
 --- !u!1 &8029652519514929976
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class CollisionHandler : MonoBehaviour
     private float initSpeed;
     private float timer;
     private float currentSpeed;
-    private float Health = 100f;
+    private float Health = 120000f;
     private float _maxHealth;
     private Image _targetBar;
     //private float ratio;

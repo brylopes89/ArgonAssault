@@ -8,7 +8,8 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 	public class ParticleHomingMultiTarget : MonoBehaviour {
 		[Tooltip("Target objects. If this parameter is undefined it will assume the attached object itself which creates self chasing particle effect.")]
 		private GameObject[] targets;
-		[Tooltip("How fast the particle is guided to the index target.")]
+        private GameObject target;
+        [Tooltip("How fast the particle is guided to the index target.")]
 		public float speed = 10f;
 		[Tooltip("Cap the maximum speed to prevent particle from being flung too far from the missed target.")]
 		public float maxSpeed = 50f;
@@ -22,19 +23,23 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 		private ParticleSystem _ps_system;
 		private ParticleSystem.TriggerModule _ps_trigger;
 		private ParticleSystem.Particle[] _ps_particles;
-		private int index;        
+		private int index;
+        private int enemiesLeft;
+        //create public property for enemy manager
+        //EnemyManager.activeEnemies        
+        //Have enemy disable enemy object in enemy manager
 
         private List<Transform> enemyTrans = new List<Transform>();
        
         public float minDist;
         public float maxDist = 250;      
 
-        void OnEnable() {
+        void OnEnable() {          
 
             targets = GameObject.FindGameObjectsWithTag("Enemy");
 
             foreach (GameObject target in targets)
-            {                
+            {
                 Transform trans = target.transform;                
                 enemyTrans.Add(trans);                
             }
@@ -47,7 +52,12 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 			for (int i = 0; i < enemyTrans.Count; i++) {
 				_ps_trigger.SetCollider(i, enemyTrans[i].GetComponent<Collider>());
 			}
-		}   
+		}
+
+        private void Start()
+        {
+            
+        }
 
         void LateUpdate()
         {			

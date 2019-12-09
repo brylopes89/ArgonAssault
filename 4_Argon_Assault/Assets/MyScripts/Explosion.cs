@@ -10,14 +10,16 @@ public class Explosion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetupSound();
+        SetupSound();        
     }
 
     private void SetupSound()
-    {
+    {       
         _audioSource = gameObject.AddComponent<AudioSource>();
         _audioSource.volume = 0.2f;
         _audioSource.PlayOneShot(exploSFX);
+        
+        Destroy(gameObject, exploSFX.length);
     }
 
     // Update is called once per frame

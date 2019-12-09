@@ -5,8 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Ignore
-  - Anim
   - Parent
   - Friendly
   - Terrain
@@ -19,6 +17,8 @@ TagManager:
   - EnemyWeapon
   - Waypoints
   - Second Camera
+  - Target
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -33,7 +33,7 @@ TagManager:
   - Terrain
   - Landing Pad
   - Enemy
-  - 
+  - Interactive
   - 
   - 
   - 

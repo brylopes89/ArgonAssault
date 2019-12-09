@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1394933679563340569}
   - component: {fileID: 1394933679563340583}
   - component: {fileID: 1394933679563340582}
-  - component: {fileID: 1394933679563340581}
   m_Layer: 8
   m_Name: TPCam
   m_TagString: MainCamera
@@ -127,31 +126,3 @@ MonoBehaviour:
   afterburner_Shake_Amount: 2
   yawMultiplier: 0.005
   shake_on_afterburn: 1
---- !u!114 &1394933679563340581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1394933679563340571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3646bae60f87510448aa571117d1f677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  shipMix: {fileID: 24100000, guid: 33c9dcb757adb324980db7c727e5e9cf, type: 2}
-  enemyMix: {fileID: 24100000, guid: ba1e58827ee476a49bb7155f35f40c16, type: 2}
-  worldMix: {fileID: 24100000, guid: 535f2bdde2017de47bfe8a61e4cf8924, type: 2}
-  Enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Engine:
-  - {fileID: 0}
-  - {fileID: 0}
-  projectiles: []
-  Thrusters: []
-  Score:
-  - {fileID: 8300000, guid: db72334ba3f7445408043d100fa2c277, type: 3}
-  - {fileID: 8300000, guid: 2e17b6caae4b26c4fbd943401f580cbd, type: 3}

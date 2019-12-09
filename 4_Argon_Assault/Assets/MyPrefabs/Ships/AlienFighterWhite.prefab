@@ -45,10 +45,10 @@ GameObject:
   - component: {fileID: 2019031379867257804}
   - component: {fileID: 2019031379314148347}
   - component: {fileID: 2019031379314148348}
-  - component: {fileID: 3433800029460683582}
+  - component: {fileID: 8184791938633842099}
   m_Layer: 9
   m_Name: AlienFighterWhite
-  m_TagString: Enemy
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,7 +179,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.9192556
   m_Center: {x: 0.0000019073486, y: -0.09811362, z: -0.30685076}
---- !u!114 &3433800029460683582
+--- !u!114 &8184791938633842099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,13 +188,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2019529848275811941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffb96d46c9faf604daaecc81b51d90ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 411060de4483b5e4c9847cd3cbc18554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_targetIconOnScreen: {fileID: 21300000, guid: df869c0fd588c2d4eac768f0b5993023,
-    type: 3}
-  m_targetIconOffScreen: {fileID: 21300000, guid: 89a22c6c59b438a48b5701a20edb12c9,
-    type: 3}
-  m_edgeBuffer: 0
-  m_targetIconScale: {x: 1, y: 1, z: 1}
-  ShowDebugLines: 0
+  targetColor: {r: 0.40210342, g: 0.9150943, b: 0.056114297, a: 1}
+  needBoxIndicator: 1
+  needArrowIndicator: 1
+  needDistanceText: 1

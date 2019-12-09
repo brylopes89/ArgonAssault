@@ -32,6 +32,8 @@ public class EnemyPathfinding : MonoBehaviour
 
     void ObstacleAvoidance(Vector3 direction, float offsetX)
     {
+        EscapeDirections.Clear();
+
         RaycastHit[] hit = Rays(direction, offsetX);
 
         for (int i = 0; i < hit.Length - 1; i++)

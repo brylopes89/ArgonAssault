@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] int health = 20;   
 
     ScoreBoard scoreBoard;
-    SpawnManager _spawnManager;
+    EnemySpawnManager _spawnManager;
 
     bool hasBeenHit = false;
     bool attacking = false;
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
 
         scoreBoard = FindObjectOfType<ScoreBoard>();
 
-        _spawnManager = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
+        _spawnManager = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<EnemySpawnManager>();
         waypoints = GameObject.FindGameObjectsWithTag("Waypoints");
 
         foreach (GameObject wayPointTarget in waypoints)
@@ -117,16 +117,16 @@ public class Enemy : MonoBehaviour
         // if player is within 30m and angle is greater than 130 then begin chasing the player
         if (approachDis)// && angle > 130
         {
-            Debug.Log("Within approach distance");
+            //Debug.Log("Within approach distance");
             // move towards the players position
             MoveTowards (target.position);
 
             // attack the player ONLY if not already attacking
             if (!attacking && attackDis)
             {                
-                Debug.Log("Within Attack Range");
+                //Debug.Log("Within Attack Range");
                 StartCoroutine(ApproachSpeed());
-                Fire();
+                //Fire();
             }
             else if (!attacking)
             {               
@@ -213,7 +213,7 @@ public class Enemy : MonoBehaviour
         // was the player attacked?
         if (odds >= 0.0f)
         {            
-            Debug.Log("player has been attacked");            
+            //Debug.Log("player has been attacked");            
         }
         // create delay before attacking again (else would be constant every frame = dead player)
         yield return new WaitForSeconds(1);

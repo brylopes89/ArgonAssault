@@ -150,8 +150,7 @@ public class PlayerShootControl : MonoBehaviour
         int layerMask = 1 << 10;
         layerMask = ~layerMask;
 
-        _isShooting = true;
-       
+        _isShooting = true;       
 
         for (int i = 0; i < firePoint.Count; i++)
         {

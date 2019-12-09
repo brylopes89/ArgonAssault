@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 391852580}
   - component: {fileID: 1907277953}
   - component: {fileID: 899010296}
-  - component: {fileID: 5443788869530756593}
+  - component: {fileID: 1832833344866226370}
   m_Layer: 9
   m_Name: BioTorpedoWhite1
   m_TagString: Enemy
@@ -179,7 +179,7 @@ MonoBehaviour:
   moveSpeed: 30
   maxDist: 250
   fireDist: 180
---- !u!114 &5443788869530756593
+--- !u!114 &1832833344866226370
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,13 +188,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4500882467601419503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffb96d46c9faf604daaecc81b51d90ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 411060de4483b5e4c9847cd3cbc18554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_targetIconOnScreen: {fileID: 21300000, guid: df869c0fd588c2d4eac768f0b5993023,
-    type: 3}
-  m_targetIconOffScreen: {fileID: 21300000, guid: 89a22c6c59b438a48b5701a20edb12c9,
-    type: 3}
-  m_edgeBuffer: 0
-  m_targetIconScale: {x: 1, y: 1, z: 1}
-  ShowDebugLines: 0
+  targetColor: {r: 0.40210342, g: 0.9150943, b: 0.056114297, a: 1}
+  needBoxIndicator: 1
+  needArrowIndicator: 1
+  needDistanceText: 1

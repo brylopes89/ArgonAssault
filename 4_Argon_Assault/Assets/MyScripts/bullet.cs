@@ -19,6 +19,7 @@ public class bullet : MonoBehaviour {
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
         Vector3 pos = contact.point;
         Instantiate(explo, pos, rot);
+        Destroy(transform.parent.gameObject);
     }
 
     /* public void OnParticleCollision(GameObject other)
@@ -39,6 +40,7 @@ public class bullet : MonoBehaviour {
              Collider[] colliders = Physics.OverlapSphere(pos, radius);    
 
              Instantiate(explo, pos, Quaternion.identity);
+
          }        
      }*/
 }

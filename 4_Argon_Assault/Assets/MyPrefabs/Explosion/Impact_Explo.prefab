@@ -4819,4 +4819,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de1dbb350f62054a8f7f947bd07a72e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSFX: {fileID: 8300000, guid: 3e213f4573e1cb84eb52c9dad58db1a5, type: 3}
+  exploSFX: {fileID: 8300000, guid: 3e213f4573e1cb84eb52c9dad58db1a5, type: 3}
