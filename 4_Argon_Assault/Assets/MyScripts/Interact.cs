@@ -16,6 +16,11 @@ public class Interact : MonoBehaviour {
 
     Ray vRay;
 
+    private void Start()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -29,8 +34,6 @@ public class Interact : MonoBehaviour {
         // If we hit something...
         if (Physics.Raycast(vRay, out objectHit, rayLength, layerMask))
         {
-           // print("I hit " + objectHit.transform.name); //this is one way to print the objectHit name. Could also use objectHit.collider.name
-
             if (Input.GetKeyDown(KeyCode.E))
             {
                 ObjInteraction(curObj);

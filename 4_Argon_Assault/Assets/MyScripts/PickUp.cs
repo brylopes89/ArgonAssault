@@ -6,11 +6,13 @@ public class PickUp : MonoBehaviour {
 
     private AudioSource audioSource;    
     public ParticleSystem pickUpParticles;
-
+    private ScreenManager _screenManager;    
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        _screenManager = GameObject.FindWithTag("ScreenManager").GetComponent<ScreenManager>();
+        //amountLeft = FindObjectOfType<Interact>();
         
     }
     private void OnTriggerEnter(Collider go) 
@@ -24,6 +26,10 @@ public class PickUp : MonoBehaviour {
             pickUpParticles.Play();
 
             PlayerInventory.keyCount++;
+            if(PlayerInventory.keyCount <= _screenManager.amountLeft.keysNeeded)
+            {
+                _screenManager.UpdateItemText(PlayerInventory.keyCount, _screenManager.amountLeft.keysNeeded);
+            }            
 
             print("I have " + PlayerInventory.keyCount + " keys!");
 

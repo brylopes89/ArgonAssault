@@ -4,13 +4,18 @@ using UnityEngine.UI;
 public class ScreenManager : MonoBehaviour
 {
     public Text AmmoText;
-    PlayerShootControl shootingController;
+    public Text itemText;
+
+    PlayerShootControl shootingController;    
+    [HideInInspector] public Interact amountLeft;    
 
     void Start()
     {        
-        shootingController = FindObjectOfType<PlayerShootControl>();
+        shootingController = FindObjectOfType<PlayerShootControl>();        
+        amountLeft = FindObjectOfType<Interact>();
         
         UpdateAmmoText(shootingController._maxAmmo, shootingController._maxAmmo);
+        UpdateItemText(PlayerInventory.keyCount, amountLeft.keysNeeded);
     }
 
     void Update()
@@ -23,5 +28,9 @@ public class ScreenManager : MonoBehaviour
     public void UpdateAmmoText(float currentAmmo, float maxAmmo)
     {
         AmmoText.text = currentAmmo + "/" + maxAmmo;              
+    }
+    public void UpdateItemText(float currentKeys, float maxKeys)
+    {
+        itemText.text = currentKeys + "/" + maxKeys;
     }
 }
