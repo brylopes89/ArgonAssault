@@ -12,11 +12,6 @@ public class ButtonManager : MonoBehaviour
     public Text progressText;
     private CustomPointer pointer;
 
-    private void Start()
-    {
-       
-       
-    }
     public void NewGameButton(int sceneIndex)
     {        
         StartCoroutine(LoadAsynchronously(sceneIndex));                       

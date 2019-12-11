@@ -12,11 +12,14 @@ public class Wave
 public class EnemySpawnManager : MonoBehaviour
 {
     public Wave[] Waves; // class to hold information per wave    
+    
 
     public Transform[] spawnPoints;
     public float TimeBetweenEnemies = 2f;
-
     public int _enemiesInWaveLeft;
+
+    GameManager _gameManager;    
+
     int _totalEnemiesInCurrentWave;    
     int _spawnedEnemies;
 
@@ -26,6 +29,8 @@ public class EnemySpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _gameManager = GetComponentInParent<GameManager>();
+
         _currentWave = -1; // avoid off by 1
         _totalWaves = Waves.Length - 1; // adjust, because we're using 0 index        
         
@@ -35,9 +40,11 @@ public class EnemySpawnManager : MonoBehaviour
     void StartNextWave()
     {
         _currentWave++;
+        print("Wave number : " + _currentWave);
 
         if (_currentWave > _totalWaves)
         {
+            _gameManager.Victory();
             return;
         }
         _totalEnemiesInCurrentWave = Waves[_currentWave].EnemiesPerWave;
@@ -51,7 +58,7 @@ public class EnemySpawnManager : MonoBehaviour
     {
         //var enemyIndex = Random.Range(0, enemyArray.Count);
         // var currentEnemyCount = spawnee.Length;   
-        GameObject enemy = Waves[_currentWave].Enemy;
+        GameObject _enemy = Waves[_currentWave].Enemy;
 
         while (_spawnedEnemies < _totalEnemiesInCurrentWave)
         {
@@ -61,10 +68,19 @@ public class EnemySpawnManager : MonoBehaviour
             int spawnPointIndex = Random.Range(0, spawnPoints.Length);
 
             // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
-            Instantiate(enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+            if(!_gameManager.isVictory)
+                Instantiate(_enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+            if(_gameManager.isVictory && _spawnedEnemies > 0)
+            {
+                
+            }
+
             yield return new WaitForSeconds(TimeBetweenEnemies);
         }
+     
         yield return null;
+
+        
     }
 
     public void EnemyDefeated() // called by an enemy when they're defeated

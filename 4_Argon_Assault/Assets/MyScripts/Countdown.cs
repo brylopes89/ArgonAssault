@@ -5,50 +5,58 @@ using UnityEngine.SceneManagement;
 
 public class Countdown : MonoBehaviour
 {
-    public float timeLeft = 5.0f;
+    public float gameTime = 240f;
+    public float restartTime = 5f;
     public bool stop = true;
+    public Text[] text;
+    public Animator isGameOver;
 
-    private float minutes;
-    private float seconds;
+    private float gameMinutes;
+    private float restartMinutes;
+    private float gameSeconds;
+    private float restartSeconds;
+    private int index = 0;    
 
-    public Text text;
-
-    public void startTimer(float from)
+    private void Start()
     {
-        stop = false;
-        timeLeft = from;
-        Update();
-        StartCoroutine(updateCoroutine());
+          
     }
 
     void Update()
     {        
+        if (stop)
+            return;
 
-        if (stop) return;
-        timeLeft -= Time.deltaTime;
+        gameTime -= Time.deltaTime;
 
-        minutes = Mathf.Floor(timeLeft / 60);
-        seconds = timeLeft % 60;
-        if (seconds > 59) seconds = 59;
-        if (minutes < 0)
+        if (isGameOver.GetCurrentAnimatorStateInfo(0).IsName("GameOver"))
+            restartTime -= Time.deltaTime;
+
+        gameMinutes = Mathf.Floor(gameTime / 60);
+        restartMinutes = Mathf.Floor(restartTime / 60);
+
+        gameSeconds = gameTime % 60;
+        restartSeconds = restartTime % 60;
+
+        if (gameSeconds > 59)
+            gameSeconds = 59;
+
+        if (gameMinutes < 0)
         {
             stop = true;
-            minutes = 0;
-            seconds = 0;
+            gameMinutes = 0;
+            gameSeconds = 0;           
         }
 
-        text.text = string.Format("Time Left : {0:0}:{1:00}", minutes, seconds);
-        //        fraction = (timeLeft * 100) % 100;
-    }
-
-    IEnumerator updateCoroutine()
-    {
-        while (!stop)
+        if(restartMinutes < 0)
         {
-            text.text = string.Format("{0:0}:{1:00}", minutes, seconds);
-            
-            yield return new WaitForSeconds(0.2f);
+            stop = true;
+            restartMinutes = 0;
+            restartSeconds = 0;
+            SceneManager.LoadScene(1);
         }
-    }
 
+        text[0].text = string.Format("{0:0}:{1:00}", gameMinutes, gameSeconds);
+        text[1].text = string.Format("Restarting In : {1:00}", restartMinutes, restartSeconds);        
+    }
 }

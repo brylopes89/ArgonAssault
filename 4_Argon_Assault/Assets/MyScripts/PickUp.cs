@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour {
 
-    private AudioSource audioSource;    
     public ParticleSystem pickUpParticles;
+
+    private GameManager _gameManager;
+    private AudioSource audioSource;        
     private ScreenManager _screenManager;    
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        _screenManager = GameObject.FindWithTag("ScreenManager").GetComponent<ScreenManager>();
-        //amountLeft = FindObjectOfType<Interact>();
+        _screenManager = FindObjectOfType<ScreenManager>();
+        _gameManager = FindObjectOfType<GameManager>();        
         
     }
     private void OnTriggerEnter(Collider go) 
@@ -28,6 +30,11 @@ public class PickUp : MonoBehaviour {
             if(PlayerInventory.keyCount <= _screenManager.amountLeft.keysNeeded)
             {
                 _screenManager.UpdateItemText(PlayerInventory.keyCount, _screenManager.amountLeft.keysNeeded);
+
+                if(PlayerInventory.keyCount == _screenManager.amountLeft.keysNeeded)
+                {
+                    _gameManager.Victory();
+                }
             }                    
 
             Destroy(gameObject, .1f);

@@ -62,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 4500882467601419503}
   m_LocalRotation: {x: 0, y: 0.9996253, z: 0, w: 0.027372014}
   m_LocalPosition: {x: -9.881221, y: -0.690101, z: 3.608141}
-  m_LocalScale: {x: 8.99057, y: 8.990568, z: 8.99057}
+  m_LocalScale: {x: 8.990588, y: 8.990568, z: 8.990589}
   m_Children:
   - {fileID: 6598765587385084394}
   m_Father: {fileID: 0}
@@ -169,12 +169,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathFX: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
-  scorePerHit: 10
-  health: 20
+  scorePerHit: 50
+  health: 60
+  m_dropChance: 0.1
   hardpoint: {fileID: 6598765587385084394}
   projectile: {fileID: 2391567169016377180, guid: 036bb825462c80249a5f3dc4be60ed72,
     type: 3}
-  enemyDamage: 10
+  enemyDamage: 40
   fireDist: 180
   maxDist: 250
   rotationSpeed: 2

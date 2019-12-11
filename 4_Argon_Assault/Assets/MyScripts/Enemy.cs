@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject deathFX;   
     [SerializeField] int scorePerHit = 10;
     [SerializeField] int health = 20;
+    public float m_dropChance = 1f / 10f;
 
     [Space][Header("Enemy Weapons")]
     public Transform hardpoint;
@@ -33,7 +34,7 @@ public class Enemy : MonoBehaviour
     bool hasBeenHit = false;
     bool attacking = false;
 
-    const float m_dropChance = 1f / 10f;
+    
     float newSpeed;
     float timer = 0.0f;
     float currentSpeed;
@@ -47,7 +48,7 @@ public class Enemy : MonoBehaviour
 
         scoreBoard = FindObjectOfType<ScoreBoard>();
 
-        _spawnManager = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<EnemySpawnManager>();
+        _spawnManager = FindObjectOfType<EnemySpawnManager>();
         waypoints = GameObject.FindGameObjectsWithTag("Waypoints");
 
         foreach (GameObject wayPointTarget in waypoints)
