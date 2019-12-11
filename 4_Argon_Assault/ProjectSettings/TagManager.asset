@@ -19,6 +19,7 @@ TagManager:
   - Second Camera
   - Target
   - Item
+  - ShootManager
   layers:
   - Default
   - TransparentFX

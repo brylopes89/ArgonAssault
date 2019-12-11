@@ -8,8 +8,6 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
     [Tooltip("In seconds")] [SerializeField] float levelLoadDelay = 2f;
-    [Tooltip("FX pefab on player")] [SerializeField] GameObject deathFX;
-
     [SerializeField] private List<Animator> anims = new List<Animator>();
   
     private float targetSpeed = 6.0f;
@@ -18,32 +16,23 @@ public class CollisionHandler : MonoBehaviour
     private float currentSpeed;
     private float Health = 200f;
     private float _maxHealth;
+    private bool setBool;
+    private PlayerHealth currentHealth;
+
+    [HideInInspector] public bool isHit = false;
+
     private Image _targetBar;
-    //private float ratio;
+    private Transform core_Trans;
+    
 
     public float triggerEnterSpeed = 0.5f;
-    public float triggerLeaveSpeed = 1.0f;
-    public Slider HealthBar;
-
-    Transform core_Trans;
-
-    bool setBool;
-    bool isHit = false;
+    public float triggerLeaveSpeed = 1.0f;    
 
     private void Start()
     {
         core_Trans = GetComponent<PlayerFlightControl>().actual_model.transform;        
         initSpeed = GetComponent<PlayerFlightControl>().speed;
-
-        HealthBar.maxValue = Health;
-        _maxHealth = Health;
-        if (HealthBar.fillRect != null)
-            _targetBar = HealthBar.fillRect.GetComponent<Image>();        
-    }
-    private void Update()
-    {
-        MatchAmount();
-        MatchHPbarColor();
+        currentHealth = GetComponent<PlayerHealth>();
     }
 
     void FixedUpdate()
@@ -61,37 +50,11 @@ public class CollisionHandler : MonoBehaviour
     {
         if (other.collider.tag == "Terrain" )
         {
-            Debug.Log("Hit by: " + other.gameObject);           
             isHit = true;
-            Health -= 0;
-            HealthBar.value = Health;
-            StartDeathSequence();
-            GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
-            Invoke("ReloadScene", levelLoadDelay);            
+            currentHealth.Health = 0;
+            currentHealth.StartDeathSequence();                   
         }
     }
-
-    private void OnParticleCollision(GameObject other)
-    {       
-        isHit = true;
-        Health -= GameObject.FindObjectOfType<Enemy>().EnemyWeaponDamage();
-        HealthBar.value = Health;
-
-        if (Health <= 0)
-        {
-            Health = 0;
-            StartDeathSequence();
-            GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
-            Invoke("ReloadScene", levelLoadDelay);
-        }        
-    }
-
-    void StartDeathSequence()
-    {
-        print("Wipe yourself off, you dead.");
-        SendMessage("OnPlayerDeath");
-    }
-
     void ReloadScene() // string referenced
     {
         SceneManager.LoadScene(1);
@@ -185,28 +148,5 @@ public class CollisionHandler : MonoBehaviour
        yield return new WaitForEndOfFrame();
 
         //GetComponent<PlayerFlightControl>().speed = initSpeed;
-    }
-
-    void MatchHPbarColor()
-    {
-        var currentHealthPercentage = (Health * 100) / _maxHealth;
-        if (currentHealthPercentage >= 75)
-        {
-            _targetBar.color = Color.green;
-        }
-        else if (currentHealthPercentage < 75 && currentHealthPercentage >= 25)
-        {
-            _targetBar.color = Color.yellow;
-        }
-        else if (currentHealthPercentage < 25)
-        {
-            _targetBar.color = Color.red;
-        }
-    }
-
-    void MatchAmount()
-    {
-        HealthBar.value = Health;
-        _targetBar.fillAmount = Health / _maxHealth;
     }
 }

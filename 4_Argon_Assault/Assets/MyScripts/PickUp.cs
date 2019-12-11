@@ -19,7 +19,6 @@ public class PickUp : MonoBehaviour {
     {
         if (go.gameObject.tag == "Player")
         {
-
             
             audioSource.PlayOneShot(audioSource.clip);
 
@@ -29,9 +28,7 @@ public class PickUp : MonoBehaviour {
             if(PlayerInventory.keyCount <= _screenManager.amountLeft.keysNeeded)
             {
                 _screenManager.UpdateItemText(PlayerInventory.keyCount, _screenManager.amountLeft.keysNeeded);
-            }            
-
-            print("I have " + PlayerInventory.keyCount + " keys!");
+            }                    
 
             Destroy(gameObject, .1f);
         } 

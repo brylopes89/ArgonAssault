@@ -35,6 +35,8 @@ public class PlayerFlightControl : MonoBehaviour
     public bool afterburner_Active = false; //True if afterburners are on.
     [HideInInspector]
     public bool slow_Active = false; //True if brakes are on
+    [HideInInspector]
+    public bool defeated = false;
 
     float distFromVertical; //Distance in pixels from the vertical center of the screen.
     float distFromHorizontal; //Distance in pixel from the horizontal center of the screen.
@@ -44,10 +46,10 @@ public class PlayerFlightControl : MonoBehaviour
     float DZ = 0; //Deadzone, taken from CustomPointer.
     public float currentMag = 0f; //Current speed/magnitude       
 
-    bool thrust_exists = true;
+    public bool thrust_exists = true;
     bool brake_exists = true;
     bool roll_exists = true;
-    bool isControlEnabled = true;
+    
 
     //public AudioClip thrust;
     AudioSource audioSource;
@@ -101,20 +103,20 @@ public class PlayerFlightControl : MonoBehaviour
             return;
         }
 
-        currentMag = GetComponent<Rigidbody>().velocity.magnitude; //Getting the current speed.               
-       
-        if (isControlEnabled)
+        currentMag = GetComponent<Rigidbody>().velocity.magnitude; //Getting the current speed.            
+        
+        if (!defeated)
         {
             updateCursorPosition();
-            RollInput();                  
+            RollInput();
             ProcessAxisInput();
-            RigidBodyValues(); //Apply all these values to the rigidbody on the container.                        
-            
+            RigidBodyValues();
+
             if (use_banking)
             {
                 updateBanking(); //Calculate banking.
             }
-        }     
+        }    
     }
 
     private void RigidBodyValues()
@@ -234,16 +236,6 @@ public class PlayerFlightControl : MonoBehaviour
         //Apply the rotation to the gameobject that contains the model.
         actual_model.transform.rotation = Quaternion.Slerp(actual_model.transform.rotation, newRotation, bank_rotation_speed * Time.deltaTime);
 
-    }
-
-    void OnPlayerDeath() // called by string reference
-    {
-        isControlEnabled = false;
-        thrust_exists = false;
-        brake_exists = false;
-        roll_exists = false;
-        this.GetComponent<Rigidbody>().useGravity = true;
-        this.GetComponent<Rigidbody>().mass = 100;
     }
 
     void GetSound()

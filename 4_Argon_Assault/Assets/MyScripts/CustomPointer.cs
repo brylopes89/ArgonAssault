@@ -56,7 +56,6 @@ public class CustomPointer : MonoBehaviour {
 			
 		if (!use_mouse_input && !use_gamepad_input)
 			Debug.LogError("(FlightControls) No input method selected! See the Custom Pointer script on the Main Camera and select either mouse or gamepad.");		
-
 	}
 	
 	// Update is called once per frame

@@ -26,7 +26,7 @@ public class ParticleEmission : MonoBehaviour
        // CurveIncrease(true);
     }   
 
-    void CurveIncrease(bool isActive)
+    public void CurveIncrease(bool isActive)
     {
         foreach(ParticleSystem ps in particleSystems)
         {

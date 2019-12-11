@@ -192,8 +192,7 @@ public class FlightStates : MonoBehaviour
         state = FlightState.Flight;
 
         rb.freezeRotation = true;
-        isTransitioning = true;
-        Debug.Log("takeoff");                
+        isTransitioning = true;                        
         
         anim.SetBool("IsLiftOff", true);        
         anim.SetTrigger("TakeOffTrigger");
@@ -219,9 +218,6 @@ public class FlightStates : MonoBehaviour
         {
             yield break;
         }
-
-        Debug.Log("land");
-        
         
         isTransitioning = true;
 

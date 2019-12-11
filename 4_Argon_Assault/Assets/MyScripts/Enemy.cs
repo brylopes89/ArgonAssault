@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
     bool hasBeenHit = false;
     bool attacking = false;
 
-    const float m_dropChance = 1f / 12f;
+    const float m_dropChance = 1f / 10f;
     float newSpeed;
     float timer = 0.0f;
     float currentSpeed;
@@ -127,7 +127,7 @@ public class Enemy : MonoBehaviour
             {                
                 //Debug.Log("Within Attack Range");
                 StartCoroutine(ApproachSpeed());
-                //Fire();
+                Fire();
             }
             else if (!attacking)
             {               

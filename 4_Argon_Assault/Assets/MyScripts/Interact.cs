@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; //now gives you access to the function of level load
+using UnityEngine.EventSystems;
 
 public class Interact : MonoBehaviour {
 
@@ -13,12 +14,13 @@ public class Interact : MonoBehaviour {
     private GameObject curObj;
     private RaycastHit objectHit;
     private Material savedMaterial;
+    private GameOverManager restartGame;
 
     Ray vRay;
 
     private void Start()
     {
-        
+        restartGame = FindObjectOfType<GameOverManager>();
     }
 
     // Update is called once per frame
@@ -34,9 +36,9 @@ public class Interact : MonoBehaviour {
         // If we hit something...
         if (Physics.Raycast(vRay, out objectHit, rayLength, layerMask))
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetButtonDown("Submit") && !EventSystem.current.IsPointerOverGameObject())
             {
-                ObjInteraction(curObj);
+                Debug.Log(objectHit.transform.name);
             }            
 
             if (curObj == null) // == is a check. IF we hit something, and curObj is not assigned a gameobject, then...
@@ -47,6 +49,7 @@ public class Interact : MonoBehaviour {
                 savedMaterial = curObj.GetComponent<Renderer>().material;
 
                 curObj.GetComponent<Renderer>().material = highlightMaterial; //assigns curObj to material (the white material highlight)
+                
             }
 
             if (curObj != null && curObj != objectHit.transform.gameObject) // != not equal to. This is staying if the game object your currently looking at is not the same as the original object, then nullify it.

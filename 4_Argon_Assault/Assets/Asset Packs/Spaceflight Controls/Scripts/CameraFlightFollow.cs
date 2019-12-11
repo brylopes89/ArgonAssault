@@ -6,9 +6,12 @@ using System.Collections;
 public class CameraFlightFollow : MonoBehaviour {
 
 	public Transform target; //What the camera looks at. Generally the targeter.
-    
+    //public Transform itemDrop;
+
 	public PlayerFlightControl control; //The PlayerFlightControl script that is in play.
-	
+
+    public float item_distance = 50.0f;
+
 	public float follow_distance = 3.0f; //How far behind the camera will follow the targeter.
 	public float camera_elevation = 3.0f; //How high the camera will rise above the targeter's Z axis.
 	public float follow_tightness = 5.0f; //How closely the camera will follow the target. Higher values are snappier, lower results in a more lazy follow.
@@ -49,9 +52,13 @@ public class CameraFlightFollow : MonoBehaviour {
 
         //Get the difference between the current location and the target's current location.
         Vector3 thirdDiff = target.position - transform.position;
+
+        //Vector3 itemDiff = itemDrop.position - transform.position;
         
         //Move the camera towards the new position.
-        transform.position = Vector3.Lerp(transform.position, thirdPos, Time.deltaTime * follow_tightness);        
+        transform.position = Vector3.Lerp(transform.position, thirdPos, Time.deltaTime * follow_tightness);
+
+       
 
         Quaternion newRotation;        
         
@@ -73,4 +80,9 @@ public class CameraFlightFollow : MonoBehaviour {
         transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rotation_tightness);
     }
 
+    /*bool WithinApproachRange()
+    {
+        var distance = (itemDrop.position - transform.position).magnitude;
+        return distance < item_distance;
+    }*/
 }

@@ -5,38 +5,58 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public Slider HealthBar;
-    private float Health = 120f;
-    private float _maxHealth;
-    private Image _targetBar;
+    [Tooltip("FX pefab on player")] [SerializeField] GameObject deathFX;
+    public Slider HealthBar;   
+    public float Health = 120f;       
 
-    bool isHit = false;
+    private float _maxHealth;
+    private Image _targetBar;   
+    private GameManager _gameManager;
+    
 
     // Start is called before the first frame update
     void Start()
-    {
+    {       
+        _gameManager = FindObjectOfType<GameManager>();
+
         HealthBar.maxValue = Health;
         _maxHealth = Health;
         if (HealthBar.fillRect != null)
             _targetBar = HealthBar.fillRect.GetComponent<Image>();
+
+        MatchAmount();
+        MatchHPbarColor();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void Update()
     {
-        isHit = true;
-        Health -= GameObject.FindObjectOfType<Enemy>().EnemyWeaponDamage();
+        MatchAmount();
+        MatchHPbarColor();
     }
-    public void GetHit(float hitAmount)
+
+    private void OnParticleCollision(GameObject other)
     {
-        
-        Health -= hitAmount;
-        if (Health <= 0)
+        if (Health > 0)
         {
-            Health = 0;
+            Health -= GameObject.FindObjectOfType<Enemy>().EnemyWeaponDamage();
             HealthBar.value = Health;
-            MatchHPbarColor();
-        }            
+        }
+
+        if (Health <= 0)
+        {                            
+            StartDeathSequence();    
+        }    
     }
+
+    public void StartDeathSequence()
+    {
+        Health = 0;
+        print("Wipe yourself off, you dead.");
+        GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
+        _gameManager.GameOver();
+        //Invoke("ReloadScene", levelLoadDelay);
+    }
+
     void MatchHPbarColor()
     {
         var currentHealthPercentage = (Health * 100) / _maxHealth;
@@ -55,7 +75,8 @@ public class PlayerHealth : MonoBehaviour
     }
 
     void MatchAmount()
-    {
+    {        
+        HealthBar.value = Health;
         _targetBar.fillAmount = Health / _maxHealth;
     }
 }
