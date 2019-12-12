@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 8028221343771684168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.9678238, y: 18.945614, z: 4.647245}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 6.825091, y: 6.825086, z: 6.825091}
   m_Children:
   - {fileID: 8029652519514929977}
   m_Father: {fileID: 0}
@@ -127,18 +127,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathFX: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
   scorePerHit: 10
-  health: 20
+  health: 150
   m_dropChance: 0.3
   hardpoint: {fileID: 8029652519514929977}
   projectile: {fileID: 2391567169016377180, guid: 75d889066c595874cb921c2d3b24660f,
     type: 3}
-  enemyDamage: 10
-  fireDist: 200
-  maxDist: 500
-  rotationSpeed: 2
-  moveSpeed: 50
+  enemyDamage: 40
+  fireDist: 300
+  maxDist: 400
+  rotationSpeed: 8
+  moveSpeed: 45
   itemDrop: {fileID: 1056057303131983127, guid: 939cdfc13e7a3a4478abfaec28208ff3,
     type: 3}
+  attacking: 0
 --- !u!64 &8029652518563873126
 MeshCollider:
   m_ObjectHideFlags: 0

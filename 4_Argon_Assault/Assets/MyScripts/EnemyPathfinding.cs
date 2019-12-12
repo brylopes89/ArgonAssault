@@ -27,7 +27,7 @@ public class EnemyPathfinding : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        ObstacleAvoidance(transform.forward, 0);
+        //ObstacleAvoidance(transform.forward, 0);
     }
 
     void ObstacleAvoidance(Vector3 direction, float offsetX)

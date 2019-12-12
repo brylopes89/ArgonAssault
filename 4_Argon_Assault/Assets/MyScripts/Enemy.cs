@@ -32,9 +32,8 @@ public class Enemy : MonoBehaviour
     GameObject weapon;
 
     bool hasBeenHit = false;
-    bool attacking = false;
+    public bool attacking = false;
 
-    
     float newSpeed;
     float timer = 0.0f;
     float currentSpeed;
@@ -47,9 +46,8 @@ public class Enemy : MonoBehaviour
     {        
 
         scoreBoard = FindObjectOfType<ScoreBoard>();
-
-        _spawnManager = FindObjectOfType<EnemySpawnManager>();
         waypoints = GameObject.FindGameObjectsWithTag("Waypoints");
+        _spawnManager = FindObjectOfType<EnemySpawnManager>();        
 
         foreach (GameObject wayPointTarget in waypoints)
            {                
@@ -66,18 +64,13 @@ public class Enemy : MonoBehaviour
     }  
 
     void FixedUpdate()
-    {        
-        if (target == null)
-        {
-            target = GameObject.FindWithTag("Player").transform;
-        }      
-
-        //followPlayer();
+    {             
         PatrolAndChase();
     }
 
     void Patrol()
     {
+        
         // if no waypoints have been assigned
         if (waypoints.Length == 0)
         {
@@ -86,7 +79,7 @@ public class Enemy : MonoBehaviour
         }
 
         // if distance to waypoint is less than 2 metres then start heading toward next waypoint
-        if (Vector3.Distance(wayTrans[waypointId].position, enemyTran.position) < 2)
+        if (Vector3.Distance(wayTrans[waypointId].position, enemyTran.position) < 10)
         {
             // increase waypoint id
             waypointId++;
@@ -98,7 +91,9 @@ public class Enemy : MonoBehaviour
 
         // move towards the current waypointId's position
         MoveTowards(wayTrans[waypointId].position);
+
         attacking = false;
+
     }
 
     void PatrolAndChase()
@@ -125,21 +120,21 @@ public class Enemy : MonoBehaviour
 
             // attack the player ONLY if not already attacking
             if (!attacking && attackDis)
-            {                
+            {
                 //Debug.Log("Within Attack Range");
                 StartCoroutine(ApproachSpeed());
+
                 Fire();
             }
-            else if (!attacking)
-            {               
-                // player is "out of sight"
-                MoveTowards(target.position);
+            else if(!attacking)
+            {                                          
+                MoveTowards(target.position);                
             }
+            
         }
-        else
-        {
-            //StartCoroutine(SlowSpeedLeave());
-            Patrol();
+        else //if(!approachDis)
+        {            
+            Patrol();            
             // if attacking, then toggle to stop
         }
     }
@@ -161,7 +156,7 @@ public class Enemy : MonoBehaviour
         var lookPos = target.position - enemyTran.position;
         var rotation = Quaternion.LookRotation(lookPos);
         //Find Distance to target        
-
+        
         // calculate the direction to waypoint
         Vector3 direction = targetPosition - enemyTran.position;
 
@@ -182,7 +177,7 @@ public class Enemy : MonoBehaviour
 
         Rigidbody weaponRigid = weapon.GetComponentInChildren<Rigidbody>();
 
-        weaponRigid.AddForce((transform.forward) * 9000f);
+        weaponRigid.AddForce((transform.forward) * 1000f);
     }
 
     IEnumerator ApproachSpeed()
@@ -207,21 +202,12 @@ public class Enemy : MonoBehaviour
             }
 
             moveSpeed = Mathf.SmoothStep(currentSpeed, newSpeed, ratio);            
-        }             
-
-        // odds of player being attacked successfully
-        float odds = Random.Range(0.0f, 1.0f);
-
-        // was the player attacked?
-        if (odds >= 0.0f)
-        {            
-            //Debug.Log("player has been attacked");            
         }
-        // create delay before attacking again (else would be constant every frame = dead player)
-        yield return new WaitForSeconds(1);
 
-        // allow attacking again
+        yield return new WaitForSeconds(1f);
+
         attacking = false;
+
     }
 
     /*IEnumerator SlowSpeedLeave()

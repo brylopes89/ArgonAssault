@@ -62,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 4500882467601419503}
   m_LocalRotation: {x: 0, y: 0.9996253, z: 0, w: 0.027372014}
   m_LocalPosition: {x: -9.881221, y: -0.690101, z: 3.608141}
-  m_LocalScale: {x: 8.990588, y: 8.990568, z: 8.990589}
+  m_LocalScale: {x: 61.361584, y: 61.36141, z: 61.36159}
   m_Children:
   - {fileID: 6598765587385084394}
   m_Father: {fileID: 0}
@@ -176,12 +176,13 @@ MonoBehaviour:
   projectile: {fileID: 2391567169016377180, guid: 036bb825462c80249a5f3dc4be60ed72,
     type: 3}
   enemyDamage: 40
-  fireDist: 180
-  maxDist: 250
-  rotationSpeed: 2
+  fireDist: 300
+  maxDist: 450
+  rotationSpeed: 10
   moveSpeed: 30
   itemDrop: {fileID: 1056057303131983127, guid: 939cdfc13e7a3a4478abfaec28208ff3,
     type: 3}
+  attacking: 1
 --- !u!114 &1832833344866226370
 MonoBehaviour:
   m_ObjectHideFlags: 0

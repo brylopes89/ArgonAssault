@@ -56,16 +56,20 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 
         private void Start()
         {
-            
+            if (targets != null)
+            {
+                Debug.Log("No targets!");
+                return;
+            }
         }
-
-        void LateUpdate()
+        void Update()
         {			
 			//If you are not changing target during runtime, skip this:            
-			for (int i = 0; i < enemyTrans.Count; i++)
+			for (int i = 0; i < enemyTrans.Count - 1; i++)
             {
                 if (enemyTrans[i] == null)
                 {
+                    Debug.Log("No targets");
                     return;
                 }
                 else
@@ -77,57 +81,66 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 			_ps_particles = new ParticleSystem.Particle[_ps_system.main.maxParticles];
 			int numParticlesAlive = _ps_system.GetParticles(_ps_particles);
 
-			for (int i = 0; i < numParticlesAlive; i++)
-            {                
-				float[] dist = new float[enemyTrans.Count];
-
-				switch (targetSelection) {
-					case TSOP.random:
-
-						index = Mathf.Abs((int) _ps_particles[i].randomSeed) % enemyTrans.Count;
-						break;
-						
-					case TSOP.closest:
-						for (int j = 0; j < enemyTrans.Count; j++) {
-							dist[j] = Vector3.Distance(_ps_particles[i].position, enemyTrans[j].position);                            
-						}
-						//index = System.Array.IndexOf(dist, dist.Min());// slower than comparing in foreach.
-						float minValue = float.MaxValue;
-						int minindex = -1;
-						index = -1;
-						foreach (float num in dist) {
-							minindex++;                            
-							if (num < minValue) {
-								minValue = num;
-								index = minindex;                            
-							}                               
-                        }
-						break;
-				}
-				//Debug.Log(index);
-				float ted = (enemyTrans[index].position - this.transform.position).sqrMagnitude + 0.001f;
-				Vector3 diff = enemyTrans[index].position - _ps_particles[i].position;
-				float diffsqrm = diff.sqrMagnitude;
-				float face = Vector3.Dot(_ps_particles[i].velocity.normalized, diff.normalized);
-				float f = Mathf.Abs((ted - diffsqrm)/ted) * ted * (face + 1.001f);
-				//_ps_particles[i].velocity = Vector3.ClampMagnitude(_ps_particles[i].velocity + diff * speed * 0.01f * f, maxSpeed);
-				float t=0;
-                t += Time.deltaTime / (homingDelay * 0.01f + 0.0001f);
-
-                if (diff.magnitude < maxDist)
-                {                    
-                    _ps_particles[i].velocity = Vector3.ClampMagnitude(Vector3.Slerp(_ps_particles[i].velocity, _ps_particles[i].velocity + diff * speed * 0.01f * f, t), maxSpeed);
-                }
-                else
+            if(target != null)
+            {
+                for (int i = 0; i < numParticlesAlive; i++)
                 {
-                    //_ps_particles[i].velocity = transform.forward * _ps_particles[i].velocity.magnitude;
+
+                    float[] dist = new float[enemyTrans.Count - 1];
+
+                    switch (targetSelection)
+                    {
+                        case TSOP.random:
+
+                            index = Mathf.Abs((int)_ps_particles[i].randomSeed) % enemyTrans.Count - 1;
+                            break;
+
+                        case TSOP.closest:
+                            for (int j = 0; j < enemyTrans.Count - 1; j++)
+                            {
+                                dist[j] = Vector3.Distance(_ps_particles[i].position, enemyTrans[j].position);
+                            }
+                            //index = System.Array.IndexOf(dist, dist.Min());// slower than comparing in foreach.
+                            float minValue = float.MaxValue;
+                            int minindex = -1;
+                            index = -1;
+                            foreach (float num in dist)
+                            {
+                                minindex++;
+                                if (num < minValue)
+                                {
+                                    minValue = num;
+                                    index = minindex;
+                                }
+                            }
+                            break;
+                    }
+                    //Debug.Log(index);
+                    float ted = (enemyTrans[index].position - this.transform.position).sqrMagnitude + 0.001f;
+                    Vector3 diff = enemyTrans[index].position - _ps_particles[i].position;
+                    float diffsqrm = diff.sqrMagnitude;
+                    float face = Vector3.Dot(_ps_particles[i].velocity.normalized, diff.normalized);
+                    float f = Mathf.Abs((ted - diffsqrm) / ted) * ted * (face + 1.001f);
+                    //_ps_particles[i].velocity = Vector3.ClampMagnitude(_ps_particles[i].velocity + diff * speed * 0.01f * f, maxSpeed);
+                    float t = 0;
+                    t += Time.deltaTime / (homingDelay * 0.01f + 0.0001f);
+
+                    if (diff.magnitude < maxDist)
+                    {
+                        _ps_particles[i].velocity = Vector3.ClampMagnitude(Vector3.Slerp(_ps_particles[i].velocity, _ps_particles[i].velocity + diff * speed * 0.01f * f, t), maxSpeed);
+                    }
+                    else
+                    {
+                        //_ps_particles[i].velocity = transform.forward * _ps_particles[i].velocity.magnitude;
+                    }
+
+                    /*if (Vector3.Distance(_ps_particles[i].position, enemyTrans[index].position) < dyingRange) {
+                        //_ps_particles[i].lifetime = 0f;// Before Unity 5.5
+                        _ps_particles[i].remainingLifetime = 0f;// Since Unity 5.5
+                    }*/
                 }
-				
-				/*if (Vector3.Distance(_ps_particles[i].position, enemyTrans[index].position) < dyingRange) {
-					//_ps_particles[i].lifetime = 0f;// Before Unity 5.5
-					_ps_particles[i].remainingLifetime = 0f;// Since Unity 5.5
-				}*/				
-			}
+            }
+            
 			_ps_system.SetParticles(_ps_particles, numParticlesAlive);
 		}
 

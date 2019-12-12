@@ -111,7 +111,6 @@ GameObject:
   - component: {fileID: 8972263134087611111}
   - component: {fileID: 8972263134087611104}
   - component: {fileID: 4343990672413840891}
-  - component: {fileID: 2818671752990428733}
   m_Layer: 5
   m_Name: Game_Over
   m_TagString: Untagged
@@ -205,8 +204,8 @@ CanvasGroup:
   m_GameObject: {fileID: 8972263134087611106}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!223 &4343990672413840891
 Canvas:
@@ -229,23 +228,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &2818671752990428733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8972263134087611106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1 &8972263135018138349
 GameObject:
   m_ObjectHideFlags: 0

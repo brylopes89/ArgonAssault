@@ -123,9 +123,7 @@ public class CustomPointer : MonoBehaviour {
 		
 	
 	}
-	
-	
-	
+
 	void OnGUI() {
 		//Draw the pointer texture.
 		if (pointerTexture != null && !center_lock)

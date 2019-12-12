@@ -5,17 +5,21 @@ public class ScreenManager : MonoBehaviour
 {
     public Text AmmoText;
     public Text itemText;
+    public Text waveText;
 
     PlayerShootControl shootingController;    
-    [HideInInspector] public Interact amountLeft;    
+    [HideInInspector] public Interact amountLeft;
+    [HideInInspector] public EnemySpawnManager waveCount;
 
     void Start()
     {        
         shootingController = FindObjectOfType<PlayerShootControl>();        
         amountLeft = FindObjectOfType<Interact>();
+        waveCount = FindObjectOfType<EnemySpawnManager>();
         
         UpdateAmmoText(shootingController._maxAmmo, shootingController._maxAmmo);
         UpdateItemText(PlayerInventory.keyCount, amountLeft.keysNeeded);
+        UpdateWaveText(waveCount._currentWave + 1, waveCount._totalWaves + 1);
     }
 
     void Update()
@@ -32,5 +36,9 @@ public class ScreenManager : MonoBehaviour
     public void UpdateItemText(float currentKeys, float maxKeys)
     {
         itemText.text = currentKeys + "/" + maxKeys;
+    }
+    public void UpdateWaveText(float currentWave, float totalWaves)
+    {
+        waveText.text = "Wave " + currentWave + "/" + totalWaves;
     }
 }

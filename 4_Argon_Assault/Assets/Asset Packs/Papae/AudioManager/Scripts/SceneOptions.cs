@@ -52,12 +52,12 @@ public class SceneOptions : MonoBehaviour
 		switch (SceneManager.GetActiveScene().buildIndex)
         {
             // load the title music from the resources folder using AudioManager
-            case 1:
-                clip = AudioManager.Instance.LoadClip("MenuMusic");
+            case 0:
+                clip = AudioManager.Instance.LoadClip("MenuMusic2");
                 break;
             // load the game music from the resources folder using AudioManager
-            case 2:
-                clip = AudioManager.Instance.LoadClip("GameMusic");
+            case 1:
+                clip = AudioManager.Instance.LoadClip("Starlight");
                 break;
         }
 
@@ -86,7 +86,7 @@ public class SceneOptions : MonoBehaviour
     void LoadGame()
     {
         // fade out current music and fade in next music in 1s
-		AudioManager.Instance.PlayBGM(AudioManager.Instance.LoadClip("GameMusic"), MusicTransition.CrossFade, 2f);
+		AudioManager.Instance.PlayBGM(AudioManager.Instance.LoadClip("Starlight"), MusicTransition.CrossFade, 2f);
         
         // disable interaction with the main menu UI
         panelOptions.DisableMainMenu();
@@ -100,7 +100,7 @@ public class SceneOptions : MonoBehaviour
 
     void LoadGameScene()
 	{
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
 	}
 
     void LoadMainMenu()

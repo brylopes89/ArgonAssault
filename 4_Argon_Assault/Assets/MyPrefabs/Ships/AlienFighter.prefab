@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6083096936148798984}
   - component: {fileID: 5625607125215827281}
   - component: {fileID: 885084325269677140}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AlienFighter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 1252561011168678744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.980005, y: 0, z: 0.37999877}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 6.825091, y: 6.825086, z: 6.825091}
   m_Children:
   - {fileID: 8101617921725577931}
   m_Father: {fileID: 0}
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathFX: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
-  scorePerHit: 15
+  scorePerHit: 10
   health: 30
   m_dropChance: 0.2
   hardpoint: {fileID: 8101617921725577931}
@@ -118,11 +118,12 @@ MonoBehaviour:
     type: 3}
   enemyDamage: 20
   fireDist: 150
-  maxDist: 250
-  rotationSpeed: 2
-  moveSpeed: 50
+  maxDist: 350
+  rotationSpeed: 10
+  moveSpeed: 30
   itemDrop: {fileID: 1056057303131983127, guid: 939cdfc13e7a3a4478abfaec28208ff3,
     type: 3}
+  attacking: 0
 --- !u!114 &6083096936148798984
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1056057303131983125}
   - component: {fileID: 1056057303131983124}
   - component: {fileID: 4099849746058319321}
+  - component: {fileID: 2071363109}
   m_Layer: 13
   m_Name: Warp_Key
   m_TagString: Target
@@ -107,7 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39cbbbf9d94c2d846b17017ca258aaaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpParticles: {fileID: 0}
+  pickUpParticles: {fileID: 198879173377329612, guid: 3a2d5a4c1bcb02d4e84bdaa6dc8369c3,
+    type: 3}
 --- !u!82 &1056057303131983124
 AudioSource:
   m_ObjectHideFlags: 0
@@ -223,3 +225,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2071363109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056057303131983127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411060de4483b5e4c9847cd3cbc18554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 1, g: 0.88722074, b: 0, a: 1}
+  needBoxIndicator: 1
+  needArrowIndicator: 1
+  needDistanceText: 1

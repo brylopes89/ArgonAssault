@@ -11,6 +11,7 @@ public class Countdown : MonoBehaviour
     public Text[] text;
     public Animator isGameOver;
 
+    private GameManager gameManager;
     private float gameMinutes;
     private float restartMinutes;
     private float gameSeconds;
@@ -19,7 +20,7 @@ public class Countdown : MonoBehaviour
 
     private void Start()
     {
-          
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -45,7 +46,8 @@ public class Countdown : MonoBehaviour
         {
             stop = true;
             gameMinutes = 0;
-            gameSeconds = 0;           
+            gameSeconds = 0;
+            gameManager.GameOver();
         }
 
         if(restartMinutes < 0)
