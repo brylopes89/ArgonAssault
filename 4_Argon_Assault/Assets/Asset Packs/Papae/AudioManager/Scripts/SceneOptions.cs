@@ -14,7 +14,7 @@ public class SceneOptions : MonoBehaviour
 
     public bool IsInMainMenu
     {
-		get { return SceneManager.GetActiveScene().buildIndex == 1; }
+		get { return SceneManager.GetActiveScene().buildIndex == 0; }
     }
 
     // reference to the PanelOptions script
@@ -120,7 +120,7 @@ public class SceneOptions : MonoBehaviour
 
 	void LoadMenuScene()
 	{
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     // display on or off the options menu after the button sound has been played
