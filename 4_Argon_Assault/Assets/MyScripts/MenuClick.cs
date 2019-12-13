@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class MenuClick : MonoBehaviour
 { 
@@ -16,6 +15,8 @@ public class MenuClick : MonoBehaviour
     private bool isPauseMenu = false;
     private bool isOptionsMenu = false;
     private bool isMainMenu = false;
+    private bool isGame = false;
+
     private bool switchCase = false;
     private bool istoggle = false;
     private bool changeFromMain = false;
@@ -36,53 +37,18 @@ public class MenuClick : MonoBehaviour
     {
         pauseOptions = FindObjectOfType<PauseOptions>();
         displayOptions = FindObjectOfType<SceneOptions>();
-        togglePress = FindObjectOfType<SoundSettings>();
+        togglePress = FindObjectOfType<SoundSettings>();        
+
+        selectedOption = 1;
 
         CheckScreen();
 
-        selectedOption = 1;             
     }
-
-    void CheckScreen()
-    {        
-        if (currentScreen == Screen.PauseMenu)
-        {
-            pauseOptions.isPaused = true;
-            isPauseMenu = true;
-            isOptionsMenu = false;
-            pauseMenu[0].color = new Color32(177, 245, 245, 255);
-            pauseMenu[1].color = new Color32(0, 0, 0, 255);
-            pauseMenu[2].color = new Color32(0, 0, 0, 255);
-        }
-
-        else if (currentScreen == Screen.OptionsMenu)
-        {
-            displayOptions.isInOptions = true;
-            isPauseMenu = false;
-            isOptionsMenu = true;
-            toggle[0].GetComponentInChildren<Text>().color = new Color32(177, 245, 245, 255);
-            toggle[1].GetComponentInChildren<Text>().color = new Color32(0, 0, 0, 255);
-            settingsMenu.color = new Color32(0, 0, 0, 255);        
-        }
-
-        else if (currentScreen == Screen.MainMenu)
-        {            
-            isPauseMenu = false;
-            isOptionsMenu = false;
-            isMainMenu = true;
-        }
-
-        else if (currentScreen == Screen.Game)
-        {
-            pauseOptions.isPaused = false;
-            isPauseMenu = false;
-            isOptionsMenu = false;           
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
+        
+
         y = Input.GetAxis("UpDown");
         IsUp = false;
         IsDown = false;
@@ -94,7 +60,7 @@ public class MenuClick : MonoBehaviour
             else if (y == 1)
                 IsUp = true;
         }       
-        _LastY = y;
+        _LastY = y;        
 
         if (IsDown|| Input.GetKeyDown(KeyCode.DownArrow))
         { //Input telling it to go up or down.
@@ -122,7 +88,6 @@ public class MenuClick : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
         {            
-
             if (currentScreen == Screen.PauseMenu)
             {
                 
@@ -130,47 +95,46 @@ public class MenuClick : MonoBehaviour
                 {
                     case 1:
                         pauseOptions.UnpauseGame();
+                        currentScreen = Screen.Game;                        
                         Debug.Log("Resume Pressed");
                         break;
                     case 2:
                         displayOptions.DisplayOptionsMenu(true);
-                        changeFromPause = true;
+                        changeFromPause = true;                        
                         currentScreen = Screen.OptionsMenu;
                         Debug.Log("Options Pressed");
                         break;
                     case 3:
-                        displayOptions.StartGame(false);
-                        currentScreen = Screen.MainMenu;
+                       
+                        displayOptions.StartGame(false);                        
+                                                                   
                         Debug.Log("Main Menu Pressed");
                         break;
                 }
             }
 
-            if (currentScreen == Screen.MainMenu)
+            else if (currentScreen == Screen.MainMenu)
             {
-
                 switch (selectedOption) //Set the visual indicator for which option you are on.
                 {
                     case 1:
                         displayOptions.StartGame(true);
-                        isPauseMenu = false;
-                        isMainMenu = false;
-                        isOptionsMenu = false;
+                        currentScreen = Screen.Game;
+                        changeFromMain = true;                       
                         Debug.Log("New Game Pressed");
                         break;
                     case 2:
                         displayOptions.DisplayOptionsMenu(true);
-                        changeFromMain = true;                        
+                        changeFromMain = true;
                         currentScreen = Screen.OptionsMenu;
                         Debug.Log("Options Pressed");
                         break;
                     case 3:
                         displayOptions.QuitGame();
-                        currentScreen = Screen.MainMenu;
-                        Debug.Log("Main Menu Pressed");
+                        Debug.Log("Quit Pressed");
                         break;
-                }
-            }
+                }                
+            }           
 
             else if (currentScreen == Screen.OptionsMenu)
             {
@@ -190,25 +154,94 @@ public class MenuClick : MonoBehaviour
                         if (toggle[1].isOn)
                             toggle[1].isOn = false;
                         else
-                            toggle[1].isOn = true;                        
+                            toggle[1].isOn = true;
                         break;
 
                     case 3:
                         displayOptions.DisplayOptionsMenu(false);
                         if (changeFromMain)
-                        {
-                            currentScreen = Screen.MainMenu;
+                        {                            
+                            currentScreen = Screen.MainMenu;                            
                         }
                         else if (changeFromPause)
-                        {
+                        {                            
                             currentScreen = Screen.PauseMenu;
-                        }                        
+                            
+                        }
                         switchCase = false;
                         changeFromPause = false;
                         changeFromMain = false;
                         break;
                 }
-            }
+            }            
+        }
+
+    }
+    void CheckScreen()
+    {
+        if (displayOptions.IsInMainMenu)
+        {
+            currentScreen = Screen.MainMenu;
+        }
+
+        else if (displayOptions.IsInGame)
+        {
+            currentScreen = Screen.Game;
+        }
+
+        else if (pauseOptions.isPaused)
+        {
+            currentScreen = Screen.PauseMenu;
+        }
+
+        else if (displayOptions.isInOptions)
+        {
+            currentScreen = Screen.OptionsMenu;
+        }
+
+        ScreenValues();
+    }
+
+    void ScreenValues()
+    {
+        if (currentScreen == Screen.PauseMenu)
+        {
+            isPauseMenu = true;
+            isOptionsMenu = false;
+            isGame = false;
+            isMainMenu = false;
+
+            pauseMenu[0].color = new Color32(177, 245, 245, 255);
+            pauseMenu[1].color = new Color32(0, 0, 0, 255);
+            pauseMenu[2].color = new Color32(0, 0, 0, 255);
+        }
+
+        else if (currentScreen == Screen.OptionsMenu)
+        {            
+            isOptionsMenu = true;
+            isPauseMenu = false;
+            isGame = false;
+            isMainMenu = false;
+
+            toggle[0].GetComponentInChildren<Text>().color = new Color32(177, 245, 245, 255);
+            toggle[1].GetComponentInChildren<Text>().color = new Color32(0, 0, 0, 255);
+            settingsMenu.color = new Color32(0, 0, 0, 255);
+        }
+
+        else if (currentScreen == Screen.MainMenu)
+        {
+            isMainMenu = true;
+
+            isOptionsMenu = false;
+            isGame = false;
+            isPauseMenu = false;
+        }
+
+        else if (currentScreen == Screen.Game)
+        {
+            isPauseMenu = false;
+            isOptionsMenu = false;
+            isMainMenu = false;            
         }
     }
 
@@ -259,6 +292,14 @@ public class MenuClick : MonoBehaviour
                     pauseMenu[2].color = new Color32(177, 245, 245, 255);
 
                     break;
+            }
+        }
+
+        if(currentScreen == Screen.Game)
+        {
+            if (pauseOptions.isPaused)
+            {
+                currentScreen = Screen.PauseMenu;
             }
         }
 

@@ -8,7 +8,7 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 	public class ParticleHomingMultiTarget : MonoBehaviour {
 		[Tooltip("Target objects. If this parameter is undefined it will assume the attached object itself which creates self chasing particle effect.")]
 		private GameObject[] targets;
-        private GameObject target;
+        
         [Tooltip("How fast the particle is guided to the index target.")]
 		public float speed = 10f;
 		[Tooltip("Cap the maximum speed to prevent particle from being flung too far from the missed target.")]
@@ -44,6 +44,8 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
                 enemyTrans.Add(trans);                
             }
 
+            Debug.Log(enemyTrans.Count);
+
             _ps_system = GetComponent<ParticleSystem>();
 			_ps_trigger = _ps_system.trigger;
 			//_ps_particles = new ParticleSystem.Particle[_ps_system.maxParticles];// Before Unity 5.5
@@ -54,14 +56,6 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 			}
 		}
 
-        private void Start()
-        {
-            if (targets != null)
-            {
-                Debug.Log("No targets!");
-                return;
-            }
-        }
         void Update()
         {			
 			//If you are not changing target during runtime, skip this:            
@@ -81,7 +75,7 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 			_ps_particles = new ParticleSystem.Particle[_ps_system.main.maxParticles];
 			int numParticlesAlive = _ps_system.GetParticles(_ps_particles);
 
-            if(target != null)
+            if(targets != null)
             {
                 for (int i = 0; i < numParticlesAlive; i++)
                 {

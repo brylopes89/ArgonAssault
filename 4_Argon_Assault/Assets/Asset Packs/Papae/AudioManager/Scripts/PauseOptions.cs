@@ -74,7 +74,7 @@ public class PauseOptions : MonoBehaviour
         StartCoroutine(ResumePlay());
 	}
 
-    IEnumerator ResumePlay()
+    IEnumerator ResumePlay() //to do: move to flight control script
     {     
         panelOptions.HidePauseMenu();
         Time.timeScale = 1;

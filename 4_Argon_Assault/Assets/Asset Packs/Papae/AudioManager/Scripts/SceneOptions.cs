@@ -12,10 +12,16 @@ public class SceneOptions : MonoBehaviour
     // fade to transparent animation clip
     public AnimationClip fadeToTransparentAnimationClip;
     public bool isInOptions = false;
+    private ButtonManager loadBar;
 
     public bool IsInMainMenu
     {
 		get { return SceneManager.GetActiveScene().buildIndex == 0; }
+    }
+
+    public bool IsInGame
+    {
+        get { return SceneManager.GetActiveScene().buildIndex == 1; }
     }
 
     // reference to the PanelOptions script
@@ -29,6 +35,8 @@ public class SceneOptions : MonoBehaviour
 
     void Start()
 	{
+        loadBar = FindObjectOfType<ButtonManager>();
+
 		if (IsInMainMenu) 
 		{
 			AudioManager.Instance.EmptyPlaylist();
@@ -92,15 +100,16 @@ public class SceneOptions : MonoBehaviour
         panelOptions.DisableMainMenu();
 
         // delay calling of LoadGameScene by half the length of fadeColorAnimationClip
-        Invoke("LoadGameScene", fadeToTransparentAnimationClip.length * 1);
-
+        //Invoke("LoadGameScene", fadeToTransparentAnimationClip.length * 6);
+        LoadGameScene();
         // trigger the transparent Animator to start transition to the FadeToOpaque state.
         blackscreenAnimator.SetTrigger("toOpaque");
     }
 
     void LoadGameScene()
 	{
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
+        loadBar.NewGameButton(1);
 	}
 
     void LoadMainMenu()

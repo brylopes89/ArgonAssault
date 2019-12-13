@@ -552,6 +552,12 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
+--- !u!95 &1382173444 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8920090873490400736, guid: 49ddfeab185d38141bbe92da0e9e5f26,
+    type: 3}
+  m_PrefabInstance: {fileID: 3800006422254234334}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1543422418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -788,6 +794,14 @@ PrefabInstance:
       propertyPath: progressText
       value: 
       objectReference: {fileID: 233838997}
+    - target: {fileID: 193120684, guid: c0e8df806c090174b9ffa6815963186d, type: 3}
+      propertyPath: fadeToTransparentAnimationClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 7ed1e1e073bb7b845a85054d9ae76f80, type: 2}
+    - target: {fileID: 193120684, guid: c0e8df806c090174b9ffa6815963186d, type: 3}
+      propertyPath: blackscreenAnimator
+      value: 
+      objectReference: {fileID: 1382173444}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0e8df806c090174b9ffa6815963186d, type: 3}
 --- !u!1001 &3800006422254234334
@@ -801,6 +815,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StartmenuCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920090875192197656, guid: 49ddfeab185d38141bbe92da0e9e5f26,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6882494408869848869, guid: 49ddfeab185d38141bbe92da0e9e5f26,
         type: 3}
@@ -995,6 +1014,21 @@ PrefabInstance:
     - target: {fileID: 6882494408479990365, guid: 49ddfeab185d38141bbe92da0e9e5f26,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920090873490400749, guid: 49ddfeab185d38141bbe92da0e9e5f26,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920090874490208071, guid: 49ddfeab185d38141bbe92da0e9e5f26,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920090874490208071, guid: 49ddfeab185d38141bbe92da0e9e5f26,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
