@@ -38,6 +38,7 @@ public class PanelOptions : MonoBehaviour
 	{
         optionsMenu.SetActive(true);
 		overlay.SetActive(true);
+        //pauseMenu.SetActive(false);
 	}
 
 	// function to deactivate and hide the options panel
@@ -46,6 +47,7 @@ public class PanelOptions : MonoBehaviour
         optionsMenu.SetActive(false);
 		bool enable = UnityEngine.SceneManagement.SceneManager.GetActiveScene ().buildIndex == 2;
 		overlay.SetActive(enable);
+        //pauseMenu.SetActive(true);
     }
 
     // function to activate and display the pause menu panel
@@ -65,6 +67,7 @@ public class PanelOptions : MonoBehaviour
     public void HidePauseMenu()
 	{
         pauseMenu.SetActive (false);
+        optionsMenu.SetActive(false);
 		overlay.SetActive(false);
 	}
 

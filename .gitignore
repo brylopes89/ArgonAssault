@@ -10,6 +10,9 @@
 /4_Argon_Assault/[Ll]ogs/
 /4_Argon_Assault/[Mm]emoryCaptures/
 
+/[Bb]uild/
+/[Bb]uilds/
+
 # Never ignore Asset meta data
 !/4_Argon_Assault/[Aa]ssets/**/*.meta
 

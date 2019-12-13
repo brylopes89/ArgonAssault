@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1907727514654933888}
   - component: {fileID: 1907727514654933894}
   - component: {fileID: 6535437028459893917}
-  - component: {fileID: 325123002357027257}
+  - component: {fileID: 307730882}
   m_Layer: 5
   m_Name: Victory_Panel
   m_TagString: Untagged
@@ -61,8 +61,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 1e53d80ee28fc6748b7073bb109f9ad8, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Material: {fileID: 2100000, guid: 4da0f8a5e8a001e4c9a3f1ff6d3fb621, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -110,7 +110,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!95 &325123002357027257
+--- !u!95 &307730882
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -120,7 +120,7 @@ Animator:
   m_GameObject: {fileID: 1907727514654933892}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a996978328fdde9438967a17b6c6da48, type: 2}
+  m_Controller: {fileID: 9100000, guid: 724cf1e8378fe9046acbcec9052346fa, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -187,18 +187,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: aa4a6bf9042f5354d94b1a24c8b272d2, type: 3}
-    m_FontSize: 43
+    m_FontSize: 106
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 55
+    m_MaxSize: 124
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1

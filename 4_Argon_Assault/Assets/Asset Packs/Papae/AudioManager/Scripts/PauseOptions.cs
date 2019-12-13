@@ -9,7 +9,11 @@ public class PauseOptions : MonoBehaviour
     // reference to the PanelOptions script
     private PanelOptions panelOptions;
 
-    bool isPaused = false;
+    private FlightStates flightStates;
+    private PlayerShootControl shoot;
+    private PlayerFlightControl player;
+
+    [HideInInspector] public bool isPaused = false;
 
     void Awake()
 	{
@@ -17,6 +21,10 @@ public class PauseOptions : MonoBehaviour
         panelOptions = GetComponent<PanelOptions>();
         // retrieve the attached SceneOptions script
         sceneOptions = GetComponent<SceneOptions>();
+
+        flightStates = FindObjectOfType<FlightStates>();
+        shoot = FindObjectOfType<PlayerShootControl>();
+        player = FindObjectOfType<PlayerFlightControl>();
 	}
 
 	// Update is called once per frame
@@ -33,6 +41,7 @@ public class PauseOptions : MonoBehaviour
 		{
             // unpause the game
             Resume();
+            StartCoroutine(ResumePlay());
 		}
 	}
 
@@ -49,21 +58,42 @@ public class PauseOptions : MonoBehaviour
         panelOptions.ShowPauseMenu();
         // this will cause animations and physics to stop updating
         Time.timeScale = 0;
+        //stopping shooting functionality
+        shoot.enabled = false;
+        //stop liftoff trigger from activating when pressing submit button
+        flightStates.enabled = false;
+
+        //player.GetComponentInParent<AudioSource>().enabled = false;
     }
 
     public void UnpauseGame()
 	{
-		AudioManager.Instance.PlayOneShot(AudioManager.Instance.LoadClip("button"), Resume);
+		AudioManager.Instance.PlayOneShot(AudioManager.Instance.LoadClip("button"));
+        Resume();
+
+        StartCoroutine(ResumePlay());
 	}
+
+    IEnumerator ResumePlay()
+    {     
+        panelOptions.HidePauseMenu();
+        Time.timeScale = 1;
+        isPaused = false;        
+
+        yield return new WaitForSeconds(.5f);
+        shoot.enabled = true;
+        flightStates.enabled = true;
+        //player.GetComponentInParent<AudioSource>().enabled = true;
+    }
 
     void Resume()
     {
         // this will cause animations and physics to continue updating at regular speed
-        Time.timeScale = 1;
+        
 
-        isPaused = false;
+        
         // hide the pause menu
-        panelOptions.HidePauseMenu();
+        
     }
 
 }

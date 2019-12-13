@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using Papae.UnitySDK.Managers;
 
 [Serializable]
 public class PlayerFlightControl : MonoBehaviour
@@ -134,8 +135,9 @@ public class PlayerFlightControl : MonoBehaviour
             if (Input.GetAxis("Thrust") > 0)//If input on the thrust axis is positive, activate afterburners.
             {
                 IncreaseThrust();
-                audioSource.enabled = true;
-                audioSource.loop = true;
+                //audioSource.enabled = true;
+                //audioSource.loop = true;
+                AudioManager.Instance.PlayOneShot(AudioManager.Instance.GetClipFromPlaylist("ThrustEdit2"));
             }
 
             else //Otherwise, hold normal speed.

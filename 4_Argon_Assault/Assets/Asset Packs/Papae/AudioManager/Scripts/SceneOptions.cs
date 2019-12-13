@@ -11,6 +11,7 @@ public class SceneOptions : MonoBehaviour
     public Animator blackscreenAnimator;
     // fade to transparent animation clip
     public AnimationClip fadeToTransparentAnimationClip;
+    public bool isInOptions = false;
 
     public bool IsInMainMenu
     {
@@ -18,14 +19,13 @@ public class SceneOptions : MonoBehaviour
     }
 
     // reference to the PanelOptions script
-    PanelOptions panelOptions;                  
-
+    PanelOptions panelOptions;
     
     void Awake()
 	{
 		// retrieve the attached PanelOptions script
 		panelOptions = GetComponent<PanelOptions> ();
-	}
+    }
 
     void Start()
 	{
@@ -86,7 +86,7 @@ public class SceneOptions : MonoBehaviour
     void LoadGame()
     {
         // fade out current music and fade in next music in 1s
-		AudioManager.Instance.PlayBGM(AudioManager.Instance.LoadClip("Starlight"), MusicTransition.CrossFade, 2f);
+		AudioManager.Instance.PlayBGM(AudioManager.Instance.LoadClip("Starlight"), MusicTransition.CrossFade, 2f, 2f);
         
         // disable interaction with the main menu UI
         panelOptions.DisableMainMenu();
@@ -114,6 +114,8 @@ public class SceneOptions : MonoBehaviour
         // delay calling of LoadMenuScene by half the length of fadeColorAnimationClip
         Invoke("LoadMenuScene", fadeToTransparentAnimationClip.length * 1);
 
+        Time.timeScale = 1;
+
         // trigger of Animator 'animColorFade' to start transition to the FadeToOpaque state.
         blackscreenAnimator.SetTrigger("toOpaque");
     }
@@ -126,6 +128,8 @@ public class SceneOptions : MonoBehaviour
     // display on or off the options menu after the button sound has been played
     public void DisplayOptionsMenu(bool flag)
 	{
+        isInOptions = true;
+
 		if (flag) 
 		{
 			AudioManager.Instance.PlayOneShot (AudioManager.Instance.LoadClip ("button"));
