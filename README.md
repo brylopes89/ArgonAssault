@@ -27,8 +27,10 @@ Includes a free flight mechanic that allows the player to smoothly control their
 | **Thrust** | **R2** | **R Trigger** | **L Shift** |
 | **Brake** | **L2** | **L Trigger** | **L Ctrl** |
 | **Roll** | **L1, R1** | **LB, RB** | **Q, E** |
-| **Switch to FPV** | **L Joystick** | **L Joystick** | **C** |
-| **Rearview Camera** | **Options (hold)** | **Menu (hold)** | **L Alt (hold)** |
+| **Switch to FPV** | **L Joystick(Click)** | **L Joystick(Click)** | **C** |
+| **Rearview Camera** | **Share(hold)** | **Menu (hold)** | **L Alt (hold)** |
+| **Pause** | **Options** | **Menu (hold)** |
+| **Menu Scroll** | **D-pad* | **L Joystick** | **Up/Down arrow** |
 
 ## Music/Sound: 
 
