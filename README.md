@@ -54,5 +54,7 @@ Includes a free flight mechanic that allows the player to smoothly control their
 
 ### Interested in Argon Assault updates? Check out my blog posts [here](http://bryanlopes.com/blog/).
 
+**Download the latest release here:** [ArgonAssault v1.0.0](https://github.com/brylopes89/ArgonAssault/releases/latest/download/Argon_Assault_v1.0.zip)
+
 	
 
