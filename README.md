@@ -20,6 +20,7 @@ Includes a free flight mechanic that allows the player to smoothly control their
 
 | | **PS4 Gamepad** | **Xbox Gamepad** | **Keyboard** |
 | --- | --- | --- | --- |
+| **Movement** | **L Joystick** | **L Joystick** | **WASD Keys** |
 | **Launch/Land** | **X** | **A** | **Space Bar** |
 | **Shoot** | **O** | **B** | **L Mouse click** |
 | **Reload** | **▢** | **X** | **R** |
@@ -30,7 +31,7 @@ Includes a free flight mechanic that allows the player to smoothly control their
 | **Switch to FPV** | **L Joystick(Click)** | **L Joystick(Click)** | **C** |
 | **Rearview Camera** | **Share(hold)** | **Back (hold)** | **L Alt (hold)** |
 | **Pause** | **Options** | **Back** | **Escape**
-| **Menu Scroll** | **D-pad** | **L Joystick** | **Up/Down arrow** |
+| **Menu Scroll** | **D-pad** | **D-pad** | **Up/Down arrow** |
 
 ## Music/Sound: 
 
