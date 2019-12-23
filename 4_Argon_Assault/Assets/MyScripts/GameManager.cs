@@ -29,8 +29,6 @@ public class GameManager : MonoBehaviour
         _enemy = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
-
-
     public void GameOver()
     {
         if (isVictory)

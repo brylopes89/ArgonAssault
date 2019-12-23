@@ -38,6 +38,8 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 
             targets = GameObject.FindGameObjectsWithTag("Enemy");
 
+           
+
             foreach (GameObject target in targets)
             {
                 Transform trans = target.transform;                
@@ -45,6 +47,8 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
             }
 
             Debug.Log(enemyTrans.Count);
+
+            
 
             _ps_system = GetComponent<ParticleSystem>();
 			_ps_trigger = _ps_system.trigger;
@@ -56,10 +60,20 @@ namespace MoonflowerCarnivore.ShurikenSalvo {
 			}
 		}
 
+        private void Start()
+        {
+            if (targets == null)
+            {
+                Debug.Log("where is everyone?");
+                return;
+            }
+        }
+
         void Update()
-        {			
-			//If you are not changing target during runtime, skip this:            
-			for (int i = 0; i < enemyTrans.Count - 1; i++)
+        {
+           
+            //If you are not changing target during runtime, skip this:            
+            for (int i = 0; i < enemyTrans.Count - 1; i++)
             {
                 if (enemyTrans[i] == null)
                 {

@@ -130,13 +130,10 @@ public class PlayerFlightControl : MonoBehaviour
     {
         if (thrust_exists) 
         {
-            BroadcastMessage("CurveIncrease", true);
-
-            if (Input.GetAxis("Thrust") > 0)//If input on the thrust axis is positive, activate afterburners.
+            if (Input.GetAxis("Thrust") > 0 || Input.GetButton("ThrustKey"))//If input on the thrust axis is positive, activate afterburners.
             {
-                IncreaseThrust();
-                //audioSource.enabled = true;
-                //audioSource.loop = true;
+                BroadcastMessage("CurveIncrease", true);
+                IncreaseThrust();                
                 AudioManager.Instance.PlayOneShot(AudioManager.Instance.GetClipFromPlaylist("ThrustEdit2"));
             }
 
@@ -145,7 +142,7 @@ public class PlayerFlightControl : MonoBehaviour
                 DecreaseThrust();
                 audioSource.enabled = false;
                 audioSource.loop = false;
-                
+                BroadcastMessage("CurveDecrease", true);
             }
         }
         if (brake_exists && Input.GetAxis("Brake") > 0 || brake_exists && Input.GetButton("BrakeKey")) //If input on the thrust axis is negatve, activate brakes.

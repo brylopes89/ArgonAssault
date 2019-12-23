@@ -2487,6 +2487,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3372494314578693308, guid: 0adbc73bec23f5c49b2700156d3c9a13,
+        type: 3}
+      propertyPath: m_Text
+      value: PRESS SPACEBAR OR X
+      objectReference: {fileID: 0}
+    - target: {fileID: 3372494314578693308, guid: 0adbc73bec23f5c49b2700156d3c9a13,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0adbc73bec23f5c49b2700156d3c9a13, type: 3}
 --- !u!1 &3833354269203928135
@@ -3137,6 +3147,21 @@ PrefabInstance:
     - target: {fileID: 5777255857081438399, guid: 4d03f3b21669bde469bd5bcd5fa45d91,
         type: 3}
       propertyPath: pointer_returns_to_center
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777255857081438399, guid: 4d03f3b21669bde469bd5bcd5fa45d91,
+        type: 3}
+      propertyPath: mouse_sensitivity_modifier
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777255857081438399, guid: 4d03f3b21669bde469bd5bcd5fa45d91,
+        type: 3}
+      propertyPath: invert_y_axis
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777255857081438399, guid: 4d03f3b21669bde469bd5bcd5fa45d91,
+        type: 3}
+      propertyPath: deadzone_radius
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 903326115539634436, guid: 4d03f3b21669bde469bd5bcd5fa45d91,
@@ -3202,7 +3227,7 @@ PrefabInstance:
     - target: {fileID: 5777255856222620277, guid: 4d03f3b21669bde469bd5bcd5fa45d91,
         type: 3}
       propertyPath: pitchYaw_strength
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5777255856222620277, guid: 4d03f3b21669bde469bd5bcd5fa45d91,
         type: 3}
@@ -3213,6 +3238,16 @@ PrefabInstance:
         type: 3}
       propertyPath: speed
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777255857306936036, guid: 4d03f3b21669bde469bd5bcd5fa45d91,
+        type: 3}
+      propertyPath: use_gamepad_input
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777255857306936036, guid: 4d03f3b21669bde469bd5bcd5fa45d91,
+        type: 3}
+      propertyPath: use_mouse_input
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d03f3b21669bde469bd5bcd5fa45d91, type: 3}
@@ -4175,7 +4210,7 @@ PrefabInstance:
     - target: {fileID: 6390442615503415300, guid: 41797c6d83cff894d947f2c4d613b34a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41797c6d83cff894d947f2c4d613b34a, type: 3}
@@ -4755,11 +4790,16 @@ PrefabInstance:
     - target: {fileID: 8683444617045608964, guid: 73a7587b7f69ca14a8718a0f5cedcce3,
         type: 3}
       propertyPath: Waves.Array.data[1].EnemiesPerWave
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8683444617045608964, guid: 73a7587b7f69ca14a8718a0f5cedcce3,
         type: 3}
       propertyPath: Waves.Array.data[0].EnemiesPerWave
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683444617045608964, guid: 73a7587b7f69ca14a8718a0f5cedcce3,
+        type: 3}
+      propertyPath: TimeBetweenEnemies
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8683444616888591107, guid: 73a7587b7f69ca14a8718a0f5cedcce3,
