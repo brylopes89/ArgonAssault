@@ -1,6 +1,7 @@
 ﻿using Papae.UnitySDK.Managers;
 using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class PauseOptions : MonoBehaviour
 {
@@ -31,13 +32,13 @@ public class PauseOptions : MonoBehaviour
 	void Update ()
     {
 		// is Escape key pressed while the game is not paused and that we're not in main menu
-		if (Input.GetButtonDown ("Cancel") && !isPaused && !sceneOptions.IsInMainMenu) // 
+		if (CrossPlatformInputManager.GetButtonDown ("Cancel") && !isPaused && !sceneOptions.IsInMainMenu) // 
         {
             // pause the game
             Pause();
 		} 
 		// if game is paused and not in main menu
-		else if (Input.GetButtonDown ("Cancel") && isPaused && !sceneOptions.IsInMainMenu) // 
+		else if (CrossPlatformInputManager.GetButtonDown ("Cancel") && isPaused && !sceneOptions.IsInMainMenu) // 
 		{
             // unpause the game
             Resume();

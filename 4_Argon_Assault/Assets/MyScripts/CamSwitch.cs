@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class CamSwitch : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class CamSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("CamSwitch"))
+        if (CrossPlatformInputManager.GetButtonDown("CamSwitch"))
         {
             toggle = !toggle;
             
@@ -27,7 +28,7 @@ public class CamSwitch : MonoBehaviour
             cam2.SetActive(!toggle);                
         }
 
-        if (Input.GetButton("Toggle"))
+        if (CrossPlatformInputManager.GetButton("Toggle"))
         {
             cam3.SetActive(true);
 

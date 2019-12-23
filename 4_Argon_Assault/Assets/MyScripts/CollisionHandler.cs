@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class CollisionHandler : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class CollisionHandler : MonoBehaviour
     {
         if (setBool)
         {
-            if (Input.GetButtonDown("Submit"))
+            if (CrossPlatformInputManager.GetButtonDown("Submit"))
             {                              
                 anims[1].SetTrigger("KeyPress");                
             }            

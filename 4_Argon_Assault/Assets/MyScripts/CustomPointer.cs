@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using UnityStandardAssets.CrossPlatformInput;
 
 
 [System.Serializable]
@@ -63,8 +64,8 @@ public class CustomPointer : MonoBehaviour {
 
 		if (use_mouse_input) {
 		
-			float x_axis = Input.GetAxis("Mouse X");
-			float y_axis = Input.GetAxis("Mouse Y");
+			float x_axis = CrossPlatformInputManager.GetAxis("Mouse X");
+			float y_axis = CrossPlatformInputManager.GetAxis("Mouse Y");
 		
 			if (invert_y_axis)
 				y_axis = -y_axis;
@@ -76,15 +77,15 @@ public class CustomPointer : MonoBehaviour {
 			
 		} else if (use_gamepad_input) {
 			
-			float x_axis = Input.GetAxis("Horizontal");
-			float y_axis = Input.GetAxis("Vertical");
+			float x_axis = CrossPlatformInputManager.GetAxis("Horizontal");
+			float y_axis = CrossPlatformInputManager.GetAxis("Vertical");
 			
 			if (invert_y_axis)
 				y_axis = -y_axis;
 			
 		
-			pointerPosition += new Vector2(x_axis * thumbstick_speed_modifier * Mathf.Pow(Input.GetAxis("Horizontal"), 2),
-				                               y_axis * thumbstick_speed_modifier * Mathf.Pow(Input.GetAxis("Vertical"), 2));
+			pointerPosition += new Vector2(x_axis * thumbstick_speed_modifier * Mathf.Pow(CrossPlatformInputManager.GetAxis("Horizontal"), 2),
+				                               y_axis * thumbstick_speed_modifier * Mathf.Pow(CrossPlatformInputManager.GetAxis("Vertical"), 2));
 
 		}/* else if (use_accelerometer_input) {
 			//WARNING: UNTESTED.
@@ -106,7 +107,7 @@ public class CustomPointer : MonoBehaviour {
 		//If the pointer returns to the center of the screen and it's not in the deadzone...
 		if (pointer_returns_to_center && !deadzone_rect.Contains(pointerPosition)) {
 			//If there's no input and instant snapping is on...
-			if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && instant_snapping) {
+			if (CrossPlatformInputManager.GetAxis("Horizontal") == 0 && CrossPlatformInputManager.GetAxis("Vertical") == 0 && instant_snapping) {
 				pointerPosition = new Vector2 (Screen.width / 2, Screen.height / 2); //Place pointer at the center.
 			
 			

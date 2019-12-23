@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using Papae.UnitySDK.Managers;
+using UnityStandardAssets.CrossPlatformInput;
 
 [Serializable]
 public class PlayerFlightControl : MonoBehaviour
@@ -51,13 +52,18 @@ public class PlayerFlightControl : MonoBehaviour
     bool brake_exists = true;
     bool roll_exists = true;
     
+    private ShakeOnKeyPress fpCamShake;
+    private CamSwitch camMode;
 
     //public AudioClip thrust;
     AudioSource audioSource;
     //---------------------------------------------------------------------------------
 
     void Start()
-    {       
+    {
+        fpCamShake = FindObjectOfType<ShakeOnKeyPress>();
+        camMode = FindObjectOfType<CamSwitch>();
+
         mousePos = new Vector2(0, 0);
         DZ = CustomPointer.instance.deadzone_radius;
         GetSound();
@@ -67,7 +73,8 @@ public class PlayerFlightControl : MonoBehaviour
         //Error handling, in case one of the inputs aren't set up.
         try
         {
-            Input.GetAxis("Thrust");
+            //Input.GetAxis("Thrust");
+            CrossPlatformInputManager.GetAxis("Thrust");
         }
         catch
         {
@@ -77,7 +84,8 @@ public class PlayerFlightControl : MonoBehaviour
 
         try
         {
-            Input.GetAxis("Brake");
+            //Input.GetAxis("Brake");
+            CrossPlatformInputManager.GetAxis("Brake");
         }
         catch
         {
@@ -87,7 +95,8 @@ public class PlayerFlightControl : MonoBehaviour
 
         try
         {
-            Input.GetAxis("Roll");
+            //Input.GetAxis("Roll");
+            CrossPlatformInputManager.GetAxis("Roll");
         }
         catch
         {
@@ -130,11 +139,17 @@ public class PlayerFlightControl : MonoBehaviour
     {
         if (thrust_exists) 
         {
-            if (Input.GetAxis("Thrust") > 0 || Input.GetButton("ThrustKey"))//If input on the thrust axis is positive, activate afterburners.
+            //if (Input.GetAxis("Thrust") > 0 || Input.GetButton("ThrustKey"))//If input on the thrust axis is positive, activate afterburners.
+            if(CrossPlatformInputManager.GetAxis("Thrust") > 0)
             {
                 BroadcastMessage("CurveIncrease", true);
                 IncreaseThrust();                
                 AudioManager.Instance.PlayOneShot(AudioManager.Instance.GetClipFromPlaylist("ThrustEdit2"));
+
+                if (camMode.cam2)
+                {
+                    fpCamShake.ThrustShake(true);
+                }                
             }
 
             else //Otherwise, hold normal speed.
@@ -143,9 +158,14 @@ public class PlayerFlightControl : MonoBehaviour
                 audioSource.enabled = false;
                 audioSource.loop = false;
                 BroadcastMessage("CurveDecrease", true);
+
+                if (camMode.cam2)
+                {
+                    fpCamShake.ThrustShake(false);
+                }
             }
         }
-        if (brake_exists && Input.GetAxis("Brake") > 0 || brake_exists && Input.GetButton("BrakeKey")) //If input on the thrust axis is negatve, activate brakes.
+        if (brake_exists && CrossPlatformInputManager.GetAxis("Brake") > 0) //If input on the thrust axis is negatve, activate brakes.
         {           
             ApplyBrake();
             
@@ -161,7 +181,7 @@ public class PlayerFlightControl : MonoBehaviour
         yaw = Mathf.Clamp(distFromHorizontal, -screen_clamp - DZ, screen_clamp + DZ) * pitchYaw_strength;
 
         if (roll_exists)
-            roll = (Input.GetAxis("Roll") * -rollSpeedModifier);
+            roll = (CrossPlatformInputManager.GetAxis("Roll") * -rollSpeedModifier);
     }
 
     void IncreaseThrust()

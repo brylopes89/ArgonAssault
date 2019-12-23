@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class FlightStates : MonoBehaviour
 {
@@ -75,15 +76,8 @@ public class FlightStates : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {      
-        if (isGrounded())
-        {
-            getGroundInputs();
-        }
-        else if (isFlying())
-        {
-            getFlightInputs();
-        }
+    {         
+        GetInputs();       
     }
 
     void FixedUpdate()
@@ -112,17 +106,11 @@ public class FlightStates : MonoBehaviour
         return false;
     }
 
-    void getGroundInputs()
+    void GetInputs()
     {
-        _inputGroundForward = Input.GetAxis("Vertical");
-        _inputGroundTurning = Input.GetAxis("Horizontal");
-        _inputSubmit = Input.GetButton("Submit");
-        _inputTakeoff = _inputSubmit;
-    }
-
-    void getFlightInputs()
-    {        
-        _inputSubmit = Input.GetButton("Submit");
+        _inputGroundForward = CrossPlatformInputManager.GetAxis("Vertical");
+        _inputGroundTurning = CrossPlatformInputManager.GetAxis("Horizontal");
+        _inputSubmit = CrossPlatformInputManager.GetButton("Submit");
         _inputTakeoff = _inputSubmit;
     }
 

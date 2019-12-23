@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class MenuClick : MonoBehaviour
 { 
@@ -47,9 +48,7 @@ public class MenuClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-        y = Input.GetAxis("UpDown");
+        y = CrossPlatformInputManager.GetAxis("UpDown");
         IsUp = false;
         IsDown = false;
 
@@ -62,7 +61,7 @@ public class MenuClick : MonoBehaviour
         }       
         _LastY = y;        
 
-        if (IsDown|| Input.GetKeyDown(KeyCode.DownArrow))
+        if (IsDown)
         { //Input telling it to go up or down.
             selectedOption += 1;            
 
@@ -74,7 +73,7 @@ public class MenuClick : MonoBehaviour
             SelectColorChange();           
         }
 
-        if (IsUp || Input.GetKeyDown(KeyCode.UpArrow))
+        if (IsUp)
         { //Input telling it to go up or down.
             selectedOption -= 1;
             
@@ -86,7 +85,7 @@ public class MenuClick : MonoBehaviour
             SelectColorChange();           
         }
 
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
+        if (CrossPlatformInputManager.GetButtonDown("Submit"))
         {            
             if (currentScreen == Screen.PauseMenu)
             {

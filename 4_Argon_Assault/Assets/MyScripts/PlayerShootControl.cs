@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerShootControl : MonoBehaviour
 {
@@ -48,7 +49,7 @@ public class PlayerShootControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {  
-        if(Input.GetAxis("Mouse ScrollWheel") > 0 && !_isSwitching)
+        if(CrossPlatformInputManager.GetAxis("Mouse ScrollWheel") > 0 && !_isSwitching)
         {
             _index++;
             if(_index >= weapons.Count - 1)
@@ -58,7 +59,7 @@ public class PlayerShootControl : MonoBehaviour
             StartCoroutine(SwitchAfterDelay(_index));            
         }
 
-        if (Input.GetAxis("Mouse ScrollWheel") < 0 && !_isSwitching)
+        if (CrossPlatformInputManager.GetAxis("Mouse ScrollWheel") < 0 && !_isSwitching)
         {
             _index--;
 
@@ -69,7 +70,7 @@ public class PlayerShootControl : MonoBehaviour
             StartCoroutine(SwitchAfterDelay(_index));
         }
 
-        if (Input.GetButtonDown("WeaponChange") && !_isSwitching)
+        if (CrossPlatformInputManager.GetButtonDown("WeaponChange") && !_isSwitching)
         {
             _index++;
             if (_index > weapons.Count -1)
@@ -79,7 +80,7 @@ public class PlayerShootControl : MonoBehaviour
             StartCoroutine(SwitchAfterDelay(_index));            
         }      
                 
-        if (Input.GetButton("Fire1") && !_isReloading && Time.time >= _nextTimeToFire)
+        if (CrossPlatformInputManager.GetButton("Fire1") && !_isReloading && Time.time >= _nextTimeToFire)
         {            
             if (_index == 0)
             {
@@ -96,7 +97,7 @@ public class PlayerShootControl : MonoBehaviour
             _nextTimeToFire = Time.time + 1f / _fireRate;          
         }
 
-        if (Input.GetButtonDown("Reload") || Input.GetKeyDown(KeyCode.R))
+        if (CrossPlatformInputManager.GetButtonDown("Reload") || Input.GetKeyDown(KeyCode.R))
         {
             if (_index == 1)
                 StartCoroutine(StartReloading());

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using EZCameraShake;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class ShakeOnKeyPress : MonoBehaviour
 {
@@ -9,12 +10,11 @@ public class ShakeOnKeyPress : MonoBehaviour
 
     void Update()
     {
-        ThrustShake();
+        //ThrustShake();
     }
 
-    private void ThrustShake()
-    {
-        if (Input.GetAxis("Thrust") > 0)
-            CameraShaker.Instance.ShakeOnce(Magnitude, Roughness, 0, FadeOutTime);
+    public void ThrustShake(bool isActive)
+    {        
+        CameraShaker.Instance.ShakeOnce(Magnitude, Roughness, 0, FadeOutTime);
     }
 }

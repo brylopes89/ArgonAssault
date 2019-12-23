@@ -21,7 +21,7 @@ public class ExtendedFlycam : MonoBehaviour
 
     void Update()
     {
-        rotationX += Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
+        /*rotationX += Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
         rotationY += Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
         rotationY = Mathf.Clamp(rotationY, -90, 90);
 
@@ -46,6 +46,6 @@ public class ExtendedFlycam : MonoBehaviour
 
 
         if (Input.GetKey(KeyCode.Q)) { transform.position += transform.up * climbSpeed * Time.deltaTime; }
-        if (Input.GetKey(KeyCode.E)) { transform.position -= transform.up * climbSpeed * Time.deltaTime; }
+        if (Input.GetKey(KeyCode.E)) { transform.position -= transform.up * climbSpeed * Time.deltaTime; }*/
     }
 }
