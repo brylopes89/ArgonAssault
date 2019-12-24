@@ -20,6 +20,7 @@ TagManager:
   - Target
   - Item
   - ShootManager
+  - Throttle
   layers:
   - Default
   - TransparentFX

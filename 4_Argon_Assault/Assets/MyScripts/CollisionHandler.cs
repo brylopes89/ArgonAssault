@@ -8,23 +8,23 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class CollisionHandler : MonoBehaviour
 {
-    [Tooltip("In seconds")] [SerializeField] float levelLoadDelay = 2f;
-    [SerializeField] private List<Animator> anims = new List<Animator>();
-  
+    //[Tooltip("In seconds")] [SerializeField] float levelLoadDelay = 2f;
+    //[SerializeField] private List<Animator> anims = new List<Animator>();
+    [HideInInspector] public bool isWithinTrigger;
+    [HideInInspector] public bool isFlying;
+    [HideInInspector] public bool isHit = false;
+
     private float targetSpeed = 6.0f;
     private float initSpeed;
     private float timer;
     private float currentSpeed;
     private float Health = 200f;
     private float _maxHealth;
-    private bool setBool;
-    private PlayerHealth currentHealth;
-
-    [HideInInspector] public bool isHit = false;
+    
+    private PlayerHealth currentHealth;    
 
     private Image _targetBar;
-    private Transform core_Trans;
-    
+    private Transform core_Trans;    
 
     public float triggerEnterSpeed = 0.5f;
     public float triggerLeaveSpeed = 1.0f;    
@@ -34,18 +34,7 @@ public class CollisionHandler : MonoBehaviour
         core_Trans = GetComponent<PlayerFlightControl>().actual_model.transform;        
         initSpeed = GetComponent<PlayerFlightControl>().speed;
         currentHealth = GetComponent<PlayerHealth>();
-    }
-
-    void FixedUpdate()
-    {
-        if (setBool)
-        {
-            if (CrossPlatformInputManager.GetButtonDown("Submit"))
-            {                              
-                anims[1].SetTrigger("KeyPress");                
-            }            
-        }        
-    }
+    } 
 
     void OnCollisionEnter(Collision other)
     {
@@ -55,24 +44,28 @@ public class CollisionHandler : MonoBehaviour
             currentHealth.Health = 0;
             currentHealth.StartDeathSequence();                   
         }
-    }
-    void ReloadScene() // string referenced
-    {
-        SceneManager.LoadScene(1);
+        else
+        {
+            isHit = false;
+        }
     }
 
     void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("Land"))
         {
-            anims[0].SetBool("IsNearLandingPad", true);
-            anims[1].SetBool("PlayText", true);
-            setBool = true;
+            //anims[0].SetBool("IsNearLandingPad", true);
+           // anims[1].SetBool("PlayText", true);
+            isWithinTrigger = true;            
 
-            if (anims[0].GetBool("IsFlying") == true && anims[0].GetBool("IsLiftOff") == false)
+            if (isFlying)
             {
                 StartCoroutine(SlowSpeedApproach());
-            }         
+            }
+            //if (anims[0].GetBool("IsFlying") == true && anims[0].GetBool("IsLiftOff") == false)
+            //{
+                //StartCoroutine(SlowSpeedApproach());
+            //}         
         }
     }
 
@@ -80,16 +73,16 @@ public class CollisionHandler : MonoBehaviour
     {
         if (col.CompareTag("Land"))
         {
-            anims[0].SetBool("IsNearLandingPad", false);
-            anims[1].SetBool("PlayText", false);
-            setBool = false;
+            //anims[0].SetBool("IsNearLandingPad", false);
+            //anims[1].SetBool("PlayText", false);
+            isWithinTrigger = false;
 
             StartCoroutine(SlowSpeedLeave());
             //GetComponent<PlayerFlightControl>().speed = initSpeed;
         }
     }
 
-    IEnumerator SlowSpeedApproach()
+    public IEnumerator SlowSpeedApproach()
     {
         timer = 0.0f;
 

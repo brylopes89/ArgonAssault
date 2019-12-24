@@ -9,7 +9,7 @@ public class CamSwitch : MonoBehaviour
     public GameObject cam2;
     public GameObject cam3;
 
-    bool toggle = false;
+    public bool toggle = false;
 
     // Start is called before the first frame update
     void Start()

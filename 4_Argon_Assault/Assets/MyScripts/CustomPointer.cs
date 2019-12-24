@@ -43,7 +43,7 @@ public class CustomPointer : MonoBehaviour {
 	void Start () {
 	
 		//Uncomment for Unity 5 to get rid of the warnings.
-		Cursor.lockState = CursorLockMode.Locked;
+		//Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
 		
 		//Screen.lockCursor = true;

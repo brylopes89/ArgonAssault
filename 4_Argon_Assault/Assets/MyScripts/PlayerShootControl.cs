@@ -78,8 +78,19 @@ public class PlayerShootControl : MonoBehaviour
                 _index = 0;
             }
             StartCoroutine(SwitchAfterDelay(_index));            
-        }      
-                
+        }  
+        
+        if(CrossPlatformInputManager.GetButtonDown("Weapon1"))
+        {
+            weapons[0].SetActive(true);
+            weapons[1].SetActive(false);
+        }
+        else if (CrossPlatformInputManager.GetButtonDown("Weapon2"))
+        {
+            weapons[0].SetActive(false);
+            weapons[1].SetActive(true);
+        }
+
         if (CrossPlatformInputManager.GetButton("Fire1") && !_isReloading && Time.time >= _nextTimeToFire)
         {            
             if (_index == 0)

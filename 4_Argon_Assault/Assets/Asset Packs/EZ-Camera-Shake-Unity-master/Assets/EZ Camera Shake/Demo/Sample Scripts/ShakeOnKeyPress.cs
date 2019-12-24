@@ -10,10 +10,10 @@ public class ShakeOnKeyPress : MonoBehaviour
 
     void Update()
     {
-        //ThrustShake();
+        ThrustShake();
     }
 
-    public void ThrustShake(bool isActive)
+    public void ThrustShake()
     {        
         CameraShaker.Instance.ShakeOnce(Magnitude, Roughness, 0, FadeOutTime);
     }

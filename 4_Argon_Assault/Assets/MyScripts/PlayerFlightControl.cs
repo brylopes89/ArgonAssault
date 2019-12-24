@@ -144,12 +144,7 @@ public class PlayerFlightControl : MonoBehaviour
             {
                 BroadcastMessage("CurveIncrease", true);
                 IncreaseThrust();                
-                AudioManager.Instance.PlayOneShot(AudioManager.Instance.GetClipFromPlaylist("ThrustEdit2"));
-
-                if (camMode.cam2)
-                {
-                    fpCamShake.ThrustShake(true);
-                }                
+                //AudioManager.Instance.PlayOneShot(AudioManager.Instance.GetClipFromPlaylist("ThrustEdit2"));                         
             }
 
             else //Otherwise, hold normal speed.
@@ -158,11 +153,7 @@ public class PlayerFlightControl : MonoBehaviour
                 audioSource.enabled = false;
                 audioSource.loop = false;
                 BroadcastMessage("CurveDecrease", true);
-
-                if (camMode.cam2)
-                {
-                    fpCamShake.ThrustShake(false);
-                }
+               
             }
         }
         if (brake_exists && CrossPlatformInputManager.GetAxis("Brake") > 0) //If input on the thrust axis is negatve, activate brakes.
