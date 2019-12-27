@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
-using Papae.UnitySDK.Managers;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.UI;
 
 [Serializable]
 public class PlayerFlightControl : MonoBehaviour
@@ -54,6 +53,7 @@ public class PlayerFlightControl : MonoBehaviour
     
     private ShakeOnKeyPress fpCamShake;
     private CamSwitch camMode;
+    private Slider sliderVal;
 
     //public AudioClip thrust;
     AudioSource audioSource;
@@ -63,6 +63,7 @@ public class PlayerFlightControl : MonoBehaviour
     {
         fpCamShake = FindObjectOfType<ShakeOnKeyPress>();
         camMode = FindObjectOfType<CamSwitch>();
+        sliderVal = FindObjectOfType<Slider>();        
 
         mousePos = new Vector2(0, 0);
         DZ = CustomPointer.instance.deadzone_radius;
@@ -139,28 +140,33 @@ public class PlayerFlightControl : MonoBehaviour
     {
         if (thrust_exists) 
         {
+
+            /*if (brake_exists && CrossPlatformInputManager.GetAxis("Brake") > 0 || CrossPlatformInputManager.GetButton("BrakeKey")) //If input on the thrust axis is negatve, activate brakes.
+            {
+                ApplyBrake();
+                
+            }
             //if (Input.GetAxis("Thrust") > 0 || Input.GetButton("ThrustKey"))//If input on the thrust axis is positive, activate afterburners.
-            if(CrossPlatformInputManager.GetAxis("Thrust") > 0)
+            else*/ if (CrossPlatformInputManager.GetAxis("Thrust") > 0)
             {
                 BroadcastMessage("CurveIncrease", true);
-                IncreaseThrust();                
-                //AudioManager.Instance.PlayOneShot(AudioManager.Instance.GetClipFromPlaylist("ThrustEdit2"));                         
-            }
-
-            else //Otherwise, hold normal speed.
-            {
-                DecreaseThrust();
-                audioSource.enabled = false;
-                audioSource.loop = false;
-                BroadcastMessage("CurveDecrease", true);
+                //BroadcastMessage("CurveDecrease", false);
+                IncreaseThrust();
+                
+                //AudioManager.Instance.PlayOneShot(AudioManager.Instance.GetClipFromPlaylist("ThrustEdit2"));           
                
             }
-        }
-        if (brake_exists && CrossPlatformInputManager.GetAxis("Brake") > 0) //If input on the thrust axis is negatve, activate brakes.
-        {           
-            ApplyBrake();
             
-        }
+            else //Otherwise, hold normal speed.
+            {
+                BroadcastMessage("CurveDecrease", true);
+                //BroadcastMessage("CurveIncrease", false);
+                
+                DecreaseThrust();
+                audioSource.enabled = false;
+                audioSource.loop = false;                            
+            }
+        }      
 
         //print(currentMag);
     }
@@ -173,27 +179,45 @@ public class PlayerFlightControl : MonoBehaviour
 
         if (roll_exists)
             roll = (CrossPlatformInputManager.GetAxis("Roll") * -rollSpeedModifier);
-    }
+    }   
 
     void IncreaseThrust()
     {
-        afterburner_Active = true;       
-        currentMag = Mathf.Lerp(currentMag, afterburner_speed, thrust_transition_speed * Time.deltaTime);
-        
-        //print(currentMag);
+        afterburner_Active = true;
+       // afterburner_speed = sliderVal.value + afterburner_speed;
+        currentMag = Mathf.Lerp(currentMag, TargetSpeed(), thrust_transition_speed * Time.deltaTime);
+        //currentMag = TargetSpeed();
     }
 
     public void DecreaseThrust()
-    {
-        afterburner_Active = false;       
-        currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);              
+    {       
+        afterburner_Active = false;        
+        currentMag = Mathf.Lerp(currentMag, TargetSpeed(), thrust_transition_speed * Time.deltaTime);
+        //currentMag = TargetSpeed();
     }
 
     void ApplyBrake()
     {        
         slow_Active = true;
         afterburner_Active = false;
-        currentMag = Mathf.Lerp(currentMag, slow_speed, brake_transition_speed * Time.deltaTime);        
+        currentMag = Mathf.Lerp(currentMag, TargetSpeed(), thrust_transition_speed * Time.deltaTime);
+        //currentMag = TargetSpeed();
+    }
+
+    float TargetSpeed()
+    {
+        if (sliderVal.value >= 0 && sliderVal.value <= 1)
+        {
+            return Mathf.Lerp(speed, afterburner_speed, sliderVal.value);
+        }
+        else if (sliderVal.value >= -1 && sliderVal.value < 0)
+        {
+            return Mathf.Lerp(speed, slow_speed, sliderVal.value * -1);
+        }
+        else
+        {            
+            return speed; 
+        }
     }
 
     void updateCursorPosition()

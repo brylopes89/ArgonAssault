@@ -93,7 +93,6 @@ public class Enemy : MonoBehaviour
         MoveTowards(wayTrans[waypointId].position);
 
         attacking = false;
-
     }
 
     void PatrolAndChase()

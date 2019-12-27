@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class AnimTriggers : MonoBehaviour
@@ -8,10 +9,13 @@ public class AnimTriggers : MonoBehaviour
     [SerializeField] private List<Animator> anims = new List<Animator>();
     private CollisionHandler collisionTriggers;
 
+    public Text screenPress;
+
     // Start is called before the first frame update
     void Start()
     {
         collisionTriggers = FindObjectOfType<CollisionHandler>();
+        
     }
 
     // Update is called once per frame
@@ -28,12 +32,13 @@ public class AnimTriggers : MonoBehaviour
             }
 
             if (anims[0].GetBool("IsFlying") == true && anims[0].GetBool("IsLiftOff") == false)
-            {
-                collisionTriggers.isFlying = false;
+            {          
+               collisionTriggers.isFlying = true;
+               screenPress.text = "Press Screen To Land";
             }
             else
             {
-               collisionTriggers.isFlying = true;
+                screenPress.text = "Press Screen To Launch";
             }
         }
         else if(!collisionTriggers.isWithinTrigger)

@@ -17,8 +17,7 @@ public class CollisionHandler : MonoBehaviour
     private float targetSpeed = 6.0f;
     private float initSpeed;
     private float timer;
-    private float currentSpeed;
-    private float Health = 200f;
+    private float currentSpeed;    
     private float _maxHealth;
     
     private PlayerHealth currentHealth;    
