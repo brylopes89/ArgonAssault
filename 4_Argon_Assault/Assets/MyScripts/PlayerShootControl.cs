@@ -175,7 +175,7 @@ public class PlayerShootControl : MonoBehaviour
                 vfx1.transform.LookAt(hit.point);
                 //if(_index != 1)
                 //{
-                    vfx1.GetComponentInChildren<Rigidbody>().AddForce((vfx1.transform.forward) * 9000f);
+                //vfx1.GetComponentInChildren<Rigidbody>().AddForce((vfx1.transform.forward) * 9000f);
                 //}
                 //Debug.DrawRay(firePoint[i].transform.position, firePoint[i].transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);                
             }

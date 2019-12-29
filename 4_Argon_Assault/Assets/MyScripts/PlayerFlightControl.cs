@@ -54,6 +54,7 @@ public class PlayerFlightControl : MonoBehaviour
 
     //public AudioClip thrust;
     AudioSource audioSource;
+    AudioClip thrustClip;
     //---------------------------------------------------------------------------------
 
     void Start()
@@ -61,6 +62,7 @@ public class PlayerFlightControl : MonoBehaviour
         mousePos = new Vector2(0, 0);
         DZ = CustomPointer.instance.deadzone_radius;
         GetSound();
+        
 
         roll = 0; //Setting this equal to 0 here as a failsafe in case the roll axis is not set up.
 
@@ -130,26 +132,29 @@ public class PlayerFlightControl : MonoBehaviour
     {
         if (thrust_exists) 
         {
-            if (Input.GetAxis("Thrust") > 0 || Input.GetButton("ThrustKey"))//If input on the thrust axis is positive, activate afterburners.
+            if (brake_exists && Input.GetAxis("Brake") > 0 || brake_exists && Input.GetButton("BrakeKey")) //If input on the thrust axis is negatve, activate brakes.
+            {
+                ApplyBrake();
+
+            }
+            else if (Input.GetAxis("Thrust") > 0 || Input.GetButton("ThrustKey"))//If input on the thrust axis is positive, activate afterburners.
             {
                 BroadcastMessage("CurveIncrease", true);
-                IncreaseThrust();                
-                AudioManager.Instance.PlayOneShot(AudioManager.Instance.GetClipFromPlaylist("ThrustEdit2"));
+                IncreaseThrust();
+                audioSource.enabled = true;
+               
             }
 
             else //Otherwise, hold normal speed.
             {
                 DecreaseThrust();
+               // audioSource.Stop();
                 audioSource.enabled = false;
-                audioSource.loop = false;
+                //audioSource.loop = false;
                 BroadcastMessage("CurveDecrease", true);
             }
         }
-        if (brake_exists && Input.GetAxis("Brake") > 0 || brake_exists && Input.GetButton("BrakeKey")) //If input on the thrust axis is negatve, activate brakes.
-        {           
-            ApplyBrake();
-            
-        }
+       
 
         //print(currentMag);
     }
@@ -182,7 +187,7 @@ public class PlayerFlightControl : MonoBehaviour
     {        
         slow_Active = true;
         afterburner_Active = false;
-        currentMag = Mathf.Lerp(currentMag, slow_speed, brake_transition_speed * Time.deltaTime);        
+        currentMag = Mathf.Lerp(currentMag, slow_speed, thrust_transition_speed * Time.deltaTime);        
     }
 
     void updateCursorPosition()
@@ -241,7 +246,7 @@ public class PlayerFlightControl : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         audioSource.enabled = false;
-        audioSource.loop = false;
-        //audioSource.clip = thrust;
+        //audioSource.loop = false;
+        thrustClip = audioSource.clip;
     }
 }
